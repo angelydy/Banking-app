@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+body {
+  background: url(/src/assets/01.png);
+  background-size: cover;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  max-width: 100%;
+  text-decoration: none;
+
+}
+
+
+navbar {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 50px;
+}
+
+.navright a{
+  padding: 0 50px;
+}
+
+.SignUp {
+  width: 100px;
+  height: 40px;
+  border-radius: 50px;
+  border-style: none;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.left {
+  margin: 100px 130px;
+}
+
+.boldText {
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.buttons button {
+  border-radius: 50px;
+  border-style: none;
+  width: 120px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.LogIn {
+  background: rgb(94,170,175);
+  background: linear-gradient(90deg, rgba(94,170,175,1) 24%, rgba(47,46,108,1) 63%);
+  color: white;
+}
+
+.LogIn:hover {
+  background: rgb(47,46,108);
+  background: linear-gradient(90deg, rgba(47,46,108,1) 24%, rgba(94,170,175,1) 63%);
+  transform: scale(1.1);
+  transition: .5s ease-in-out 0s;
+  cursor: pointer;
+}
+
+.downloadBtn {
+  margin: 0 40px;
+  background: transparent;
+  color: white;
+}
+
+.desc {
+  color: rgb(214, 214, 214);
+  font-size: 15px;
+}
+
+.right {
+  text-align: center;
+}
+
+.cardsPhoto {
+  width: 75%;
+  margin: 30px;
+}
