@@ -55,8 +55,8 @@ function WelcomeScreen() {
       <div class="sign-up-modal">
         <div class="form-wrapper">
           <div className="left-wrapper">
-            <p>
-              <span className='boldtext'>Create an Account</span>
+            <p className="left-wrapper-text">
+              <span className='bold-left-text'>Create an<br></br> Account</span>
               <br></br>
               and start saving today!
             </p>
@@ -65,13 +65,16 @@ function WelcomeScreen() {
           <div className="right-wrapper">
           <button id="close-sign-up">X</button>
           <form action="results.html" id="form1" method="get">
-            <label for="name" class="name-label">First Name</label>
-            <input type="name" id="name" placeholder="Ex. Lance Pallarca" required></input>
-            <label for="name" class="name-label">Last Name</label>
-            <input type="name" id="name" placeholder="Ex. Lance Pallarca" required></input>
+            <label for="fullname" class="fullname-label">Name</label>
+            <input type="name" id="first-name" placeholder="First Name" required></input>
+            <input type="name" id="last-name" placeholder="last Name" required></input>
             <label for="email" class="email-label">Email</label>
             <input type="email" id="email" placeholder="sy.feydaniel@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input>
-            <input type="submit" value="Sign Up" id="submit"></input>
+            <label for="mobile-number" class="mobile-number-label">Phone Number</label>
+            <input type="number" id="mobile-number" placeholder="Enter your mobile number here" required></input>
+            <label for="password" class="password-label">Password</label>
+            <input type="password" id="password" placeholder="Input a password" required></input>
+            <input type="submit" id="submitBtn" placeholder="Submit"></input>
           </form>
           <div class="disclaimer">By submitting this form, you agree to the Terms of Use and Privacy of this website.</div>
         </div></div>
