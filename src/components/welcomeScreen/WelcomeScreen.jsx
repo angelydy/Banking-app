@@ -80,7 +80,7 @@ function WelcomeScreen() {
             <div className="email-and-accountNumber">
               <div className="email-and-accountNumber-label">
                 <label for="email" class="email-label">Email</label>
-                <label for="account-number" class="account-number-label">Account No</label>
+                <label for="account-number" class="account-number-label">Account No.</label>
               </div>
               <input type="email" id="email" placeholder="Enter email here" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input>
               <input type="number" id="account-number" placeholder="Enter your account number here" required></input>
@@ -90,15 +90,15 @@ function WelcomeScreen() {
                 <label for="password" class="password-label">Password</label>         
                 <label for="username" class="username-label">Username</label>         
               </div>
-              <input type="password" id="password" placeholder="Password (8  or more characters)" required minLength={8}></input>
+              <input type="password" id="password" placeholder="Password (8 or more characters)" required minLength={8}></input>
               <input type="text" id="password" placeholder="Enter username" required></input>
             </div> 
-            <input type="password" id="confirm-password" placeholder="Confirm password" required></input>
-            <input type="submit" id="submitBtn" placeholder="Submit"></input>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required minLength={8}></input>
+            <input type="submit" id="submitBtn"></input>
           </form>
-
-          <div class="disclaimer">By submitting this form, you agree to the Terms of Use and Privacy of this website.</div>
-        </div></div>
+          <p class="disclaimer">By submitting this form, you agree to the Terms of Use and Privacy of this website.</p>
+          </div>
+        </div>
       </div>
     </div>
   );
