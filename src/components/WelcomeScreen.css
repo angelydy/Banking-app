@@ -110,6 +110,7 @@ navbar {
   transition: 0.7s;
   display: flex;
   justify-content: center;
+  padding-top: 5rem;
 }
 
 .show-sign-up-modal {
