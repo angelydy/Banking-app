@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import WelcomeScreen from './components/welcomeScreen/WelcomeScreen';
+import WelcomeScreen from './components/WelcomeScreen';
 
 
 function App() {

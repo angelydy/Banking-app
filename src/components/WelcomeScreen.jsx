@@ -1,14 +1,20 @@
 import React from "react";
-import pic from './../../assets/02.png';
-import leftimg from './../../assets/business-woman.png';
+import pic from './../assets/02.png';
+import leftimg from './../assets/business-woman.png';
 import { useState } from "react";
 import './WelcomeScreen.css';
+import './LoginForm.css';
+
 
 function WelcomeScreen() {
   const [switchToggle, setSwitchToggle] = useState(false)
-
   const buttonClicked = () => {
     switchToggle ? setSwitchToggle(false) : setSwitchToggle(true)
+  };
+
+  const [loginModal, setLoginModal] = useState(false)
+  const loginClicked = () => {
+    loginModal ? setLoginModal(false) : setLoginModal(true)
   };
 
   return (
@@ -45,7 +51,7 @@ function WelcomeScreen() {
               </span>
             </p>
             <div className='buttons'>
-              <button className='LogIn'>
+              <button className='LogIn' onClick={loginClicked} >
                 Log in
               </button>
               <button className='downloadBtn'>
@@ -63,7 +69,7 @@ function WelcomeScreen() {
         <div class="form-wrapper">
           <div className="left-wrapper">
             <p className="left-wrapper-text">
-              <span className='bold-left-text'>Create an<br></br> Account</span>
+              <span className='bold-left-text'>Create an Account</span>
               <br></br>
               and start saving today!
             </p>
@@ -100,8 +106,27 @@ function WelcomeScreen() {
           </div>
         </div>
       </div>
+
+      <div className={loginModal ? "show-login-modal" : "login-modal"}>
+      <div class="login-wrapper">
+      <button id="close-sign-up" onClick={loginClicked}>X</button>
+        <p className="wrapper-text">
+          <span className='bold-login-text'>Welcome Back!</span>
+          <br></br>
+          Please enter your details.
+        </p>
+        <div className="form-container">
+        <label for="username" class="username-label">Username</label>
+        <input type="text" id="password" placeholder="Enter username" required></input>
+        <label for="password" class="password-label">Password</label>         
+        <input type="password" id="password" placeholder="Password (8 or more characters)" required minLength={8}></input>
+        <div className="signInBtn">
+          <button type="submit" id="submitBtn">Sign In</button>
+        </div>
+        </div>
+      </div>
+    </div>
     </div>
   );
 }
-
-export default WelcomeScreen;
+export default WelcomeScreen ;

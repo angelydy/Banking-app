@@ -1,0 +1,71 @@
+.login-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  
+}
+
+.show-login-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  background-color: hsla(0, 0%, 0%, 0.7);
+  opacity: 1;
+  padding-top: 8rem;
+} 
+
+.login-wrapper {
+  background: rgba( 255, 255, 255, 0.1 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+  padding: 30px;
+}
+
+.wrapper-text {
+  font-size: 18px;
+}
+
+.bold-login-text {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+#submitBtn {
+  width: 10rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 40px;
+}
+
+input {
+  width: 25rem;
+}
+
+.signInBtn {
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+}
