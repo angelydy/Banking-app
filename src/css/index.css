@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap");
+.login-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.show-login-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  padding-top: 8rem;
+}
+
+.login-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+  padding: 30px;
+}
+
+.wrapper-text {
+  font-size: 18px;
+}
+
+.bold-login-text {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+#submitBtn {
+  width: 10rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 40px;
+}
+
+.form-container input {
+  width: 25rem;
+}
+
+.signInBtn {
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
+body {
+  background: url("/src/assets/01.png");
+  background-size: cover;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 50px;
+}
+nav .navright a {
+  padding: 0 50px;
+}
+nav .SignUp {
+  width: 100px;
+  height: 40px;
+  border-radius: 50px;
+  border-style: none;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+}
+nav .SignUp:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out 0s;
+}
+
+a:hover, .downloadBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out 0s;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid .left {
+  margin: 100px 130px;
+}
+.grid .left .boldText {
+  font-size: 50px;
+  font-weight: 900;
+}
+.grid .left .desc {
+  color: #d6d6d6;
+  font-size: 15px;
+}
+.grid .left .buttons button {
+  border-radius: 50px;
+  border-style: none;
+  width: 120px;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+.grid .left .buttons button.LogIn {
+  background: #5eaaaf;
+  background: linear-gradient(90deg, #5eaaaf 24%, #2f2e6c 63%);
+  color: white;
+}
+.grid .left .buttons button.LogIn:hover {
+  background: #2f2e6c;
+  background: linear-gradient(90deg, #2f2e6c 24%, #5eaaaf 63%);
+  transform: scale(1.1);
+  transition: 0.5s ease-in-out 0s;
+  cursor: pointer;
+}
+.grid .left .buttons button.downloadBtn {
+  margin: 0 40px;
+  background: transparent;
+  color: white;
+}
+.grid .right {
+  text-align: center;
+}
+.grid .right .cardsPhoto {
+  width: 75%;
+  margin: 30px;
+}
+
+.sign-up-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.show-sign-up-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+.form-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 900px;
+  height: 300px;
+  padding-top: 5rem;
+}
+.form-wrapper .left-wrapper {
+  background: url("/src/assets/01.png");
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.form-wrapper .left-wrapper .left-wrapper-text {
+  font-size: 18px;
+  margin: 20px 30px;
+}
+.form-wrapper .left-wrapper .left-wrapper-text .bold-left-text {
+  font-size: 40px;
+  font-weight: 900;
+}
+.form-wrapper .left-wrapper .modalIcon {
+  width: 100%;
+  margin: 0 50px;
+}
+.form-wrapper .right-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+}
+.form-wrapper .right-wrapper #close-sign-up {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border-style: none;
+  font-size: 20px;
+  font-weight: lighter;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: white;
+}
+.form-wrapper .right-wrapper form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  padding-top: 3rem;
+  line-height: 3rem;
+}
+.form-wrapper .right-wrapper form .email-and-accountNumber-label, .form-wrapper .right-wrapper form .username-password-label, .form-wrapper .right-wrapper form .fullname-label {
+  display: flex;
+  justify-content: space-around;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+}
+.form-wrapper .right-wrapper form #confirm-password {
+  width: 21rem;
+}
+.form-wrapper .right-wrapper form input {
+  background-color: transparent;
+  border-style: none;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(128, 128, 128, 0.534);
+  height: 25px;
+  width: 150px;
+  padding: 10px;
+  color: white;
+}
+.form-wrapper .right-wrapper form input::placeholder {
+  color: white;
+}
+.form-wrapper .right-wrapper form #submitBtn {
+  height: 50px;
+  background: white;
+  color: #2f2e6c;
+  border-radius: 50px;
+  border-style: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.form-wrapper .right-wrapper form #submitBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.5s ease-in-out 0s;
+}
+.form-wrapper .right-wrapper .disclaimer {
+  margin: 2rem 3.5rem;
+}
+
+.admin-wrapper {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+}
+
+.enter-acc-no.hide {
+  display: none;
+}
+
+.enter-acc-no.hide {
+  display: none;
+}
+
+.enter-acc-no.hide {
+  display: none;
+}
