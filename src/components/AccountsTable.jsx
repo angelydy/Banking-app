@@ -7,6 +7,7 @@ export default function AccountsTable() {
       <div id='accounts-table-wrapper'>
         <div>Account No.</div>
         <div>Account Name</div>
+        <div>Account Category</div>
         <div>Account Type</div>
         <div>Balance</div>
       </div>

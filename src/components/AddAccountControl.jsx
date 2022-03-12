@@ -1,4 +1,5 @@
 import React from 'react'
+import CurrencyOptions from './CurrencyOptions';
 
 export default function AddAccountControl() {
   return (
@@ -20,6 +21,7 @@ export default function AddAccountControl() {
         <input type="radio" value="Checking" name='acc-type'/> Checking
       </div>
       <label htmlFor="initial-deposit">Initial Deposit (Optional)</label>
+      <CurrencyOptions />
       <input type="number" name='initial-deposit' />
     </section>
   )

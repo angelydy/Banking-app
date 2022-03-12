@@ -1,5 +1,6 @@
 import React from 'react'
 import './../css/index.css';
+import CurrencyOptions from './CurrencyOptions';
 
 export default function DepositControl(props) {
   const { displayFeature } = props;
@@ -12,6 +13,7 @@ export default function DepositControl(props) {
       </div>
       <div className='deposit-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
+        <CurrencyOptions />
         <input type="number" name='amount'/>
       </div>
       <div className='deposit-triggers'>

@@ -1,4 +1,5 @@
 import React from 'react'
+import CurrencyOptions from './CurrencyOptions';
 import './../css/index.css';
 
 export default function WithdrawControl(props) {
@@ -12,6 +13,7 @@ export default function WithdrawControl(props) {
       </div>
       <div className='withdraw-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
+        <CurrencyOptions />
         <input type="number" name='amount'/>
       </div>
       <div className='withdraw-triggers'>
