@@ -19,7 +19,7 @@ function WelcomeScreen() {
     <div className="welcome">
       <nav>
         <p>
-          LOGO
+          NB | NOBLE BANK
         </p>
         <div className='navright'>
           <a>

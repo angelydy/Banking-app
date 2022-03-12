@@ -38,20 +38,47 @@
   width: 30rem;
   height: 30rem;
   position: relative;
-  padding: 30px;
+  padding: 3rem;
 }
-
-.wrapper-text {
-  font-size: 18px;
+.login-wrapper #close-sign-up {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border-style: none;
+  font-size: 1.5em;
+  font-weight: lighter;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: white;
 }
-
-.bold-login-text {
-  font-size: 40px;
+.login-wrapper .wrapper-text {
+  font-size: 1.5em;
+}
+.login-wrapper .bold-login-text {
+  font-size: 1.5em;
   font-weight: 900;
 }
-
-#submitBtn {
-  width: 10rem;
+.login-wrapper .signInBtn {
+  display: flex;
+  justify-content: center;
+  padding: 2vw;
+}
+.login-wrapper .signInBtn #submitBtn {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 50px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 30%;
+  text-align: center;
+  padding: 0.5rem;
+}
+.login-wrapper .signInBtn #submitBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.5s ease-in-out 0s;
 }
 
 .form-container {
@@ -59,15 +86,19 @@
   flex-direction: column;
   line-height: 40px;
 }
-
 .form-container input {
-  width: 25rem;
+  background-color: transparent;
+  border-style: none;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(128, 128, 128, 0.534);
+  height: 2vw;
+  width: 30vw;
+  padding: 10px;
+  color: white;
 }
-
-.signInBtn {
-  display: flex;
-  justify-content: center;
-  padding-top: 3rem;
+.form-container input::placeholder {
+  color: white;
 }
 
 body {
@@ -81,6 +112,7 @@ body {
   background-attachment: fixed;
   max-width: 100%;
   text-decoration: none;
+  overflow: hidden;
 }
 
 nav {
@@ -159,7 +191,7 @@ a:hover, .downloadBtn:hover {
 }
 .grid .right .cardsPhoto {
   width: 75%;
-  margin: 30px;
+  margin: auto;
 }
 
 .sign-up-modal {

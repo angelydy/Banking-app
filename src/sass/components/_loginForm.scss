@@ -38,33 +38,75 @@
   height: 30rem;
   position: relative;
   padding: 3rem;
-}
 
-.wrapper-text {
-  font-size: 18px;
-}
+  #close-sign-up {
+    position: absolute;
+    right: 0;
+    background: transparent;
+    border-style: none;
+    font-size: 1.5em;
+    font-weight: lighter;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: white;
+  }
 
-.bold-login-text {
-  font-size: 40px;
-  font-weight: 900;
-}
+  .wrapper-text {
+    font-size: 1.5em;
+  }
 
-#submitBtn {
-  width: 10rem;
+  
+  .bold-login-text {
+    font-size: 1.5em;
+    font-weight: 900;
+  }
+
+  .signInBtn {
+    display: flex;
+    justify-content: center;
+    padding: 2vw;
+
+    #submitBtn {
+      text-decoration: none;
+      background-color: white;
+      border-radius: 50px;
+      color: rgb(47,46,108);
+      font-size: 1rem;
+      font-weight: 600;
+      width: 30%;
+      text-align: center;
+      padding: 0.5rem;
+  
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: .5s ease-in-out .0s;
+      }
+    }
+  }
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
   line-height: 40px;
+
+  input {
+    background-color: transparent;
+    border-style: none;
+    margin: 10px;
+    border-radius: 10px;
+    border: 2px solid rgba(128, 128, 128, 0.534);
+    height: 2vw;
+    width: 30vw;
+    padding: 10px;
+    color: white;
+        
+    &::placeholder {
+      color: white;
+    }
+  }
 }
 
-.form-container input {
-  width: 25rem;
-}
 
-.signInBtn {
-  display: flex;
-  justify-content: center;
-  padding-top: 3rem;
-}
