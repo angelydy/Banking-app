@@ -11,7 +11,7 @@ body {
   background-attachment: fixed;
   max-width: 100%;
   text-decoration: none;
-  // overflow-y: hidden;
+  overflow: hidden;
 }
 
 nav {
@@ -109,7 +109,7 @@ a, .downloadBtn {
     
     .cardsPhoto {
       width: 75%;
-      margin: 30px;
+      margin: auto;
     }
   }
 }
@@ -188,7 +188,6 @@ a, .downloadBtn {
       top: 10px;
       cursor: pointer;
       color: white;
-      
     }
 
     form {
