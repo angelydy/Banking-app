@@ -7,7 +7,8 @@ export default function TransferControl(props) {
   
   return (
     <section className='transfer-control-wrapper'>
-      <div className={displayFeature}>
+      <div className='transfer-control-container'>
+      <div className={displayFeature} id="sender-acc-no">
         <label htmlFor="acc-no-of-sender">Enter Account No. of Sender</label>
         <input type="number" name='acc-no-of-sender'/>
       </div>
@@ -19,6 +20,7 @@ export default function TransferControl(props) {
         <label htmlFor="amount">Enter an Amount</label>
         <CurrencyOptions />
         <input type="number" name='amount'/>
+      </div>
       </div>
       <div className='transfer-triggers'>
         <button>Transfer</button>

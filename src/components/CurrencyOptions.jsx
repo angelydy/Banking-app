@@ -1,29 +1,23 @@
 import React from 'react'
 
-// export const CURRENCY = ['php', 'usd', 'euro', 'hryvnia', 'yuan']
-
-// export default function CurrencyOptions() {
-//   return (
-//     <select name="currency-options" id="currency-options">
-//         {CURRENCY.map(curr => {
-//           return (
-//             <option value={curr}>
-//             {}
-//             </option>
-//           )
-//         })}
-//       </select> 
-//   )
-// }
+const currency= ['php', 'usd', 'euro', 'hryvian', 'yuan']
+const currencyObj = [{ value:'php', symb: "₱" }, 
+                    { value: 'usd', symb: "$" }, 
+                    { value: 'euro', symb: "€" }, 
+                    { value: 'hryvian', symb: "₴" }, 
+                    { value: 'yuan', symb: "¥" }]
+const result = currency.map(value => currencyObj.find(o => o.value === value).symb);
 
 export default function CurrencyOptions() {
   return (
     <select name="currency-options" id="currency-options">
-      <option value="php">₱</option>  
-      <option value="usd">$</option>
-      <option value="euro">€</option>
-      <option value="hryvnia">₴</option>
-      <option value="yuan">¥</option>
-    </select> 
+        {currency.map(curr => {
+          return (
+            <option value={curr}>
+              {result[curr]}
+            </option>
+          )
+        })}
+      </select> 
   )
 }
