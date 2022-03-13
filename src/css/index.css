@@ -115,6 +115,7 @@ body {
 }
 body::-webkit-scrollbar {
   width: 10px;
+  scroll-behavior: smooth;
 }
 body::-webkit-scrollbar-track {
   background: #f1f1f1;
@@ -354,8 +355,6 @@ a:hover, .downloadBtn:hover {
   height: 100%;
   max-width: 100%;
   color: white;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
 }
 .admin-wrapper #accounts-table-wrapper {
   display: flex;
@@ -365,8 +364,8 @@ a:hover, .downloadBtn:hover {
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 55rem;
-  height: 20rem;
+  min-width: 90vw;
+  min-height: 40vh;
   overflow: auto;
   margin: 2rem;
   line-height: 3rem;
@@ -383,35 +382,46 @@ a:hover, .downloadBtn:hover {
   grid-template-columns: repeat(5, 1fr);
   text-align: center;
   color: white;
+  height: auto;
 }
 
 .add-account-control-wrapper {
-  position: fixed;
-  right: 0;
   line-height: 3rem;
-  display: flex;
-  flex-direction: column;
-  padding: 3em;
-  top: 0;
-  bottom: 0;
-}
-.add-account-control-wrapper .settings-log-out {
-  display: flex;
-  justify-content: space-between;
-}
-.add-account-control-wrapper .settings-log-out a {
-  color: white;
-}
-.add-account-control-wrapper .column-user-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  line-height: 3rem;
+  padding: 3rem;
+  background-image: linear-gradient(to left bottom, #6e7cc4c5, #9296cdb2, #b2b1d7a9, #cfcee1bb, #ebebebc2);
+  margin: 2rem;
+  border-radius: 10px;
 }
-.add-account-control-wrapper .column-user-info input {
+.add-account-control-wrapper button {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 50px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 10rem;
+  text-align: center;
+  padding: 1rem;
+  border-style: none;
+  margin: 2rem;
+}
+.add-account-control-wrapper button:hover {
+  transition: 0.3s ease-in-out 0s;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: black;
+}
+.add-account-control-wrapper label {
+  font-weight: 600;
+  padding: 2rem;
+}
+.add-account-control-wrapper input {
   background-color: transparent;
   border-style: none;
-  width: 20rem;
+  width: 15rem;
   border-radius: 10px;
   color: white;
   border: 2px solid white;
@@ -419,45 +429,20 @@ a:hover, .downloadBtn:hover {
   padding: 10px;
   font-size: 1rem;
 }
-.add-account-control-wrapper .flex-radio-buttons {
-  display: flex;
-}
-.add-account-control-wrapper .flex-radio-buttons input {
-  margin: 0 2rem;
-}
-.add-account-control-wrapper .currency {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0 3rem;
-}
-.add-account-control-wrapper .currency input {
-  background: white;
-  border-style: none;
-  border-radius: 10px;
-  height: 3rem;
-}
 
 .admin-wrapper-bottom {
   display: flex;
   flex-direction: column;
-  width: 60em;
+  min-width: 90vw;
 }
 .admin-wrapper-bottom .withdraw-deposit-title {
   display: flex;
   flex-direction: row;
   font-weight: 700;
   font-size: 1.5em;
+  justify-content: space-evenly;
 }
-.admin-wrapper-bottom .withdraw-deposit-title p {
-  margin: 1em 7.5em;
-}
-.admin-wrapper-bottom .transfer-title {
-  font-weight: 700;
-  font-size: 1.5em;
-  display: flex;
-  justify-content: center;
-}
-.admin-wrapper-bottom .withdraw-deposit, .admin-wrapper-bottom .transfer {
+.admin-wrapper-bottom .withdraw-deposit-transfer {
   display: flex;
   flex-direction: row;
 }
@@ -490,44 +475,16 @@ a:hover, .downloadBtn:hover {
   padding: 10px;
   font-size: 1rem;
 }
-.admin-wrapper-bottom .withdraw-control-wrapper button, .admin-wrapper-bottom .deposit-control-wrapper button {
-  text-decoration: none;
-  background-color: white;
-  border-radius: 50px;
-  color: #2f2e6c;
-  font-size: 1rem;
-  font-weight: 600;
-  width: 7rem;
-  text-align: center;
-  padding: 1rem;
-  border-style: none;
-  margin: 2rem;
-}
-.admin-wrapper-bottom .withdraw-control-wrapper button:hover, .admin-wrapper-bottom .deposit-control-wrapper button:hover {
-  transition: 0.3s ease-in-out 0s;
-  cursor: pointer;
-  transform: scale(1.1);
-  color: black;
-}
-.admin-wrapper-bottom .transfer-control-wrapper {
+.admin-wrapper-bottom .transfer-control-wrapper, .admin-wrapper-bottom .withdraw-control-wrapper, .admin-wrapper-bottom .deposit-control-wrapper {
   display: flex;
   flex-direction: column;
   line-height: 5rem;
-  width: 52rem;
 }
-.admin-wrapper-bottom .transfer-control-wrapper .transfer-control-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 1rem 2rem;
-  text-align: center;
-}
-.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers {
+.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers, .admin-wrapper-bottom .transfer-control-wrapper .withdraw-triggers, .admin-wrapper-bottom .transfer-control-wrapper .deposit-triggers, .admin-wrapper-bottom .withdraw-control-wrapper .transfer-triggers, .admin-wrapper-bottom .withdraw-control-wrapper .withdraw-triggers, .admin-wrapper-bottom .withdraw-control-wrapper .deposit-triggers, .admin-wrapper-bottom .deposit-control-wrapper .transfer-triggers, .admin-wrapper-bottom .deposit-control-wrapper .withdraw-triggers, .admin-wrapper-bottom .deposit-control-wrapper .deposit-triggers {
   display: flex;
   justify-content: space-evenly;
-  margin: 0 2rem;
 }
-.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers button {
+.admin-wrapper-bottom .transfer-control-wrapper button, .admin-wrapper-bottom .withdraw-control-wrapper button, .admin-wrapper-bottom .deposit-control-wrapper button {
   text-decoration: none;
   background-color: white;
   border-radius: 50px;
@@ -537,8 +494,9 @@ a:hover, .downloadBtn:hover {
   border-style: none;
   width: 7rem;
   padding: 1rem;
+  margin: 0 2rem;
 }
-.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers button:hover {
+.admin-wrapper-bottom .transfer-control-wrapper button:hover, .admin-wrapper-bottom .withdraw-control-wrapper button:hover, .admin-wrapper-bottom .deposit-control-wrapper button:hover {
   transition: 0.3s ease-in-out 0s;
   cursor: pointer;
   transform: scale(1.1);
@@ -555,4 +513,8 @@ a:hover, .downloadBtn:hover {
 
 .enter-acc-no.hide {
   display: none;
+}
+
+.mode-and-log-out i {
+  margin: 0 2rem;
 }

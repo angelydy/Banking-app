@@ -21,8 +21,6 @@
   height: 100%;
   max-width: 100%;
   color: white;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
 
   #accounts-table-wrapper {
     display: flex;
@@ -32,8 +30,8 @@
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    width: 55rem;
-    height: 20rem;
+    min-width: 90vw;
+    min-height: 40vh;
     overflow: auto;
     margin: 2rem;
     line-height: 3rem;
@@ -52,93 +50,72 @@
     grid-template-columns: repeat(5, 1fr);
     text-align: center;
     color: white;
+    height: auto;
   }}
 
   .add-account-control-wrapper {
-    position: fixed;
-    right: 0;
     line-height: 3rem;
     display: flex;
     flex-direction: column;
-    padding: 3em;
-    top: 0;
-    bottom: 0;
+    justify-content: center;
+    padding: 3rem;
+    background-image: linear-gradient(to left bottom, #6e7cc4c5, #9296cdb2, #b2b1d7a9, #cfcee1bb, #ebebebc2);
+    margin: 2rem;
+    border-radius: 10px;
 
-    .settings-log-out {
-      display: flex;
-      justify-content: space-between;
+    button {
+      text-decoration: none;
+      background-color: white;
+      border-radius: 50px;
+      color: rgb(47,46,108);
+      font-size: 1rem;
+      font-weight: 600;
+      width: 10rem;
+      text-align: center;
+      padding: 1rem;
+      border-style: none;
+      margin: 2rem;
 
-      a {
-        color: white;
+    &:hover {
+      transition: .3s ease-in-out 0s;
+      cursor: pointer;
+      transform: scale(1.1);
+      color: black;
       }
     }
 
-    .column-user-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 3rem;
-
-      input {
-        background-color: transparent;
-        border-style: none;
-        width: 20rem;
-        border-radius: 10px;
-        color: white;
-        border: 2px solid white;
-        height: 2rem;
-        padding: 10px;
-        font-size: 1rem;
-      }
+    label {
+      font-weight: 600;
+      padding: 2rem;
     }
 
-    .flex-radio-buttons {
-      display: flex;
-
-      input {
-        margin:0 2rem;
-      }
-    }
-
-    .currency {
-      display: flex;
-      justify-content: space-evenly;
-      margin: 0 3rem;
-
-      input {
-        background: white;
-        border-style: none;
-        border-radius: 10px;
-        height: 3rem;
-      }
+    input {
+      background-color: transparent;
+      border-style: none;
+      width: 15rem;
+      border-radius: 10px;
+      color: white;
+      border: 2px solid white;
+      height: 2rem;
+      padding: 10px;
+      font-size: 1rem;
     }
   }
-
 
   .admin-wrapper-bottom {
     display: flex;
     flex-direction: column;
-    width: 60em;
+    min-width: 90vw;
 
     .withdraw-deposit-title {
       display: flex;
       flex-direction: row;
       font-weight: 700;
       font-size: 1.5em;
-
-      p {
-        margin: 1em 7.5em;
-      }
+      justify-content: space-evenly;
     }
 
-    .transfer-title {
-      font-weight: 700;
-      font-size: 1.5em;
-      display: flex;
-      justify-content: center;
-    }
-
-    .withdraw-deposit, .transfer {
+    .withdraw-deposit-transfer {
       display: flex;
       flex-direction: row;
     }
@@ -178,7 +155,15 @@
       }
     }
 
-    .withdraw-control-wrapper, .deposit-control-wrapper {
+    .transfer-control-wrapper, .withdraw-control-wrapper, .deposit-control-wrapper {
+      display: flex;
+      flex-direction: column;
+      line-height: 5rem;
+
+      .transfer-triggers, .withdraw-triggers, .deposit-triggers {
+        display: flex;
+        justify-content: space-evenly;
+      }
 
       button {
         text-decoration: none;
@@ -187,57 +172,16 @@
         color: rgb(47,46,108);
         font-size: 1rem;
         font-weight: 600;
-        width: 7rem;
-        text-align: center;
-        padding: 1rem;
         border-style: none;
-        margin: 2rem;
+        width: 7rem;
+        padding: 1rem;
+        margin: 0 2rem;
   
       &:hover {
         transition: .3s ease-in-out 0s;
         cursor: pointer;
         transform: scale(1.1);
         color: black;
-        }
-      }
-    }
-
-    .transfer-control-wrapper {
-      display: flex;
-      flex-direction: column;
-      line-height: 5rem;
-      width: 52rem;
-
-      .transfer-control-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        margin: 1rem 2rem;
-        text-align: center;
-      }
-
-      .transfer-triggers {
-        display: flex;
-        justify-content: space-evenly;
-        margin: 0 2rem;
-
-        button {
-          text-decoration: none;
-          background-color: white;
-          border-radius: 50px;
-          color: rgb(47,46,108);
-          font-size: 1rem;
-          font-weight: 600;
-          border-style: none;
-          width: 7rem;
-          padding: 1rem;
-    
-        &:hover {
-          transition: .3s ease-in-out 0s;
-          cursor: pointer;
-          transform: scale(1.1);
-          color: black;
-          }
         }
       }
     }
