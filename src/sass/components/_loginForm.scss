@@ -22,7 +22,6 @@
   justify-content: center;
   background-color: hsla(0, 0%, 0%, 0.7);
   opacity: 1;
-  padding-top: 8rem;
 } 
 
 .login-wrapper {
@@ -38,6 +37,7 @@
   height: 30rem;
   position: relative;
   padding: 3rem;
+  margin: 10vh;
 
   #close-sign-up {
     position: absolute;

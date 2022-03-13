@@ -1,5 +1,6 @@
 import './css/index.css';
 import React from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
 import WelcomeScreen from './containers/WelcomeScreen';
 import AdminScreen from './containers/AdminScreen';
@@ -7,7 +8,7 @@ import UserScreen from './containers/UserScreen';
 
 function AppRoutes() {
   let routes = useRoutes([
-    { path: '/', element: <WelcomeScreen /> },
+    { path: '/', element: <WelcomeScreen />},
     { path: '/admin', element: <AdminScreen /> },
     { path: '/user', element: <UserScreen /> }
   ]);
@@ -17,7 +18,7 @@ function AppRoutes() {
 
 function App() {
   return (
-      <div className="App">
+      <div className="App" >
         <Router>
           <AppRoutes />
         </Router>
