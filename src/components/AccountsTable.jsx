@@ -14,42 +14,56 @@ export default function AccountsTable(props) {
           <div>Balance</div>
         </div>
         <div className='account-table-data'>
-          <div className='account-table-account-no'>566566</div>
-          <div className='account-table-account-name'>324144</div>
-          <div className='account-table-account-category'>6787968</div>
-          <div className='account-table-account-type'>434r3455</div>
-          <div className='account-table-account-balance'>35475767</div>
-        </div>
-      </div>
-      <div className='user-info-wrapper'>
-        <div className='acc-num-wrap'>
-          {passedUserInfo &&
-            passedUserInfo.map((user) =>{
-              return (
-                <div key={uuidv4()}>
-                  {user.accNum}
-                </div>
-              )
-            })}
-        </div>
-        <div className='acc-name-wrap'>
-          {passedUserInfo &&
-            passedUserInfo.map((user) =>{
-              return (
-                <div key={uuidv4()}>
-                  {user.lname} {user.fname} {user.mname}
-                </div>
-              )
-            })}
-        </div>
-        <div className='acc-category-wrap'>
-
-        </div>
-        <div className='acc-type-wrap'>
-
-        </div>
-        <div className='acc-init-deposit-wrap'>
-
+          <div className='account-table-account-no'>
+            {passedUserInfo &&
+              passedUserInfo.map((user) =>{
+                return (
+                  <div key={uuidv4()}>
+                    {user.accNum}
+                  </div>
+                )
+              })}
+          </div>
+          <div className='account-table-account-name'>
+            {passedUserInfo &&
+              passedUserInfo.map((user) =>{
+                return (
+                  <div key={uuidv4()}>
+                    {user.lname} {user.fname} {user.mname}
+                  </div>
+                )
+              })}
+          </div>
+          <div className='account-table-account-category'>
+            {passedUserInfo &&
+              passedUserInfo.map((user) =>{
+                return (
+                  <div key={uuidv4()}>
+                    {user.acccateg}
+                  </div>
+                )
+              })}
+          </div>
+          <div className='account-table-account-type'>
+            {passedUserInfo &&
+              passedUserInfo.map((user) =>{
+                return (
+                  <div key={uuidv4()}>
+                    {user.acctype}
+                  </div>
+                )
+              })}
+          </div>
+          <div className='account-table-account-balance'>
+            {passedUserInfo &&
+              passedUserInfo.map((user) =>{
+                return (
+                  <div key={uuidv4()}>
+                    {user.balance}
+                  </div>
+                )
+              })}
+          </div>
         </div>
       </div>
     </>
