@@ -147,12 +147,14 @@ export default function AdminScreen() {
         <AccountsTable passedUserInfo={userInfo} />
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>
-            <label htmlFor="lastname">Last Name</label>
-            <input required id='test' type="text" name='lastname' onChange={handleLastName}/>
-            <label htmlFor="firstname">First Name</label>
-            <input required type="text" name='firstname' onChange={handleFirstName}/>
-            <label htmlFor="middlename">Middle Name</label>
-            <input required type="text" name='middlename' onChange={handleMiddleName}/>
+            <div className='user-name'>
+              <label htmlFor="lastname">Last Name</label>
+              <input id='test' type="text" name='lastname' onChange={handleLastName}/>
+              <label htmlFor="firstname">First Name</label>
+              <input type="text" name='firstname' onChange={handleFirstName}/>
+              <label htmlFor="middlename">Middle Name</label>
+              <input type="text" name='middlename' onChange={handleMiddleName}/>
+            </div>
             <div>
               <label htmlFor="acc-category">Account Category</label>
               <input type="radio" value="Parent" name='acc-category' defaultChecked onChange={handleAccCategory}/> Parent
@@ -181,17 +183,13 @@ export default function AdminScreen() {
           <p>
             Deposit
           </p>
-        </div>
-        <div className='withdraw-deposit'>
-          <WithdrawControl displayFeature="enter-acc-no" />
-          <DepositControl displayFeature="enter-acc-no" />
-        </div>
-        <div className='transfer-title'>
           <p>
             Transfer
           </p>
         </div>
-        <div className='transfer'>
+        <div className='withdraw-deposit-transfer'>
+          <WithdrawControl displayFeature="enter-acc-no" />
+          <DepositControl displayFeature="enter-acc-no" />
           <TransferControl displayFeature="enter-acc-no" />
         </div>
       </section>
