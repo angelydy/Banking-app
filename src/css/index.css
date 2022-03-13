@@ -23,7 +23,6 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 1;
-  padding-top: 8rem;
 }
 
 .login-wrapper {
@@ -39,6 +38,7 @@
   height: 30rem;
   position: relative;
   padding: 3rem;
+  margin: 10vh;
 }
 .login-wrapper #close-sign-up {
   position: absolute;
@@ -113,6 +113,22 @@ body {
   max-width: 100%;
   text-decoration: none;
 }
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+input:focus {
+  outline: none;
+}
 
 nav {
   display: flex;
@@ -149,7 +165,7 @@ a:hover, .downloadBtn:hover {
   grid-template-columns: repeat(2, 1fr);
 }
 .grid .left {
-  margin: 100px 130px;
+  margin: 5rem 5rem;
 }
 .grid .left .boldText {
   font-size: 50px;
@@ -315,10 +331,218 @@ a:hover, .downloadBtn:hover {
   margin: 2rem 3.5rem;
 }
 
+.fa-solid {
+  font-size: 1.5em;
+}
+
+#currency-options {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 3rem;
+}
+
+.greeting {
+  margin: 0 3rem;
+}
+
+.logo {
+  width: 3rem;
+}
+
 .admin-wrapper {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  max-width: 100%;
   color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.admin-wrapper #accounts-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to left bottom, #91b2dcbb, #acbce0bb, #c2c7e3c2, #d5d4e6, #e4e2ea);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 55rem;
+  height: 20rem;
+  overflow: auto;
+  margin: 2rem;
+  line-height: 3rem;
+}
+.admin-wrapper .account-table-title {
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  color: white;
+}
+.admin-wrapper .account-table-data {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  color: white;
+}
+
+.add-account-control-wrapper {
+  position: fixed;
+  right: 0;
+  line-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+  top: 0;
+  bottom: 0;
+}
+.add-account-control-wrapper .settings-log-out {
+  display: flex;
+  justify-content: space-between;
+}
+.add-account-control-wrapper .settings-log-out a {
+  color: white;
+}
+.add-account-control-wrapper .column-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 3rem;
+}
+.add-account-control-wrapper .column-user-info input {
+  background-color: transparent;
+  border-style: none;
+  width: 20rem;
+  border-radius: 10px;
+  color: white;
+  border: 2px solid white;
+  height: 2rem;
+  padding: 10px;
+  font-size: 1rem;
+}
+.add-account-control-wrapper .flex-radio-buttons {
+  display: flex;
+}
+.add-account-control-wrapper .flex-radio-buttons input {
+  margin: 0 2rem;
+}
+.add-account-control-wrapper .currency {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 3rem;
+}
+.add-account-control-wrapper .currency input {
+  background: white;
+  border-style: none;
+  border-radius: 10px;
+  height: 3rem;
+}
+
+.admin-wrapper-bottom {
+  display: flex;
+  flex-direction: column;
+  width: 60em;
+}
+.admin-wrapper-bottom .withdraw-deposit-title {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1.5em;
+}
+.admin-wrapper-bottom .withdraw-deposit-title p {
+  margin: 1em 7.5em;
+}
+.admin-wrapper-bottom .transfer-title {
+  font-weight: 700;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+.admin-wrapper-bottom .withdraw-deposit, .admin-wrapper-bottom .transfer {
+  display: flex;
+  flex-direction: row;
+}
+.admin-wrapper-bottom .withdraw-control-wrapper {
+  background-image: linear-gradient(to left bottom, #6e9ac4c5, #96adceb6, #b7c0d8, #d4d5e1d0, #ebebebc5);
+}
+.admin-wrapper-bottom .deposit-control-wrapper {
+  background-image: linear-gradient(to left bottom, #6e7cc4c5, #9296cdb2, #b2b1d7a9, #cfcee1bb, #ebebebc2);
+}
+.admin-wrapper-bottom .transfer-control-wrapper {
+  background-image: linear-gradient(to left bottom, #91b2dcbb, #acbce0bb, #c2c7e3c2, #d5d4e6, #e4e2ea);
+}
+.admin-wrapper-bottom .withdraw-control-wrapper, .admin-wrapper-bottom .deposit-control-wrapper, .admin-wrapper-bottom .transfer-control-wrapper {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  margin: 0 2em;
+  padding: 2em;
+  line-height: 4rem;
+}
+.admin-wrapper-bottom .withdraw-control-wrapper input, .admin-wrapper-bottom .deposit-control-wrapper input, .admin-wrapper-bottom .transfer-control-wrapper input {
+  background-color: transparent;
+  border-style: none;
+  width: 20rem;
+  border-radius: 10px;
+  color: white;
+  border: 2px solid white;
+  height: 2rem;
+  padding: 10px;
+  font-size: 1rem;
+}
+.admin-wrapper-bottom .withdraw-control-wrapper button, .admin-wrapper-bottom .deposit-control-wrapper button {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 50px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 7rem;
+  text-align: center;
+  padding: 1rem;
+  border-style: none;
+  margin: 2rem;
+}
+.admin-wrapper-bottom .withdraw-control-wrapper button:hover, .admin-wrapper-bottom .deposit-control-wrapper button:hover {
+  transition: 0.3s ease-in-out 0s;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: black;
+}
+.admin-wrapper-bottom .transfer-control-wrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 5rem;
+  width: 52rem;
+}
+.admin-wrapper-bottom .transfer-control-wrapper .transfer-control-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 1rem 2rem;
+  text-align: center;
+}
+.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 2rem;
+}
+.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers button {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 50px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  border-style: none;
+  width: 7rem;
+  padding: 1rem;
+}
+.admin-wrapper-bottom .transfer-control-wrapper .transfer-triggers button:hover {
+  transition: 0.3s ease-in-out 0s;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: black;
 }
 
 .enter-acc-no.hide {
