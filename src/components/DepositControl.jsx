@@ -1,6 +1,7 @@
 import React from 'react'
 import './../css/index.css';
 import CurrencyOptions from './CurrencyOptions';
+import placeCommas from '../utils/placeCommas';
 
 export default function DepositControl(props) {
   const { displayFeature } = props;
@@ -14,7 +15,7 @@ export default function DepositControl(props) {
       <div className='deposit-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
         <CurrencyOptions />
-        <input type="number" name='amount'/>
+        <input type="text" name='amount' onKeyUp={placeCommas}/>
       </div>
       <div className='deposit-triggers'>
         <button>Deposit</button>

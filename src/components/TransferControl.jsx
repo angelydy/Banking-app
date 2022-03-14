@@ -1,6 +1,7 @@
 import React from 'react'
 import './../css/index.css';
 import CurrencyOptions from './CurrencyOptions';
+import placeCommas from '../utils/placeCommas';
 
 export default function TransferControl(props) {
   const { displayFeature } = props;
@@ -19,7 +20,7 @@ export default function TransferControl(props) {
       <div className='transfer-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
         <CurrencyOptions />
-        <input type="number" name='amount'/>
+        <input type="text" name='amount' onKeyUp={placeCommas}/>
       </div>
       </div>
       <div className='transfer-triggers'>

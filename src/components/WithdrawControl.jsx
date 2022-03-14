@@ -1,6 +1,7 @@
 import React from 'react'
 import CurrencyOptions from './CurrencyOptions';
 import './../css/index.css';
+import placeCommas from '../utils/placeCommas';
 
 export default function WithdrawControl(props) {
   const { displayFeature } = props;
@@ -14,7 +15,7 @@ export default function WithdrawControl(props) {
       <div className='withdraw-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
         <CurrencyOptions />
-        <input type="number" name='amount'/>
+        <input type="text" name='amount' onKeyUp={placeCommas}/>
       </div>
       <div className='withdraw-triggers'>
         <button>Withdraw</button>

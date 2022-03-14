@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../assets/favicon.ico";
 import './../css/index.css';
 
 export default function Navbar() {
+  const [path, setPath] = useState('/')
+
   return (
     <nav>
       <img src={logo} className="logo" />
       <div className="mode-and-log-out">
-        <i class="fa-solid fa-moon"></i>
-        <i class="fa-solid fa-arrow-right-from-bracket" onClick={<Link to={('/')}></Link>}></i>
+        <i className="fa-solid fa-moon"></i>
+        <Link
+          to={path}
+        >
+          <i className="fa-solid fa-arrow-right-from-bracket"></i>
+        </Link>
       </div>
     </nav>
   )

@@ -1,6 +1,5 @@
 import './css/index.css';
 import React from 'react';
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
 import WelcomeScreen from './containers/WelcomeScreen';
 import AdminScreen from './containers/AdminScreen';
