@@ -337,10 +337,10 @@ a:hover, .downloadBtn:hover {
 }
 
 #currency-options {
-  background: transparent;
-  border: 2px solid white;
+  background: white;
   border-radius: 10px;
   width: 3rem;
+  border: none;
 }
 
 .greeting {
@@ -352,9 +352,9 @@ a:hover, .downloadBtn:hover {
 }
 
 .admin-wrapper {
-  height: 100%;
   max-width: 100%;
   color: white;
+  scroll-behavior: smooth;
 }
 .admin-wrapper #accounts-table-wrapper {
   display: flex;
@@ -365,37 +365,69 @@ a:hover, .downloadBtn:hover {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   min-width: 90vw;
-  min-height: 40vh;
+  height: 40vh;
   overflow: auto;
   margin: 2rem;
   line-height: 3rem;
+  scroll-behavior: smooth;
 }
-.admin-wrapper .account-table-title {
-  font-weight: 600;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  text-align: center;
-  color: white;
+.admin-wrapper #accounts-table-wrapper::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.admin-wrapper #accounts-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-wrapper #accounts-table-wrapper::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+.admin-wrapper #accounts-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 .admin-wrapper .account-table-data {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, auto);
   text-align: center;
-  color: white;
-  height: auto;
+  color: #201f49;
+}
+.admin-wrapper .account-table-data .account-table-account-no {
+  text-align: left;
+  margin-left: 0.4em;
+}
+.admin-wrapper .account-table-data .table-title {
+  font-weight: 600;
 }
 
-.add-account-control-wrapper {
+#add-account-form {
   line-height: 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 3rem;
   background-image: linear-gradient(to left bottom, #6e7cc4c5, #9296cdb2, #b2b1d7a9, #cfcee1bb, #ebebebc2);
-  margin: 2rem;
   border-radius: 10px;
+  min-width: 90vw;
+  margin: 2rem;
 }
-.add-account-control-wrapper button {
+#add-account-form .user-name {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  justify-content: space-evenly;
+}
+#add-account-form .user-name label {
+  margin: 0 1rem;
+}
+#add-account-form .add-account-acc-category, #add-account-form .add-account-acc-type {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: justify;
+  margin: 0 auto;
+  width: 50%;
+}
+#add-account-form .add-account-acc-category input, #add-account-form .add-account-acc-type input {
+  width: 1rem;
+  margin: 0 1rem;
+}
+#add-account-form button {
   text-decoration: none;
   background-color: white;
   border-radius: 50px;
@@ -404,30 +436,29 @@ a:hover, .downloadBtn:hover {
   font-weight: 600;
   width: 10rem;
   text-align: center;
-  padding: 1rem;
   border-style: none;
-  margin: 2rem;
 }
-.add-account-control-wrapper button:hover {
+#add-account-form button:hover {
   transition: 0.3s ease-in-out 0s;
   cursor: pointer;
   transform: scale(1.1);
   color: black;
 }
-.add-account-control-wrapper label {
+#add-account-form label {
   font-weight: 600;
-  padding: 2rem;
 }
-.add-account-control-wrapper input {
+#add-account-form input {
   background-color: transparent;
   border-style: none;
-  width: 15rem;
   border-radius: 10px;
   color: white;
-  border: 2px solid white;
-  height: 2rem;
-  padding: 10px;
+  background: white;
+  height: 2.5rem;
   font-size: 1rem;
+}
+
+.initial-deposit {
+  text-align: center;
 }
 
 .admin-wrapper-bottom {

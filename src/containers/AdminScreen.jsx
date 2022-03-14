@@ -148,26 +148,44 @@ export default function AdminScreen() {
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>
             <div className='user-name'>
-              <label htmlFor="lastname">Last Name</label>
-              <input id='test' type="text" name='lastname' onChange={handleLastName}/>
-              <label htmlFor="firstname">First Name</label>
-              <input type="text" name='firstname' onChange={handleFirstName}/>
-              <label htmlFor="middlename">Middle Name</label>
-              <input type="text" name='middlename' onChange={handleMiddleName}/>
+              <div>
+                <label htmlFor="lastname">Last Name</label>
+                <input id='test' type="text" name='lastname' onChange={handleLastName}/>
+              </div>
+              <div>
+                <label htmlFor="firstname">First Name</label>
+                <input type="text" name='firstname' onChange={handleFirstName}/>
+              </div>
+              <div>
+                <label htmlFor="middlename">Middle Name</label>
+                <input type="text" name='middlename' onChange={handleMiddleName}/>
+              </div>
             </div>
-            <div>
+            <div className='add-account-acc-category'>
               <label htmlFor="acc-category">Account Category</label>
-              <input type="radio" value="Parent" name='acc-category' defaultChecked onChange={handleAccCategory}/> Parent
-              <input type="radio" value="Child" name='acc-category' onChange={handleAccCategory}/> Child
+              <div>
+                <input type="radio" value="Parent" name='acc-category' defaultChecked onChange={handleAccCategory}/> Parent
+              </div>
+              <div>
+                <input type="radio" value="Child" name='acc-category' onChange={handleAccCategory}/> Child
+              </div>
             </div>
-            <div>
+            <div className='add-account-acc-type'>
               <label htmlFor="acc-type">Account Type</label>
-              <input type="radio" value="Savings" name='acc-type' defaultChecked onChange={handleAccType}/> Savings
-              <input type="radio" value="Checking" name='acc-type' onChange={handleAccType}/> Checking
+              <div>
+                <input type="radio" value="Savings" name='acc-type' defaultChecked onChange={handleAccType}/> Savings
+              </div>
+              <div>
+                <input type="radio" value="Checking" name='acc-type' onChange={handleAccType}/> Checking
+              </div>
             </div>
-            <label htmlFor="initial-deposit">Initial Deposit (Optional)</label>
-            <CurrencyOptions />
-            <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onKeyUp={placeCommas} onChange={handleInitDeposit}/>
+            <div className='initial-deposit'>
+              <div>
+                <label htmlFor="initial-deposit">Initial Deposit (Optional)</label>
+              </div>
+              <CurrencyOptions />
+              <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onKeyUp={placeCommas} onChange={handleInitDeposit}/>
+            </div>
             <div className="add-account-triggers">
               <button>Add Account</button>
               <button onClick={resetState} type='reset'>Reset</button>
