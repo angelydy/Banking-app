@@ -68,7 +68,7 @@ export default function AccountsTable(props) {
             {passedUserInfo && passedUserInfo.map((user) =>{
                 return (
                   <div key={uuidv4()}>
-                    <i class="fa-solid fa-circle-trash"></i> 
+                    <i className="fa-solid fa-circle-trash"></i> 
                   </div>
                 )
               })}
