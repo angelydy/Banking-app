@@ -17,9 +17,14 @@ export default function AdminScreen() {
   const [ middleName, setMiddlename ] = useState('');
   const [ accCategory, setAccCategory ] = useState('Parent');
   const [ accType, setAccType ] = useState('Savings');
-  const [ initDeposit, setInitDeposit ] = useState();
+  const [ initDeposit, setInitDeposit ] = useState('');
   const today = new Date();
   const hrs24 = today.getHours();
+
+  useEffect(() => {
+    const getUsers = JSON.parse(localStorage.getItem("users"));
+    if(getUsers) setUserInfo(getUsers);
+  }, [])
 
   useEffect(()=> {
     const defaultUsers = [
@@ -48,17 +53,11 @@ export default function AdminScreen() {
         mname: "",
         acccateg: "Child",
         acctype: "Savings",
-        balance: 3000
+        balance: '3,000'
       }, 
     ]
     setUserInfo([...userInfo, ...defaultUsers]);
   }, [])
-
-  useEffect(() => {
-    const getUsers = JSON.parse(localStorage.getItem("users"));
-    if(getUsers) setUserInfo(getUsers);
-  }, [])
-  
 
   useEffect(()=> {
     localStorage.setItem("users", JSON.stringify(userInfo))
@@ -99,24 +98,31 @@ export default function AdminScreen() {
   }
 
   function handleInitDeposit(e) {
-    setInitDeposit(e.target.value);
+    const amount = e.target.value.replace(/,/gi, "").split(/(?=(?:\d{3})+$)/).join(",");
+    setInitDeposit(amount);
   }
   
   function handleAdd(e) {
     e.preventDefault();
     handleAccountNumber();
-    const user = {
+    const addUserInfo = {
       accNum: accountNumber, 
       lname: lastName,
       fname: firstName, 
       mname: middleName,
       acccateg: accCategory,
       acctype: accType,
-      balance: initDeposit
+      balance: initDeposit,
+      exist: true,
     };
-    setUserInfo([...userInfo, user]);
+    const checkUserExist = userInfo.findIndex(user => user.exist)
+    if(!checkUserExist) {
+      setUserInfo([...userInfo, addUserInfo]);
+    } else {
+      alert('User already exists')
+    }
     e.target.reset();
-    setInitDeposit();
+    resetState();
   }
 
   function resetState() {
@@ -139,11 +145,11 @@ export default function AdminScreen() {
             <div className='user-name'>
               <div>
                 <label htmlFor="lastname">Last Name</label>
-                <input id='test' type="text" name='lastname' onChange={handleLastName}/>
+                <input required id='test' type="text" name='lastname' onChange={handleLastName}/>
               </div>
               <div>
                 <label htmlFor="firstname">First Name</label>
-                <input type="text" name='firstname' onChange={handleFirstName}/>
+                <input required type="text" name='firstname' onChange={handleFirstName}/>
               </div>
               <div>
                 <label htmlFor="middlename">Middle Name</label>
@@ -174,7 +180,7 @@ export default function AdminScreen() {
               </div>
               <div className='currency-and-amount'>
                 <CurrencyOptions />
-                <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onKeyUp={placeCommas} onChange={handleInitDeposit}/>
+                <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
               </div>
             </div>
             <div className="add-account-triggers">
@@ -188,14 +194,14 @@ export default function AdminScreen() {
         <div className='withdraw-deposit-container'>
           <div className='withdraw-deposit'>
             <div>
-              <WithdrawControl displayFeature="enter-acc-no" />
+              <WithdrawControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
             </div>
             <div>
-              <DepositControl displayFeature="enter-acc-no" />
+              <DepositControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
             </div>
           </div>
           <div className='transfer-control'>
-          <TransferControl displayFeature="enter-acc-no" />
+          <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
         </div>
         </div>
       </section>

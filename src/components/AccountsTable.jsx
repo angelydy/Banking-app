@@ -66,8 +66,7 @@ export default function AccountsTable(props) {
           </div>
           <div className='account-table-account-delete'>
           <div className='table-title'>Delete</div>
-          {passedUserInfo &&
-              passedUserInfo.map((user) =>{
+          {passedUserInfo && passedUserInfo.map((user) =>{
                 if (user.accNum){
                   return (
                     <div key={uuidv4()} className="deleteBtn">

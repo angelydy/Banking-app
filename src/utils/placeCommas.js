@@ -5,7 +5,5 @@ export default function placeCommas(e) {
   ) {
     return;
   }
-  e.target.value = e.target.value.replace(/,/gi, "")
-    .split(/(?=(?:\d{3})+$)/)
-    .join(",");
+  e.target.value = e.target.value.replace(/,/gi, "").split(/(?=(?:\d{3})+$)/).join(",");
 }
