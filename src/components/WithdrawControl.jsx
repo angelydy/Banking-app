@@ -46,6 +46,9 @@ export default function WithdrawControl(props) {
   return (
     <section className='withdraw-control-wrapper'>
       <form onSubmit={handleSubmit}>
+        <div className='withdraw-deposit-title'>
+          Withdraw
+        </div>
         <div className={displayFeature}>
           <label htmlFor="enter-acc-no">Enter Account No.</label>
           <input type="text" name='enter-acc-no' onChange={validateAccNum}/>

@@ -1,5 +1,7 @@
 import React from 'react'
 import {v4 as uuidv4} from 'uuid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 export default function AccountsTable(props) {
   const { passedUserInfo } = props
@@ -62,15 +64,16 @@ export default function AccountsTable(props) {
                 )
               })}
           </div>
-
           <div className='account-table-account-delete'>
           <div className='table-title'>Delete</div>
-            {passedUserInfo && passedUserInfo.map((user) =>{
-                return (
-                  <div key={uuidv4()}>
-                    <i className="fa-solid fa-circle-trash"></i> 
-                  </div>
-                )
+          {passedUserInfo && passedUserInfo.map((user) =>{
+                if (user.accNum){
+                  return (
+                    <div key={uuidv4()} className="deleteBtn">
+                      <FontAwesomeIcon icon={faTrashCan}/>
+                    </div>
+                  )
+                }
               })}
           </div>
         </div>

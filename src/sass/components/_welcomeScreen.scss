@@ -145,7 +145,6 @@ a, .downloadBtn {
   transition: 0.7s;
   display: flex;
   justify-content: center;
-  padding-top: 5rem;
 }
 
 .show-sign-up-modal {
@@ -164,8 +163,8 @@ a, .downloadBtn {
 .form-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: 900px;
-  height: 300px;
+  width: 60rem;
+  height: 20rem;
   padding-top: 5rem;
   
   .left-wrapper {

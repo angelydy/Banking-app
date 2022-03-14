@@ -1,3 +1,10 @@
 .mode-and-log-out i{
   margin: 0 2rem;
+  color: white;
+
+  &:hover {
+    transition: .3s ease-in-out 0s;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }

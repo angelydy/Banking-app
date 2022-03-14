@@ -178,8 +178,10 @@ export default function AdminScreen() {
               <div>
                 <label htmlFor="initial-deposit">Initial Deposit (Optional)</label>
               </div>
-              <CurrencyOptions />
-              <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
+              <div className='currency-and-amount'>
+                <CurrencyOptions />
+                <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
+              </div>
             </div>
             <div className="add-account-triggers">
               <button>Add Account</button>
@@ -189,24 +191,20 @@ export default function AdminScreen() {
         </section>
       </section>
       <section className='admin-wrapper-bottom'>
-        <div className='withdraw-deposit-title'>
-          <p>
-            Withdraw
-          </p>
-          <p>
-            Deposit
-          </p>
-          <p>
-            Transfer
-          </p>
-        </div>
-        <div className='withdraw-deposit-transfer'>
-          <WithdrawControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
-          <DepositControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+        <div className='withdraw-deposit-container'>
+          <div className='withdraw-deposit'>
+            <div>
+              <WithdrawControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+            </div>
+            <div>
+              <DepositControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+            </div>
+          </div>
+          <div className='transfer-control'>
           <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
         </div>
+        </div>
       </section>
-
     </div>
   );
 }

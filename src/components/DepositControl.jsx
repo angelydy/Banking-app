@@ -41,21 +41,24 @@ export default function DepositControl(props) {
 
   return (
     <section className='deposit-control-wrapper'>
-      <form onSubmit={handleSubmit}>
-        <div className={displayFeature}>
-          <label htmlFor="enter-acc-no">Enter Account No.</label>
-          <input type="text" name='enter-acc-no' onChange={validateAccNum}/>
-        </div>
-        <div className='deposit-enter-amount'>
-          <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions />
-          <input type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
-        </div>
-        <div className='deposit-triggers'>
-          <button>Deposit</button>
-          <button>Reset</button>
-        </div>
-      </form>
+      <div className='withdraw-deposit-title'>
+        Deposit
+      </div>
+    <form onSubmit={handleSubmit}>
+      <div className={displayFeature}>
+        <label htmlFor="enter-acc-no">Enter Account No.</label>
+        <input type="text" name='enter-acc-no' onChange={validateAccNum}/>
+      </div>
+      <div className='deposit-enter-amount'>
+        <label htmlFor="amount">Enter an Amount</label>
+        <CurrencyOptions />
+        <input type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
+      </div>
+      <div className='deposit-triggers'>
+        <button>Deposit</button>
+        <button>Reset</button>
+      </div>
+     </form>
     </section>
   );
 }
