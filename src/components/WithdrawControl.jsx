@@ -8,6 +8,9 @@ export default function WithdrawControl(props) {
 
   return (
     <section className='withdraw-control-wrapper'>
+      <div className='withdraw-deposit-title'>
+      Withdraw
+    </div>
       <div className={displayFeature}>
         <label htmlFor="enter-acc-no">Enter Account No.</label>
         <input type="number" name='enter-acc-no'/>

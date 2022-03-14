@@ -18,7 +18,7 @@ export default function SignUpModal(props) {
         </div>
         <div className="right-wrapper">
           <button id="close-sign-up" onClick={closeState}>X</button>
-          <form action="results.html" id="form1" method="get">
+          <form action="/user" id="form1" method="get">
             <label htmlFor="fullname" className="fullname-label">Name</label>
             <div className="name-container">
               <input type="name" id="first-name" placeholder="First Name" required></input>

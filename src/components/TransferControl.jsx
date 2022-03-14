@@ -8,6 +8,9 @@ export default function TransferControl(props) {
   
   return (
     <section className='transfer-control-wrapper'>
+      <div className='withdraw-deposit-title'>
+      Transfer
+    </div>
       <div className='transfer-control-container'>
       <div className={displayFeature} id="sender-acc-no">
         <label htmlFor="acc-no-of-sender">Enter Account No. of Sender</label>
@@ -20,7 +23,9 @@ export default function TransferControl(props) {
       <div className='transfer-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
         <CurrencyOptions />
-        <input type="text" name='amount' onKeyUp={placeCommas}/>
+        <div>
+          <input type="text" name='amount' onKeyUp={placeCommas}/>
+        </div>
       </div>
       </div>
       <div className='transfer-triggers'>

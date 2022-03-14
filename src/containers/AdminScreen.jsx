@@ -172,8 +172,10 @@ export default function AdminScreen() {
               <div>
                 <label htmlFor="initial-deposit">Initial Deposit (Optional)</label>
               </div>
-              <CurrencyOptions />
-              <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onKeyUp={placeCommas} onChange={handleInitDeposit}/>
+              <div className='currency-and-amount'>
+                <CurrencyOptions />
+                <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onKeyUp={placeCommas} onChange={handleInitDeposit}/>
+              </div>
             </div>
             <div className="add-account-triggers">
               <button>Add Account</button>
@@ -183,24 +185,20 @@ export default function AdminScreen() {
         </section>
       </section>
       <section className='admin-wrapper-bottom'>
-        <div className='withdraw-deposit-title'>
-          <p>
-            Withdraw
-          </p>
-          <p>
-            Deposit
-          </p>
-          <p>
-            Transfer
-          </p>
-        </div>
-        <div className='withdraw-deposit-transfer'>
-          <WithdrawControl displayFeature="enter-acc-no" />
-          <DepositControl displayFeature="enter-acc-no" />
+        <div className='withdraw-deposit-container'>
+          <div className='withdraw-deposit'>
+            <div>
+              <WithdrawControl displayFeature="enter-acc-no" />
+            </div>
+            <div>
+              <DepositControl displayFeature="enter-acc-no" />
+            </div>
+          </div>
+          <div className='transfer-control'>
           <TransferControl displayFeature="enter-acc-no" />
         </div>
+        </div>
       </section>
-
     </div>
   );
 }
