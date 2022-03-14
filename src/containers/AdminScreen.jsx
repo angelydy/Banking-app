@@ -6,6 +6,7 @@ import DepositControl from '../components/DepositControl';
 import TransferControl from '../components/TransferControl';
 import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
+import placeCommas from '../utils/placeCommas';
 import './../css/index.css';
 
 export default function AdminScreen() {
@@ -95,18 +96,6 @@ export default function AdminScreen() {
 
   function handleAccType(e) {
     setAccType(e.target.value);
-  }
-
-  function placeCommas(e) {
-    if (
-      (e.which >= 37 && e.which <= 40) ||
-      (e.keyCode >= 37 && e.keyCode <= 40)
-    ) {
-      return;
-    }
-    e.target.value = e.target.value.replace(/,/gi, "")
-      .split(/(?=(?:\d{3})+$)/)
-      .join(",");
   }
 
   function handleInitDeposit(e) {
