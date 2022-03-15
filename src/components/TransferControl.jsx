@@ -35,7 +35,7 @@ export default function TransferControl(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(accNumMatchFrom && accNumMatchTo) {
+    if((matchedAccFrom !== matchedAccTo) && accNumMatchFrom && accNumMatchTo) {
       currentUsers.findIndex(acc => {
         if(acc.accNum === matchedAccFrom) {
           let newBalance = Number(acc.balance.split(',').join(''))
@@ -43,13 +43,12 @@ export default function TransferControl(props) {
           if(newBalance > transfer) {
             newBalance -= transfer
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+            alert('Transfer successful')
           } else {
             alert('Not enough mana')
           }
-          // console.log(acc)
         }
         if(acc.accNum === matchedAccTo) {
-          // console.log(acc)
           let newBalance = Number(acc.balance.split(',').join(''))
           let transfer = Number(transferAmount.split(',').join('')) 
           newBalance += transfer
@@ -60,6 +59,7 @@ export default function TransferControl(props) {
     } else {
       alert('Not valid accounts')
     }
+    e.target.reset()
   }
   
   return (
@@ -71,23 +71,23 @@ export default function TransferControl(props) {
         <div className='transfer-control-container'>
         <div className={displayFeature} id="sender-acc-no">
           <label htmlFor="acc-no-of-sender">Enter Account No. of Sender</label>
-          <input type="text" name='acc-no-of-sender' onChange={validateAccNumFrom}/>
+          <input required type="text" name='acc-no-of-sender' onChange={validateAccNumFrom}/>
         </div>
         <div className='receiver-acc-no'>
           <label htmlFor="receiver-acc-no">Enter Account No. of Receiver</label>
-          <input type="text" name='receiver-acc-no' onChange={validateAccNumTo}/>
+          <input required type="text" name='receiver-acc-no' onChange={validateAccNumTo}/>
         </div>
         <div className='transfer-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
           <CurrencyOptions />
          <div>
-          <input type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
+          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
         </div>
       </div>
       </div>
         <div className='transfer-triggers'>
           <button>Transfer</button>
-          <button>Reset</button>
+          <button type='reset'>Reset</button>
         </div>
       </form>
     </section>
