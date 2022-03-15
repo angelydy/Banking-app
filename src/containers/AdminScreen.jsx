@@ -15,9 +15,11 @@ export default function AdminScreen() {
   const [ lastName, setLastname ] = useState('');
   const [ firstName, setFirstname ] = useState('');
   const [ middleName, setMiddlename ] = useState('');
-  const [ accCategory, setAccCategory ] = useState('Parent');
   const [ accType, setAccType ] = useState('Savings');
   const [ initDeposit, setInitDeposit ] = useState('');
+  const [accMatch, setAccMatch] = useState('')
+  const [accNumMatch, setAccNumMatch] = useState(false)
+  const [status, setStatus] = useState(0)
   const today = new Date();
   const hrs24 = today.getHours();
 
@@ -42,18 +44,18 @@ export default function AdminScreen() {
         lname: "Sorima,",
         fname: "Victoria", 
         mname: "Desa",
-        acccateg: "Child",
+        acccateg: "Parent",
         acctype: "Savings",
         balance: '15,000'
       }, 
       {
         accNum: "RP 142 1905 0428", 
-        lname: "Odinson,",
-        fname: "Thor", 
-        mname: "",
-        acccateg: "Child",
+        lname: "Penitente,",
+        fname: "Romulo", 
+        mname: "Torres",
+        acccateg: "Parent",
         acctype: "Savings",
-        balance: '3,000'
+        balance: '52,623'
       }, 
     ]
     setUserInfo([...userInfo, ...defaultUsers]);
@@ -89,12 +91,17 @@ export default function AdminScreen() {
     setMiddlename(e.target.value.trim());
   }
 
-  function handleAccCategory(e) {
-    setAccCategory(e.target.value);
-  }
-
   function handleAccType(e) {
     setAccType(e.target.value);
+  }
+
+  function validateAccNum(e) {
+    userInfo.findIndex(acc => {
+      if(acc.accNum === e.target.value) {
+        setAccNumMatch(true)
+        setAccMatch(acc.accNum)
+      }
+    });
   }
 
   function handleInitDeposit(e) {
@@ -103,23 +110,46 @@ export default function AdminScreen() {
   }
   
   function handleAdd(e) {
-    e.preventDefault();
-    handleAccountNumber();
-    const addUserInfo = {
-      accNum: accountNumber, 
-      lname: lastName,
-      fname: firstName, 
-      mname: middleName,
-      acccateg: accCategory,
-      acctype: accType,
-      balance: initDeposit,
-      exist: true,
-    };
-    const checkUserExist = userInfo.findIndex(user => user.exist)
-    if(!checkUserExist) {
-      setUserInfo([...userInfo, addUserInfo]);
+    e.preventDefault()
+    let addUserInfo
+    if(accNumMatch && status == 1) {
+      handleAccountNumber();
+      addUserInfo = {
+        accNum: accountNumber, 
+        lname: lastName,
+        fname: firstName, 
+        mname: middleName,
+        acccateg: "Child",
+        acctype: accType,
+        balance: initDeposit,
+        parentAcc: accMatch
+      };
+      const checkUserExist = userInfo.findIndex(user => user.lname == lastName && user.fname == firstName)
+      if(!userInfo[checkUserExist]) {
+        alert('Add user successful')
+        setUserInfo([...userInfo, addUserInfo]);
+      } else {
+        alert('User already exists')
+      }
+    } else if(status == 0) {
+      handleAccountNumber();
+      addUserInfo = {
+        accNum: accountNumber, 
+        lname: lastName,
+        fname: firstName, 
+        mname: middleName,
+        acccateg: "Parent",
+        acctype: accType,
+        balance: initDeposit,
+      };
+      const checkUserExist = userInfo.findIndex(user => user.lname == lastName && user.fname == firstName)
+      if(!userInfo[checkUserExist]) {
+        setUserInfo([...userInfo, addUserInfo]);
+      } else {
+        alert('User already exists')
+      }
     } else {
-      alert('User already exists')
+      alert('Not valid account')
     }
     e.target.reset();
     resetState();
@@ -129,9 +159,10 @@ export default function AdminScreen() {
     setLastname('');
     setFirstname('');
     setMiddlename('');
-    setAccCategory('Parent');
     setAccType('Savings');
     setInitDeposit();
+    setStatus(0)
+    setAccNumMatch(false)
   }
 
   return (
@@ -139,7 +170,7 @@ export default function AdminScreen() {
       <Navbar />
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
-        <AccountsTable passedUserInfo={userInfo} />
+        <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>
             <div className='user-name'>
@@ -159,12 +190,18 @@ export default function AdminScreen() {
             <div className='add-account-acc-category'>
               <label htmlFor="acc-category">Account Category</label>
               <div>
-                <input type="radio" value="Parent" name='acc-category' defaultChecked onChange={handleAccCategory}/> Parent
+                <input type="radio" value="Parent" name='acc-category' defaultChecked onClick={()=> setStatus(0)}/> Parent
               </div>
               <div>
-                <input type="radio" value="Child" name='acc-category' onChange={handleAccCategory}/> Child
+                <input type="radio" value="Child" name='acc-category' onClick={()=> setStatus(1)}/> Child
               </div>
             </div>
+            {status == 1 && 
+              <div>
+                <label htmlFor='input-parent'>Please enter parent account number</label>
+                <input required type="text" id="input-parent" onChange={validateAccNum}/>
+              </div>
+            }
             <div className='add-account-acc-type'>
               <label htmlFor="acc-type">Account Type</label>
               <div>
@@ -176,11 +213,11 @@ export default function AdminScreen() {
             </div>
             <div className='initial-deposit'>
               <div>
-                <label htmlFor="initial-deposit">Initial Deposit (Optional)</label>
+                <label htmlFor="initial-deposit">Initial Deposit</label>
               </div>
               <div className='currency-and-amount'>
                 <CurrencyOptions />
-                <input type="text" pattern='[^0-9 \,]' name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
+                <input required type="text" pattern='[^0-9 \,]' name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
               </div>
             </div>
             <div className="add-account-triggers">
@@ -201,8 +238,8 @@ export default function AdminScreen() {
             </div>
           </div>
           <div className='transfer-control'>
-          <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
-        </div>
+            <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+          </div>
         </div>
       </section>
     </div>

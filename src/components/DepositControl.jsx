@@ -31,12 +31,14 @@ export default function DepositControl(props) {
           let deposit = Number(depositAmount.split(',').join('')) 
           newBalance += deposit
           acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          alert('Deposit successful')
           setCurrentUser([...currentUsers])
         }
       })
     } else {
       alert('Not valid account')
     }
+    e.target.reset()
   }
 
   return (
@@ -47,16 +49,16 @@ export default function DepositControl(props) {
     <form onSubmit={handleSubmit}>
       <div className={displayFeature}>
         <label htmlFor="enter-acc-no">Enter Account No.</label>
-        <input type="text" name='enter-acc-no' onChange={validateAccNum}/>
+        <input required type="text" name='enter-acc-no' onChange={validateAccNum}/>
       </div>
       <div className='deposit-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
         <CurrencyOptions />
-        <input type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
+        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
       </div>
       <div className='deposit-triggers'>
         <button>Deposit</button>
-        <button>Reset</button>
+        <button type='reset'>Reset</button>
       </div>
      </form>
     </section>

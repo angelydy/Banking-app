@@ -32,6 +32,7 @@ export default function WithdrawControl(props) {
           if(newBalance > withdrawal) {
             newBalance -= withdrawal
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+            alert('Withdraw successful')
             setCurrentUser([...currentUsers])
           } else {
             alert("Not enough mana")
@@ -41,6 +42,7 @@ export default function WithdrawControl(props) {
     } else {
       alert('Not valid account')
     }
+    e.target.reset()
   }
 
   return (
@@ -51,16 +53,16 @@ export default function WithdrawControl(props) {
         </div>
         <div className={displayFeature}>
           <label htmlFor="enter-acc-no">Enter Account No.</label>
-          <input type="text" name='enter-acc-no' onChange={validateAccNum}/>
+          <input required type="text" name='enter-acc-no' onChange={validateAccNum}/>
         </div>
         <div className='withdraw-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
           <CurrencyOptions />
-          <input type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
+          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
         </div>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>
-          <button>Reset</button>
+          <button type='reset'>Reset</button>
         </div>
       </form>
     </section>
