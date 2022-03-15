@@ -35,9 +35,8 @@
   flex-direction: column;
   width: 30rem;
   height: 30rem;
-  position: relative;
   padding: 3rem;
-  margin: 10vh;
+  margin: auto;
 }
 .login-wrapper #close-sign-up {
   position: absolute;
@@ -334,12 +333,20 @@ a:hover, .downloadBtn:hover {
   font-size: 1.5em;
 }
 
+#admin-main-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
 select {
   -webkit-appearance: none;
 }
 
 .greeting {
   margin: 0 3rem;
+  font-size: 2.5rem;
 }
 
 .logo {
@@ -385,7 +392,7 @@ select {
   display: grid;
   grid-template-columns: repeat(6, auto);
   text-align: center;
-  color: #201f49;
+  color: white;
 }
 .admin-wrapper .account-table-data .account-table-account-no {
   text-align: left;
@@ -479,6 +486,7 @@ select {
   font-weight: 600;
   text-align: center;
   color: white;
+  border-style: none;
 }
 .initial-deposit .currency-and-amount #currency-options option {
   background-color: #201f49;
@@ -614,4 +622,74 @@ select {
   transition: 0.3s ease-in-out 0s;
   cursor: pointer;
   transform: scale(1.1);
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.error-modal-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+.error-modal-wrapper .error-modal-container {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 40%;
+  margin: auto;
+  padding: 2rem;
+  position: relative;
+  animation: zoomIn 0.7s;
+}
+.error-modal-wrapper .close-error-container {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border-style: none;
+  font-size: 1.5em;
+  font-weight: lighter;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  color: white;
+}
+.error-modal-wrapper .modal-message {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.error-modal-wrapper .boldError {
+  font-weight: 900;
+  font-size: 2.5em;
+}
+
+.hide-error-modal-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
 }

@@ -63,7 +63,7 @@ export default function TransferControl(props) {
   }
   
   return (
-    <section className='transfer-control-wrapper'>
+    <section className='transfer-control-wrapper' id='transfer-control-wrapper'>
       <div className='withdraw-deposit-title'>
         Transfer
       </div>

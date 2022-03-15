@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import CurrencyOptions from './CurrencyOptions';
+import { NotEnoughBalance, InvalidAccount } from './ErrorModals';
 import './../css/index.css';
 import placeCommas from '../utils/placeCommas';
 
@@ -35,18 +36,18 @@ export default function WithdrawControl(props) {
             alert('Withdraw successful')
             setCurrentUser([...currentUsers])
           } else {
-            alert("Not enough mana")
+            <NotEnoughBalance />
           }
         }
       })
     } else {
-      alert('Not valid account')
+      <InvalidAccount />
     }
     e.target.reset()
   }
 
   return (
-    <section className='withdraw-control-wrapper'>
+    <section className='withdraw-control-wrapper' id='withdraw-control-wrapper'>
       <form onSubmit={handleSubmit}>
         <div className='withdraw-deposit-title'>
           Withdraw

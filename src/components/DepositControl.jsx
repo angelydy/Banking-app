@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './../css/index.css';
 import CurrencyOptions from './CurrencyOptions';
 import placeCommas from '../utils/placeCommas';
-
+import { InvalidAccount } from './ErrorModals';
 export default function DepositControl(props) {
   const { displayFeature, currentUsers, setCurrentUser } = props;
   const [accNumMatch, setAccNumMatch] = useState(false);
@@ -36,13 +36,13 @@ export default function DepositControl(props) {
         }
       })
     } else {
-      alert('Not valid account')
+      <InvalidAccount />
     }
     e.target.reset()
   }
 
   return (
-    <section className='deposit-control-wrapper'>
+    <section className='deposit-control-wrapper' id='deposit-control-wrapper'>
       <div className='withdraw-deposit-title'>
         Deposit
       </div>
