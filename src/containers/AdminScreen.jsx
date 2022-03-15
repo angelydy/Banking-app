@@ -7,6 +7,7 @@ import TransferControl from '../components/TransferControl';
 import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
+import { UserAlreadyExist } from '../components/ErrorModals';
 import './../css/index.css';
 
 export default function AdminScreen() {
@@ -119,7 +120,7 @@ export default function AdminScreen() {
     if(!checkUserExist) {
       setUserInfo([...userInfo, addUserInfo]);
     } else {
-      alert('User already exists')
+      <UserAlreadyExist />
     }
     e.target.reset();
     resetState();
@@ -135,7 +136,7 @@ export default function AdminScreen() {
   }
 
   return (
-    <div>
+    <div id='admin-main-container'>
       <Navbar />
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
