@@ -7,7 +7,8 @@ import TransferControl from '../components/TransferControl';
 import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
-import { UserAlreadyExist } from '../components/ErrorModals';
+import {v4 as uuidv4} from 'uuid';
+import { UserAlreadyExist, InvalidAccount, AddUserSuccessful } from '../components/AlertModals';
 import './../css/index.css';
 import Footer from '../components/Footer';
 
@@ -22,15 +23,16 @@ export default function AdminScreen() {
   const [accMatch, setAccMatch] = useState('')
   const [accNumMatch, setAccNumMatch] = useState(false)
   const [status, setStatus] = useState(0)
+  const [ifUserAlreadyExist, setIfUserAlreadyExist] = useState(false)
+  const [ifUserNotExist, setIfUserNotExist] = useState(false)
+  const [addUserSuccess, setAddUserSuccess] = useState(false)
   const today = new Date();
   const hrs24 = today.getHours();
 
-  useEffect(() => {
+  useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
     if(getUsers) setUserInfo(getUsers);
-  }, [])
 
-  useEffect(()=> {
     const defaultUsers = [
       {
         accNum: "RP 142 4200 2804", 
@@ -102,6 +104,7 @@ export default function AdminScreen() {
       if(acc.accNum === e.target.value) {
         setAccNumMatch(true)
         setAccMatch(acc.accNum)
+        return
       }
     });
   }
@@ -128,10 +131,10 @@ export default function AdminScreen() {
       };
       const checkUserExist = userInfo.findIndex(user => user.lname == lastName && user.fname == firstName)
       if(!userInfo[checkUserExist]) {
-        alert('Add user successful')
+        setAddUserSuccess(true)
         setUserInfo([...userInfo, addUserInfo]);
       } else {
-        alert('User already exists')
+        setIfUserAlreadyExist(true)
       }
     } else if(status == 0) {
       handleAccountNumber();
@@ -146,12 +149,13 @@ export default function AdminScreen() {
       };
       const checkUserExist = userInfo.findIndex(user => user.lname == lastName && user.fname == firstName)
       if(!userInfo[checkUserExist]) {
+        setAddUserSuccess(true)
         setUserInfo([...userInfo, addUserInfo]);
       } else {
-        alert('User already exists')
+        setIfUserAlreadyExist(true)
       }
     } else {
-      <UserAlreadyExist />
+      setIfUserNotExist(true)
     }
     e.target.reset();
     resetState();
@@ -200,7 +204,7 @@ export default function AdminScreen() {
               </div>
             </div>
             {status == 1 && 
-              <div>
+              <div key={uuidv4()}>
                 <label htmlFor='input-parent'>Please enter parent account number</label>
                 <input required type="text" id="input-parent" onChange={validateAccNum}/>
               </div>
@@ -246,6 +250,18 @@ export default function AdminScreen() {
         </div>
       </section>
       <Footer />
+      <UserAlreadyExist
+        displayState={ifUserAlreadyExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> ifUserAlreadyExist ? setIfUserAlreadyExist(false) : setIfUserAlreadyExist(true)}
+      />
+      <InvalidAccount 
+        displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
+      />
+      <AddUserSuccessful 
+        displayState={addUserSuccess ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> addUserSuccess ? setAddUserSuccess(false) : setAddUserSuccess(true)}
+      />
     </div>
   );
 }
