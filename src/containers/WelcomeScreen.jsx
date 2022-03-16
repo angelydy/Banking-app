@@ -3,6 +3,9 @@ import pic from './../assets/02.png';
 import './../css/index.css';
 import SignUpModal from "../components/SignUpModal";
 import LogInModal from "../components/LogInModal";
+import Footer from '../components/Footer';
+import SectionTwo from "../components/WelcomeScreenSectionTwo";
+import SectionThree from "../components/WelcomeScreenSectionThree";
 
 function WelcomeScreen() {
   const [switchToggle, setSwitchToggle] = useState(false)
@@ -71,6 +74,9 @@ function WelcomeScreen() {
         displayState={loginModal ? "show-login-modal" : "login-modal"}
         closeState={loginClicked}
       />
+      <SectionTwo />
+      <SectionThree />
+      <Footer />
     </div>
   );
 }

@@ -79,16 +79,17 @@ a, .downloadBtn {
   grid-template-columns: repeat(2, 1fr);
   
   .left {
-    margin: 5rem 5rem;
+    margin: 7rem 5rem;
     
     .boldText {
-      font-size: 50px;
+      font-size: 3rem;
       font-weight: 900;
     }
 
     .desc {
       color: rgb(214, 214, 214);
-      font-size: 15px;
+      font-size: 1rem;
+      text-align: justify;
     }
     
     .buttons {
@@ -129,8 +130,8 @@ a, .downloadBtn {
     text-align: center;
     
     .cardsPhoto {
-      width: 75%;
-      margin: auto;
+      width: 30rem;
+      margin: 3rem auto;
     }
   }
 }

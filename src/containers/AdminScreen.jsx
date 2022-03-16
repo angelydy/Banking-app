@@ -9,6 +9,7 @@ import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
 import { UserAlreadyExist } from '../components/ErrorModals';
 import './../css/index.css';
+import Footer from '../components/Footer';
 
 export default function AdminScreen() {
   const [userInfo, setUserInfo] = useState([]);
@@ -174,6 +175,7 @@ export default function AdminScreen() {
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>
+            <div className='add-user-title'>Add New User</div>
             <div className='user-name'>
               <div>
                 <label htmlFor="lastname">Last Name</label>
@@ -243,6 +245,7 @@ export default function AdminScreen() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
