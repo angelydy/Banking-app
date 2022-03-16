@@ -10,6 +10,7 @@ import placeCommas from '../utils/placeCommas';
 import {v4 as uuidv4} from 'uuid';
 import { UserAlreadyExist, InvalidAccount, AddUserSuccessful } from '../components/AlertModals';
 import './../css/index.css';
+import Footer from '../components/Footer';
 
 export default function AdminScreen() {
   const [userInfo, setUserInfo] = useState([]);
@@ -178,6 +179,7 @@ export default function AdminScreen() {
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>
+            <div className='add-user-title'>Add New User</div>
             <div className='user-name'>
               <div>
                 <label htmlFor="lastname">Last Name</label>
@@ -247,6 +249,7 @@ export default function AdminScreen() {
           </div>
         </div>
       </section>
+      <Footer />
       <UserAlreadyExist
         displayState={ifUserAlreadyExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> ifUserAlreadyExist ? setIfUserAlreadyExist(false) : setIfUserAlreadyExist(true)}

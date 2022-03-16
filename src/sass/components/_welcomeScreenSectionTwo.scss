@@ -1,0 +1,30 @@
+.section-two {
+  margin: 5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .left-grid {
+
+    .desc {
+      overflow-wrap: break-word;
+      max-width: 30rem;
+      color: rgb(233, 233, 233);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .right-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5rem;
+
+    .icon-desc {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}

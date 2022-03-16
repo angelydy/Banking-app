@@ -164,15 +164,16 @@ a:hover, .downloadBtn:hover {
   grid-template-columns: repeat(2, 1fr);
 }
 .grid .left {
-  margin: 5rem 5rem;
+  margin: 7rem 5rem;
 }
 .grid .left .boldText {
-  font-size: 50px;
+  font-size: 3rem;
   font-weight: 900;
 }
 .grid .left .desc {
   color: #d6d6d6;
-  font-size: 15px;
+  font-size: 1rem;
+  text-align: justify;
 }
 .grid .left .buttons button {
   border-radius: 50px;
@@ -204,8 +205,8 @@ a:hover, .downloadBtn:hover {
   text-align: center;
 }
 .grid .right .cardsPhoto {
-  width: 75%;
-  margin: auto;
+  width: 30rem;
+  margin: 3rem auto;
 }
 
 .sign-up-modal {
@@ -361,9 +362,10 @@ select {
   cursor: pointer;
 }
 .admin-wrapper #accounts-table-wrapper {
+  z-index: 5;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to left bottom, #91b2dcbb, #acbce0bb, #c2c7e3c2, #d5d4e6, #e4e2ea);
+  background-image: linear-gradient(337deg, rgba(92, 107, 133, 0.651) 24%, #5e5983 63%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
@@ -374,6 +376,9 @@ select {
   margin: 2rem;
   line-height: 3rem;
   scroll-behavior: smooth;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 }
 .admin-wrapper #accounts-table-wrapper::-webkit-scrollbar {
   width: 0.5rem;
@@ -410,6 +415,12 @@ select {
   border-radius: 10px;
   min-width: 70vw;
   margin: 2rem;
+}
+#add-account-form .add-user-title {
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 1rem;
 }
 #add-account-form .user-name {
   display: flex;
@@ -682,4 +693,136 @@ select {
 .alert-modal-wrapper .boldAlert {
   font-weight: 900;
   font-size: 2.5em;
+}
+
+.hide-error-modal-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  transition: 0.7s;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+
+.section-two {
+  margin: 5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.section-two .left-grid .desc {
+  overflow-wrap: break-word;
+  max-width: 30rem;
+  color: #e9e9e9;
+}
+.section-two .left-grid h1 {
+  font-size: 2.5rem;
+}
+.section-two .right-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5rem;
+}
+.section-two .right-grid .icon-desc {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.welcomeScreenSectionThree {
+  padding: 2rem 10rem;
+  padding-bottom: 5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.welcomeScreenSectionThree img {
+  width: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 50px;
+  color: black;
+  background-color: white;
+}
+.footer .newsletter {
+  border-style: none;
+  border: 2px solid black;
+  padding: 1rem;
+}
+.footer .newsletter::placeholder {
+  color: black;
+}
+.footer header p {
+  padding: 50px;
+  text-align: center;
+  color: #bebebe;
+  text-transform: uppercase;
+  font-size: 65px;
+  font-weight: 700;
+}
+.footer .l-footer {
+  margin-right: 1.25em;
+  margin-bottom: 2em;
+}
+.footer h2 {
+  font-weight: 400;
+  font-size: 15px;
+}
+.footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+.footer li {
+  line-height: 2em;
+}
+.footer a {
+  text-decoration: none;
+}
+.footer .r-footer {
+  display: flex;
+  flex-flow: row wrap;
+}
+.footer .box a {
+  color: #999;
+}
+.footer .box a:hover {
+  color: #2f2e6c;
+}
+.footer .h-box {
+  column-count: 2;
+  column-gap: 1.25em;
+}
+.footer .b-footer {
+  text-align: center;
+  color: #999;
+  padding-top: 50px;
+}
+.footer .l-footer p {
+  padding-right: 20%;
+  color: black;
+}
+
+@media screen and (min-width: 600px) {
+  .r-footer > * {
+    flex: 1;
+  }
+
+  .features {
+    flex-grow: 2;
+  }
+
+  .l-footer {
+    flex: 1 0px;
+  }
+
+  .r-footer {
+    flex: 2 0px;
+  }
 }
