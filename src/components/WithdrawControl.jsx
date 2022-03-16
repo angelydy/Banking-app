@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import CurrencyOptions from './CurrencyOptions';
-import { NotEnoughBalance, InvalidAccount } from './ErrorModals';
-import './../css/index.css';
+import { NotEnoughBalance, InvalidAccount, TransactionSuccessful } from './AlertModals';
 import placeCommas from '../utils/placeCommas';
+import './../css/index.css';
 
 export default function WithdrawControl(props) {
   const { displayFeature, currentUsers, setCurrentUser } = props;
   const [accNumMatch, setAccNumMatch] = useState(false);
   const [matchedAcc, setAccMatch] = useState('');
   const [withdrawAmount, setWithdrawAmount] = useState()
+  const [ifUserNotExist, setIfUserNotExist] = useState(false)
+  const [notEnoughBalance, setNotEnoughBalance] = useState(false)
+  const [transactionSuccessful, setTransactionSuccessful] = useState(false)
 
   function validateAccNum(e) {
     currentUsers.findIndex(acc => {
@@ -33,15 +36,15 @@ export default function WithdrawControl(props) {
           if(newBalance > withdrawal) {
             newBalance -= withdrawal
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-            alert('Withdraw successful')
+            setTransactionSuccessful(true)
             setCurrentUser([...currentUsers])
           } else {
-            <NotEnoughBalance />
+            setNotEnoughBalance(true)
           }
         }
       })
     } else {
-      <InvalidAccount />
+      setIfUserNotExist(true)
     }
     e.target.reset()
   }
@@ -66,6 +69,18 @@ export default function WithdrawControl(props) {
           <button type='reset'>Reset</button>
         </div>
       </form>
+      <InvalidAccount 
+        displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
+      />
+      <NotEnoughBalance
+        displayState={notEnoughBalance ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> notEnoughBalance ? setNotEnoughBalance(false) : setNotEnoughBalance(true)}
+      />
+       <TransactionSuccessful
+        displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> transactionSuccessful ? setTransactionSuccessful(false) : setTransactionSuccessful(true)}
+      />
     </section>
   );
 }
