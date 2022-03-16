@@ -7,7 +7,7 @@ import './../css/index.css';
 export default function DepositControl(props) {
   const { displayFeature, currentUsers, setCurrentUser } = props;
   const [accNumMatch, setAccNumMatch] = useState(false);
-  const [matchedAcc, setAccMatch] = useState('');
+  const [matchedAcc, setAccMatch] = useState();
   const [depositAmount, setDepositAmount] = useState()
   const [ifUserNotExist, setIfUserNotExist] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
@@ -42,6 +42,13 @@ export default function DepositControl(props) {
       setIfUserNotExist(true)
     }
     e.target.reset()
+    resetState()
+  }
+
+  function resetState() {
+    setAccMatch()
+    setDepositAmount()
+    setAccNumMatch(false)
   }
 
   return (
@@ -61,7 +68,7 @@ export default function DepositControl(props) {
       </div>
       <div className='deposit-triggers'>
         <button>Deposit</button>
-        <button type='reset'>Reset</button>
+        <button type='reset' onClick={resetState}>Reset</button>
       </div>
      </form>
      <InvalidAccount 

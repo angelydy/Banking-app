@@ -7,7 +7,7 @@ import './../css/index.css';
 export default function WithdrawControl(props) {
   const { displayFeature, currentUsers, setCurrentUser } = props;
   const [accNumMatch, setAccNumMatch] = useState(false);
-  const [matchedAcc, setAccMatch] = useState('');
+  const [matchedAcc, setAccMatch] = useState();
   const [withdrawAmount, setWithdrawAmount] = useState()
   const [ifUserNotExist, setIfUserNotExist] = useState(false)
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
@@ -47,6 +47,13 @@ export default function WithdrawControl(props) {
       setIfUserNotExist(true)
     }
     e.target.reset()
+    resetState()
+  }
+
+  function resetState() {
+    setAccMatch()
+    setWithdrawAmount()
+    setAccNumMatch(false)
   }
 
   return (
@@ -66,7 +73,7 @@ export default function WithdrawControl(props) {
         </div>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>
-          <button type='reset'>Reset</button>
+          <button type='reset' onClick={resetState}>Reset</button>
         </div>
       </form>
       <InvalidAccount 

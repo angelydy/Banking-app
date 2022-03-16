@@ -14,10 +14,10 @@ export default function TransferControl(props) {
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
   const [ifUserNotExist, setIfUserNotExist] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
-  
+ 
   function validateAccNumFrom(e) {
-    currentUsers.findIndex(acc => {
-      if(acc.accNum === e.target.value) {
+    currentUsers.find(acc => {
+      if(acc.accNum == e.target.value) {
         setAccNumMatchFrom(true)
         setAccMatchFrom(acc.accNum)
       }
@@ -25,10 +25,11 @@ export default function TransferControl(props) {
   }
 
   function validateAccNumTo(e) {
-    currentUsers.findIndex(acc => {
-      if(acc.accNum === e.target.value) {
+    currentUsers.find(acc => {
+      if(acc.accNum == e.target.value) {
         setAccNumMatchTo(true)
         setAccMatchTo(acc.accNum)
+        console.log('hey')
       }
     });
   }
@@ -64,6 +65,21 @@ export default function TransferControl(props) {
       setIfUserNotExist(true)
     }
     e.target.reset()
+    resetState()
+  }
+
+  function resetState() {
+    setAccMatchFrom('')
+    setAccMatchTo('')
+    setTransferAmount()
+    setAccNumMatchFrom(false)
+    setAccNumMatchTo(false)
+    console.log( 
+      accNumMatchFrom,
+      matchedAccFrom,
+      accNumMatchTo,
+      matchedAccTo,
+      transferAmount)
   }
   
   return (
@@ -91,12 +107,13 @@ export default function TransferControl(props) {
       </div>
         <div className='transfer-triggers'>
           <button>Transfer</button>
-          <button type='reset'>Reset</button>
+          <button type='reset' onClick={resetState}>Reset</button>
         </div>
       </form>
       <InvalidAccount 
         displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
+        resetState={resetState}
       />
       <NotEnoughBalance
         displayState={notEnoughBalance ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
@@ -105,6 +122,7 @@ export default function TransferControl(props) {
       <TransactionSuccessful
         displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> transactionSuccessful ? setTransactionSuccessful(false) : setTransactionSuccessful(true)}
+        resetState={resetState}
       />
     </section>
   )
