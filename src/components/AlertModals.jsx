@@ -2,7 +2,7 @@ import React from "react";
 import './../css/index.css';
 
 export function NotEnoughBalance(props) {
-  const { displayState, closeState } = props
+  const { displayState, closeState, resetState } = props
 
   return (
     <div className={displayState}>
@@ -25,13 +25,16 @@ export function NotEnoughBalance(props) {
 }
 
 export function InvalidAccount(props) {
-  const { displayState, closeState } = props
+  const { displayState, closeState, resetState } = props
 
   return (
     <div className={displayState}>
       <div className="alert-modal-container">
         <div className="alert-modal-content">
-          <div className="close-alert-container" onClick={closeState}>
+          <div className="close-alert-container" onClick={()=>{
+            closeState()
+            resetState()
+          }}>
            X
          </div>
           <div className="modal-message">
@@ -72,13 +75,16 @@ export function UserAlreadyExist(props) {
 }
 
 export function TransactionSuccessful(props) {
-  const { displayState, closeState } = props
+  const { displayState, closeState, resetState } = props
 
   return (
     <div className={displayState}>
       <div className="alert-modal-container">
         <div className="alert-modal-content">
-          <div className="close-alert-container" onClick={closeState}>
+          <div className="close-alert-container" onClick={()=>{
+            closeState()
+            resetState()
+          }}>
            X
           </div>
           <div className="modal-message">
