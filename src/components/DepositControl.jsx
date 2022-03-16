@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import './../css/index.css';
 import CurrencyOptions from './CurrencyOptions';
 import placeCommas from '../utils/placeCommas';
-import { InvalidAccount } from './ErrorModals';
+import { InvalidAccount,TransactionSuccessful } from './AlertModals';
+import './../css/index.css';
+
 export default function DepositControl(props) {
   const { displayFeature, currentUsers, setCurrentUser } = props;
   const [accNumMatch, setAccNumMatch] = useState(false);
   const [matchedAcc, setAccMatch] = useState('');
   const [depositAmount, setDepositAmount] = useState()
+  const [ifUserNotExist, setIfUserNotExist] = useState(false)
+  const [transactionSuccessful, setTransactionSuccessful] = useState(false)
 
   function validateAccNum(e) {
     currentUsers.findIndex(acc => {
@@ -31,12 +34,12 @@ export default function DepositControl(props) {
           let deposit = Number(depositAmount.split(',').join('')) 
           newBalance += deposit
           acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-          alert('Deposit successful')
+          setTransactionSuccessful(true)
           setCurrentUser([...currentUsers])
         }
       })
     } else {
-      <InvalidAccount />
+      setIfUserNotExist(true)
     }
     e.target.reset()
   }
@@ -61,6 +64,14 @@ export default function DepositControl(props) {
         <button type='reset'>Reset</button>
       </div>
      </form>
+     <InvalidAccount 
+        displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
+      />
+      <TransactionSuccessful
+        displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> transactionSuccessful ? setTransactionSuccessful(false) : setTransactionSuccessful(true)}
+      />
     </section>
   );
 }
