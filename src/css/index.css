@@ -376,8 +376,6 @@ select {
   margin: 2rem;
   line-height: 3rem;
   scroll-behavior: smooth;
-  position: sticky;
-  position: -webkit-sticky;
   top: 0;
 }
 .admin-wrapper #accounts-table-wrapper::-webkit-scrollbar {
@@ -635,79 +633,6 @@ select {
   transform: scale(1.1);
 }
 
-@keyframes zoomIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.alert-modal-wrapper {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
-  transition: 0.7s;
-  display: none;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
-  opacity: 1;
-}
-.alert-modal-wrapper.show {
-  display: flex;
-}
-.alert-modal-wrapper .alert-modal-container {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 40%;
-  margin: auto;
-  padding: 2rem;
-  position: relative;
-  animation: zoomIn 0.7s;
-}
-.alert-modal-wrapper .close-alert-container {
-  position: absolute;
-  right: 0;
-  background: transparent;
-  border-style: none;
-  font-size: 1.5em;
-  font-weight: lighter;
-  right: 1rem;
-  top: 1rem;
-  cursor: pointer;
-  color: white;
-}
-.alert-modal-wrapper .modal-message {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-.alert-modal-wrapper .boldAlert {
-  font-weight: 900;
-  font-size: 2.5em;
-}
-
-.hide-error-modal-wrapper {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -5;
-  transition: 0.7s;
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
-  opacity: 1;
-}
-
 .section-two {
   margin: 5rem 4rem;
   display: grid;
@@ -825,4 +750,63 @@ select {
   .r-footer {
     flex: 2 0px;
   }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.alert-modal-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  transition: 0.7s;
+  display: none;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+}
+.alert-modal-wrapper.show {
+  display: flex;
+}
+.alert-modal-wrapper .alert-modal-container {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 40%;
+  margin: auto;
+  padding: 2rem;
+  position: relative;
+  animation: zoomIn 0.7s;
+}
+.alert-modal-wrapper .close-alert-container {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border-style: none;
+  font-size: 1.5em;
+  font-weight: lighter;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  color: white;
+}
+.alert-modal-wrapper .modal-message {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.alert-modal-wrapper .boldAlert {
+  font-weight: 900;
+  font-size: 2.5em;
 }
