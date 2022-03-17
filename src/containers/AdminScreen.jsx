@@ -8,7 +8,7 @@ import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
 import {v4 as uuidv4} from 'uuid';
-import { UserAlreadyExist, InvalidAccount, AddUserSuccessful } from '../components/AlertModals';
+import { UserAlreadyExist, AddUserSuccessful } from '../components/AlertModals';
 import './../css/index.css';
 import Footer from '../components/Footer';
 
@@ -31,8 +31,6 @@ export default function AdminScreen() {
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
-    if(getUsers) setUserInfo(getUsers);
-
     const defaultUsers = [
       {
         accNum: "RP 142 4200 2804", 
@@ -62,7 +60,8 @@ export default function AdminScreen() {
         balance: '52,623'
       }, 
     ]
-    setUserInfo([...userInfo, ...defaultUsers]);
+    setUserInfo([...defaultUsers, ...userInfo]);
+    if(getUsers) setUserInfo(getUsers);
   }, [])
 
   useEffect(()=> {
@@ -116,6 +115,7 @@ export default function AdminScreen() {
   
   function handleAdd(e) {
     e.preventDefault()
+    console.log('me')
     let addUserInfo
     if(accNumMatch && status == 1) {
       handleAccountNumber();
@@ -253,10 +253,6 @@ export default function AdminScreen() {
       <UserAlreadyExist
         displayState={ifUserAlreadyExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> ifUserAlreadyExist ? setIfUserAlreadyExist(false) : setIfUserAlreadyExist(true)}
-      />
-      <InvalidAccount 
-        displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
-        closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
       />
       <AddUserSuccessful 
         displayState={addUserSuccess ? "alert-modal-wrapper show" : "alert-modal-wrapper"}

@@ -1,51 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './../css/index.css';
 import CurrencyOptions from './CurrencyOptions';
 import placeCommas from '../utils/placeCommas';
-import { NotEnoughBalance, InvalidAccount, TransactionSuccessful } from './AlertModals';
+import { NotEnoughBalance, TransactionSuccessful, InvalidAmount, SameAccountError } from './AlertModals';
+import { AccountOptionsTransferFrom, AccountOptionsTransferTo } from './AccountOptions';
 
-export default function TransferControl(props) {
-  const { displayFeature, currentUsers, setCurrentUser } = props;
-  const [accNumMatchFrom, setAccNumMatchFrom] = useState(false);
-  const [matchedAccFrom, setAccMatchFrom] = useState('');
-  const [accNumMatchTo, setAccNumMatchTo] = useState(false);
-  const [matchedAccTo, setAccMatchTo] = useState('');
+export default function TransferControl({ displayFeature, currentUsers, setCurrentUser }) {
+  const [matchedAccFrom, setAccMatchFrom] = useState();
+  const [accLabelFrom, setAccLabelFrom] = useState('Please select Sender Account Number');
+  const [matchedAccTo, setAccMatchTo] = useState();
+  const [accLabelTo, setAccLabelTo] = useState('Please select Receiver Account Number');
   const [transferAmount, setTransferAmount] = useState()
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
-  const [ifUserNotExist, setIfUserNotExist] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
- 
-  function validateAccNumFrom(e) {
-    currentUsers.find(acc => {
-      if(acc.accNum == e.target.value) {
-        setAccNumMatchFrom(true)
-        setAccMatchFrom(acc.accNum)
-      }
-    });
-  }
+  const [approveTransfer, setApproveTransfer] = useState(true)
+  const [invalidAmount, setInvalidAmount] = useState(false)
+  const [sameAccError, setSameAccError] = useState(false)
 
-  function validateAccNumTo(e) {
-    currentUsers.find(acc => {
-      if(acc.accNum == e.target.value) {
-        setAccNumMatchTo(true)
-        setAccMatchTo(acc.accNum)
-        console.log('hey')
+  useEffect(() => {
+    currentUsers.findIndex(acc => {
+      if(acc.accNum === matchedAccFrom) {
+        let newBalance = Number(acc.balance.split(',').join(''))
+        let transfer = Number(transferAmount.split(',').join(''))
+        if(newBalance < transfer) {
+          setApproveTransfer(false)
+        }
       }
-    });
-  }
-
+    })
+  }, [transferAmount])
+  
   function storeTransferAmount(e) {
     setTransferAmount(e.target.value)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    if((matchedAccFrom !== matchedAccTo) && accNumMatchFrom && accNumMatchTo) {
+    if(transferAmount < 100) {
+      setInvalidAmount(true)
+      e.target.reset()
+      resetState()
+      return
+    }
+    if(matchedAccFrom !== matchedAccTo) {
       currentUsers.findIndex(acc => {
         if(acc.accNum === matchedAccFrom) {
           let newBalance = Number(acc.balance.split(',').join(''))
           let transfer = Number(transferAmount.split(',').join('')) 
-          if(newBalance > transfer) {
+          if(approveTransfer == true) {
             newBalance -= transfer
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
             setTransactionSuccessful(true)
@@ -56,30 +57,27 @@ export default function TransferControl(props) {
         if(acc.accNum === matchedAccTo) {
           let newBalance = Number(acc.balance.split(',').join(''))
           let transfer = Number(transferAmount.split(',').join('')) 
-          newBalance += transfer
-          acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          if(approveTransfer == true) {
+            newBalance += transfer
+            acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+            setCurrentUser([...currentUsers])
+          }
         }
-        setCurrentUser([...currentUsers])
       })
     } else {
-      setIfUserNotExist(true)
+      setSameAccError(true)
     }
     e.target.reset()
     resetState()
   }
 
   function resetState() {
-    setAccMatchFrom('')
-    setAccMatchTo('')
+    setApproveTransfer(true)
+    setAccMatchFrom()
+    setAccMatchTo()
     setTransferAmount()
-    setAccNumMatchFrom(false)
-    setAccNumMatchTo(false)
-    console.log( 
-      accNumMatchFrom,
-      matchedAccFrom,
-      accNumMatchTo,
-      matchedAccTo,
-      transferAmount)
+    setAccLabelFrom('Please select Sender Account Number')
+    setAccLabelTo('Please select Receiver Account Number')
   }
   
   return (
@@ -89,13 +87,11 @@ export default function TransferControl(props) {
       </div>
       <form onSubmit={handleSubmit}>
         <div className='transfer-control-container'>
-        <div className={displayFeature} id="sender-acc-no">
-          <label htmlFor="acc-no-of-sender">Enter Account No. of Sender</label>
-          <input required type="text" name='acc-no-of-sender' onChange={validateAccNumFrom}/>
+        <div className={displayFeature}>
+          <AccountOptionsTransferFrom passedUserInfo={currentUsers} onSetAccLabel={setAccLabelFrom} selectedAccLabel={accLabelFrom} onSelectAcc={setAccMatchFrom} selectedAcc={matchedAccFrom} />
         </div>
-        <div className='receiver-acc-no'>
-          <label htmlFor="receiver-acc-no">Enter Account No. of Receiver</label>
-          <input required type="text" name='receiver-acc-no' onChange={validateAccNumTo}/>
+        <div className={displayFeature}>
+          <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} />
         </div>
         <div className='transfer-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
@@ -110,11 +106,6 @@ export default function TransferControl(props) {
           <button type='reset' onClick={resetState}>Reset</button>
         </div>
       </form>
-      <InvalidAccount 
-        displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
-        closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
-        resetState={resetState}
-      />
       <NotEnoughBalance
         displayState={notEnoughBalance ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> notEnoughBalance ? setNotEnoughBalance(false) : setNotEnoughBalance(true)}
@@ -123,6 +114,14 @@ export default function TransferControl(props) {
         displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> transactionSuccessful ? setTransactionSuccessful(false) : setTransactionSuccessful(true)}
         resetState={resetState}
+      />
+      <InvalidAmount 
+        displayState={invalidAmount ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> invalidAmount ? setInvalidAmount(false) : setInvalidAmount(true)}
+      />
+       <SameAccountError 
+        displayState={sameAccError ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> sameAccError ? setSameAccError(false) : setSameAccError(true)}
       />
     </section>
   )
