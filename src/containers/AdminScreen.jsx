@@ -229,9 +229,7 @@ export default function AdminScreen() {
               <button onClick={resetState} type='reset'>Reset</button>
             </div>
           </form>
-        </section>
-      </section>
-      <section className='admin-wrapper-bottom'>
+          <section className='admin-wrapper-bottom'>
         <div className='withdraw-deposit-container'>
           <div className='withdraw-deposit'>
             <div>
@@ -245,6 +243,8 @@ export default function AdminScreen() {
             <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
           </div>
         </div>
+      </section>
+        </section>
       </section>
       <Footer />
       <UserAlreadyExist

@@ -1,19 +1,20 @@
 import React from 'react'
+import { useState } from 'react'
 
 export const CURRENCY = [
-  {name: 'php', symbol: '₱'},
-  {name: 'usd', symbol: '$'},
-  {name: 'euro', symbol: '€'},
-  {name: 'hryvnia', symbol: '₴'},
-  {name: 'yuan', symbol: '¥'}
+  {rate: 1, symbol: '₱'},
+  {rate: 52, symbol: '$'},
+  {rate: 57, symbol: '€'},
+  {rate: 2, symbol: '₴'},
+  {rate: 8, symbol: '¥'}
 ]
 
 export default function CurrencyOptions() {
   return (
     <select name="currency-options" id="currency-options">
-        {CURRENCY.map(curr => {
+        {CURRENCY.map(curr=> {
           return (
-            <option key={curr.name} value={curr.name}>
+            <option key={curr.rate} value={curr.rate}>
             {curr.symbol}
             </option>
           )

@@ -60,7 +60,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className='withdraw-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions />
+          <CurrencyOptions /> 
           <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
         </div>
         <div className='withdraw-triggers'>

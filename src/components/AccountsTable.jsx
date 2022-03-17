@@ -68,7 +68,7 @@ export default function AccountsTable(props) {
             {passedUserInfo.map((user) =>{
                 return (
                   <div key={uuidv4()}>
-                    {user.balance}
+                    ₱ {user.balance}
                   </div>
                 )
               })}
