@@ -15,19 +15,19 @@ export default function SectionTwo() {
       </div>
       <div className='right-grid'>
         <div className='icon-desc'>
-          <i class="fa-solid fa-shield"></i>
+          <i className="fa-solid fa-shield"></i>
           Keeping<br></br>secrecy
         </div>
         <div className='icon-desc'>
-          <i class="fa-solid fa-dollar-sign"></i>
+          <i className="fa-solid fa-dollar-sign"></i>
           Free transaction<br></br>fee
         </div>
         <div className='icon-desc'>
-          <i class="fa-solid fa-lock"></i>
+          <i className="fa-solid fa-lock"></i>
           Security<br></br>Guaranteed
         </div>
         <div className='icon-desc'>
-          <i class="fa-solid fa-credit-card"></i>
+          <i className="fa-solid fa-credit-card"></i>
           All in one<br></br>Noble Bank app
         </div>
       </div>

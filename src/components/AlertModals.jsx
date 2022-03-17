@@ -1,9 +1,7 @@
 import React from "react";
 import './../css/index.css';
 
-export function NotEnoughBalance(props) {
-  const { displayState, closeState, resetState } = props
-
+export function NotEnoughBalance({ displayState, closeState }) {
   return (
     <div className={displayState}>
       <div className="alert-modal-container">
@@ -24,25 +22,20 @@ export function NotEnoughBalance(props) {
   );
 }
 
-export function InvalidAccount(props) {
-  const { displayState, closeState, resetState } = props
-
+export function SameAccountError({ displayState, closeState }) {
   return (
     <div className={displayState}>
       <div className="alert-modal-container">
         <div className="alert-modal-content">
-          <div className="close-alert-container" onClick={()=>{
-            closeState()
-            resetState()
-          }}>
+          <div className="close-alert-container" onClick={closeState}>
            X
          </div>
           <div className="modal-message">
             <div>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADrElEQVR4nO3avYsdVRzG8XNNQtCIb1iIUSQWkiiIhQYJiCJYiBiIrEZRQix8q5RYiGAwCBa+gQb8A9aXxkItEktfsBAbRQUxkKiFRlQENZvdxAQ/FnMvuZ47Ozt35szMhZ1vOXv393ue55x5O3NC6Onp6VkGbO5aQ2dgH/7Bjq61tM7Q/IjVFQK2DE1bzSHcgRN9CH0IdqQ6HTDATXgJn+AolrCA7/AxnsdWDJrwU4m6IWANduOw8nyPB3BW0/5KUTUEbMbnUxiP+dKsPIuY8pqAW/FXDfMj/sb2tv3mouRMwG04mWPmOOZxF67A2diAq3AP3pJdF2JO4/aufP+PlUKQTfu8kZ/HJSXqX443cv7/T2xp3mEJCkKYw2fR8VPYXaHHIzk9vjDjF8Y8HqzR49Gceven9FGLEiHMJ+jxZlTziBl7Tsi7O5BdzDYmqL8Ri1HtG1JoDyGE2ufTYDA4GEK4L4RwKvrTmhDC1gT1fw4hvBcdno3b4jh4OmcWJHl3wM6o7kcpNCcHTzURguw5YZxDqTQnp4kQcG5U71hKzclxZjktSQg4J6q1lFpzcqR9ld4U1TnahOZa4LycY0lCwN1RjQ/TKU8EnsS1OcdrhyB7SRrnhbTqE4Bt+C11CLjU5BvitmZc1EC28nMkdQgmH4W/NUuPwuNg11BkkhDwkEl2Ne+kIsNZ8E2KEIbmT0e/+3RmR38ErnZmQWTqEGQvP2/njPwfuLILT1ODO8dGb9oQ8pbEjuOWLrxUZmhwYWjg92VC2JdjNm/kb+7CQ21kH0JGi6NVQjiJG7vQXgtcjBfHZsCIKiEsYj8u6sLL1GC77Lxfjqqnw6/Y2YWnUmAtXi8wsIADeMYyS1qyRdCVFlr3Y23b/grBery7jODD2IMLStYqs9p8EOub9lUKrMMHOSJPYC/WVahZJoQDMzET8EqOuEO4pmbdMiG8mspHVZFz+DcS9bUSn8BK1i8TwlyKXlXEnS+7Mscjn/R2VSKEX3Bhyp5lhb0cCVnCdQ31WimE15roWyToMpOfvx9vuGdRCIsSnXZlxeyNBPygwtW+Qt+iEJ5ruv9IxMDkfp+HW2keCr9F/qiNtQJcHzU+puWHkoKZcG8bzZ+Imr7feNN8Hd3sY8Q7UdPHGm1YrGVPzixoNgR8FTXs9H1dQx9kixr+FDXb1Eij6TS1F4LJ3RobkjepQOszYRbRb/DuQwghFC65z8ZGyzbImQnPdq2pdcZCWH3mR5iV7fY9PT0zyX82tX+GyU0adgAAAABJRU5ErkJggg=="></img>
+              <img src="https://img.icons8.com/cotton/50/000000/error--v4.png"/>
             </div>
             <span className="boldAlert">OOPS!</span>
-             Sorry, this account does not exist.
+             Sorry, you can't set the same account.
           </div>
         </div>
       </div>
@@ -50,10 +43,28 @@ export function InvalidAccount(props) {
   );
 }
 
+export function InvalidAmount({ displayState, closeState }) {
+  return (
+    <div className={displayState}>
+      <div className="alert-modal-container">
+        <div className="alert-modal-content">
+          <div className="close-alert-container" onClick={closeState}>
+           X
+         </div>
+          <div className="modal-message">
+            <div>
+              <img src="https://img.icons8.com/cotton/50/000000/error--v4.png"/>
+            </div>
+            <span className="boldAlert">OOPS!</span>
+             Sorry, you can't set an invalid amount.
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-export function UserAlreadyExist(props) {
-  const { displayState, closeState } = props
-
+export function UserAlreadyExist({ displayState, closeState }) {
   return (
     <div className={displayState}>
       <div className="alert-modal-container">
@@ -74,17 +85,12 @@ export function UserAlreadyExist(props) {
   );
 }
 
-export function TransactionSuccessful(props) {
-  const { displayState, closeState, resetState } = props
-
+export function TransactionSuccessful({ displayState, closeState }) {
   return (
     <div className={displayState}>
       <div className="alert-modal-container">
         <div className="alert-modal-content">
-          <div className="close-alert-container" onClick={()=>{
-            closeState()
-            resetState()
-          }}>
+          <div className="close-alert-container" onClick={()=> closeState()}>
            X
           </div>
           <div className="modal-message">
@@ -100,9 +106,7 @@ export function TransactionSuccessful(props) {
   );
 }
 
-export function AddUserSuccessful(props) {
-  const { displayState, closeState } = props
-
+export function AddUserSuccessful({ displayState, closeState }) {
   return (
     <div className={displayState}>
       <div className="alert-modal-container">

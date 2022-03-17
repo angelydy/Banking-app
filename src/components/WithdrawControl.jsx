@@ -1,26 +1,17 @@
 import React, { useState } from 'react'
 import CurrencyOptions from './CurrencyOptions';
-import { NotEnoughBalance, InvalidAccount, TransactionSuccessful } from './AlertModals';
+import { NotEnoughBalance, TransactionSuccessful, InvalidAmount } from './AlertModals';
 import placeCommas from '../utils/placeCommas';
 import './../css/index.css';
+import { AccountOptions } from './AccountOptions';
 
-export default function WithdrawControl(props) {
-  const { displayFeature, currentUsers, setCurrentUser } = props;
-  const [accNumMatch, setAccNumMatch] = useState(false);
+export default function WithdrawControl({ displayFeature, currentUsers, setCurrentUser }) {
   const [matchedAcc, setAccMatch] = useState();
+  const [accLabel, setAccLabel] = useState('Please select Account Number');
   const [withdrawAmount, setWithdrawAmount] = useState()
-  const [ifUserNotExist, setIfUserNotExist] = useState(false)
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
-
-  function validateAccNum(e) {
-    currentUsers.findIndex(acc => {
-      if(acc.accNum === e.target.value) {
-        setAccNumMatch(true)
-        setAccMatch(acc.accNum)
-      }
-    });
-  }
+  const [invalidAmount, setInvalidAmount] = useState(false)
 
   function storeWithdrawAmount(e) {
     setWithdrawAmount(e.target.value)
@@ -28,24 +19,26 @@ export default function WithdrawControl(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(accNumMatch) {
-      currentUsers.findIndex(acc => {
-        if(acc.accNum === matchedAcc) {
-          let newBalance = Number(acc.balance.split(',').join(''))
-          let withdrawal = Number(withdrawAmount.split(',').join('')) 
-          if(newBalance > withdrawal) {
-            newBalance -= withdrawal
-            acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-            setTransactionSuccessful(true)
-            setCurrentUser([...currentUsers])
-          } else {
-            setNotEnoughBalance(true)
-          }
-        }
-      })
-    } else {
-      setIfUserNotExist(true)
+    if(withdrawAmount < 100) {
+      setInvalidAmount(true)
+      e.target.reset()
+      resetState()
+      return
     }
+    currentUsers.findIndex(acc => {
+      if(acc.accNum === matchedAcc) {
+        let newBalance = Number(acc.balance.split(',').join(''))
+        let withdrawal = Number(withdrawAmount.split(',').join('')) 
+        if(newBalance > withdrawal) {
+          newBalance -= withdrawal
+          acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          setTransactionSuccessful(true)
+          setCurrentUser([...currentUsers])
+        } else {
+          setNotEnoughBalance(true)
+        }
+      }
+    })
     e.target.reset()
     resetState()
   }
@@ -53,7 +46,7 @@ export default function WithdrawControl(props) {
   function resetState() {
     setAccMatch()
     setWithdrawAmount()
-    setAccNumMatch(false)
+    setAccLabel('Please select Account Number')
   }
 
   return (
@@ -63,8 +56,7 @@ export default function WithdrawControl(props) {
           Withdraw
         </div>
         <div className={displayFeature}>
-          <label htmlFor="enter-acc-no">Enter Account No.</label>
-          <input required type="text" name='enter-acc-no' onChange={validateAccNum}/>
+        <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
         </div>
         <div className='withdraw-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
@@ -76,17 +68,18 @@ export default function WithdrawControl(props) {
           <button type='reset' onClick={resetState}>Reset</button>
         </div>
       </form>
-      <InvalidAccount 
-        displayState={ifUserNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
-        closeState={()=> ifUserNotExist ? setIfUserNotExist(false) : setIfUserNotExist(true)}
-      />
       <NotEnoughBalance
         displayState={notEnoughBalance ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> notEnoughBalance ? setNotEnoughBalance(false) : setNotEnoughBalance(true)}
+        resetState={resetState}
       />
        <TransactionSuccessful
         displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> transactionSuccessful ? setTransactionSuccessful(false) : setTransactionSuccessful(true)}
+      />
+      <InvalidAmount 
+        displayState={invalidAmount ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> invalidAmount ? setInvalidAmount(false) : setInvalidAmount(true)}
       />
     </section>
   );
