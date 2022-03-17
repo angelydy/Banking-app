@@ -115,7 +115,6 @@ export default function AdminScreen() {
   
   function handleAdd(e) {
     e.preventDefault()
-    console.log('me')
     let addUserInfo
     if(accNumMatch && status == 1) {
       handleAccountNumber();
@@ -154,8 +153,6 @@ export default function AdminScreen() {
       } else {
         setIfUserAlreadyExist(true)
       }
-    } else {
-      setIfUserNotExist(true)
     }
     e.target.reset();
     resetState();
