@@ -9,18 +9,19 @@ export function AccountOptions({ passedUserInfo, onSelectAcc, selectedAcc, onSet
 
   return (
     <>
-      <label htmlFor="account-options">{selectedAccLabel}</label>
-      <br></br>
-      <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
-        <option value="">- - Choose here - -</option>
-          {passedUserInfo.map(user => {
-            return (
-              <option key={user.accNum} value={user.accNum}>
-              {user.accNum}
-              </option>
-            )
-          })}
-      </select> 
+      <div className='chooseAccNum'>
+        <label htmlFor="account-options">{selectedAccLabel}</label>
+        <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
+          <option value="">- - Choose here - -</option>
+            {passedUserInfo.map(user => {
+              return (
+                <option key={user.accNum} value={user.accNum}>
+                {user.accNum}
+                </option>
+              )
+            })}
+        </select> 
+      </div>
     </>
   )
 }

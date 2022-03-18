@@ -24,6 +24,39 @@
     display: flex;
   }
 
+  .history-modal-container{
+    background: rgba( 255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 50rem;
+    margin: auto;
+    padding: 2rem 0.5rem;
+    position: relative;
+    animation: zoomIn 0.7s;
+    overflow: auto;
+    height: 50vh;
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: transparent; 
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: rgb(255, 255, 255); 
+      border-radius: 10px;
+    }
+  
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+  }
+
   .alert-modal-container {
     background: rgba( 255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
