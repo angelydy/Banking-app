@@ -39,17 +39,9 @@ export default function AccountsTable(props) {
             <div className='table-title'>Account Category</div>
             {passedUserInfo.map((user) =>{
                 return (
-                  <>
-                    <div key={uuidv4()}>
-                      {user.acccateg}
-{/*                       // render children //
-                      {user.acccateg == "Parent" &&
-                        passedUserInfo.map(child =>{
-                          if()
-                        })
-                      } */}
-                    </div>
-                  </>
+                  <div key={uuidv4()}>
+                    {user.acccateg}
+                  </div>
                 )
               })}
           </div>

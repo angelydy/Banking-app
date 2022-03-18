@@ -19,7 +19,6 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   mins = mins > 9 ? mins : '0' + mins
   const time = `${date} ${hours}:${mins}`
 
-
   function storeWithdrawAmount(e) {
     setWithdrawAmount(e.target.value)
   }
