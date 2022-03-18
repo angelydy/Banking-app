@@ -372,6 +372,12 @@ a:hover, .downloadBtn:hover {
   background: linear-gradient(337deg, #3d3c6f 24%, #152840 63%);
 }
 
+.chooseAccNum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .fa-solid {
   font-size: 1.5em;
 }
@@ -401,6 +407,10 @@ select {
   scroll-behavior: smooth;
 }
 .admin-wrapper .deleteBtn:hover {
+  cursor: pointer;
+}
+.admin-wrapper .historyBtn {
+  margin: 0 3rem;
   cursor: pointer;
 }
 .admin-wrapper #accounts-table-wrapper {
@@ -825,6 +835,34 @@ select {
 }
 .alert-modal-wrapper.show {
   display: flex;
+}
+.alert-modal-wrapper .history-modal-container {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 50rem;
+  margin: auto;
+  padding: 2rem 0.5rem;
+  position: relative;
+  animation: zoomIn 0.7s;
+  overflow: auto;
+  height: 50vh;
+}
+.alert-modal-wrapper .history-modal-container::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.alert-modal-wrapper .history-modal-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.alert-modal-wrapper .history-modal-container::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+.alert-modal-wrapper .history-modal-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 .alert-modal-wrapper .alert-modal-container {
   background: rgba(255, 255, 255, 0.3);

@@ -171,7 +171,9 @@ export default function AdminScreen() {
       <Navbar/>
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
-        <button onClick={()=> setDisplayHistory(true)}>Display History</button>
+        <div className='historyBtn'>
+          <i class="fa-solid fa-clock-rotate-left" onClick={()=> setDisplayHistory(true)}></i>
+        </div>
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>

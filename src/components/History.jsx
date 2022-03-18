@@ -5,8 +5,8 @@ import './../css/index.css';
 export default function History({ displayState, closeState, historyMessage }) {
   return (
     <div className={displayState}>
-      <div className="alert-modal-container">
-        <div className="alert-modal-content">
+      <div className="history-modal-container">
+        <div className="history-modal-content">
           <div className="close-alert-container" onClick={()=> closeState()}>
            X
           </div>
