@@ -10,6 +10,7 @@ export function AccountOptions({ passedUserInfo, onSelectAcc, selectedAcc, onSet
   return (
     <>
       <label htmlFor="account-options">{selectedAccLabel}</label>
+      <br></br>
       <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
           {passedUserInfo.map(user => {
             return (
@@ -32,16 +33,20 @@ export function AccountOptionsTransferFrom({ passedUserInfo, onSelectAcc, select
 
   return (
     <>
-      <label htmlFor="account-options">{selectedAccLabel}</label>
-      <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
-          {passedUserInfo.map(user => {
-            return (
-              <option key={user.accNum} value={user.accNum}>
-              {user.accNum}
-              </option>
-            )
-          })}
-      </select> 
+      <div className='transferOptions'>
+        <label htmlFor="account-options">{selectedAccLabel}</label>
+        <div>
+          <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
+            {passedUserInfo.map(user => {
+              return (
+                <option key={user.accNum} value={user.accNum}>
+                {user.accNum}
+                </option>
+              )
+            })}
+          </select> 
+        </div>
+      </div>
     </>
   )
 }
@@ -55,16 +60,20 @@ export function AccountOptionsTransferTo({ passedUserInfo, onSelectAcc, selected
 
   return (
     <>
-      <label htmlFor="account-options">{selectedAccLabel}</label>
-      <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
-          {passedUserInfo.map(user => {
-            return (
-              <option key={user.accNum} value={user.accNum}>
-              {user.accNum}
-              </option>
-            )
-          })}
-      </select> 
+      <div className='transferOptions'>
+        <label htmlFor="account-options">{selectedAccLabel}</label>
+          <div>
+          <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
+            {passedUserInfo.map(user => {
+              return (
+                <option key={user.accNum} value={user.accNum}>
+                {user.accNum}
+                </option>
+              )
+            })}
+          </select> 
+        </div>
+      </div>
     </>
   )
 }

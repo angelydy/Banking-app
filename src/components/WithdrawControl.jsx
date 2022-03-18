@@ -63,9 +63,11 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className='withdraw-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
-          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
+          <div>
+            <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
+          </div>
         </div>
+        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>
           <button type='reset' onClick={resetState}>Reset</button>

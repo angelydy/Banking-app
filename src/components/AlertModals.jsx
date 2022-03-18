@@ -56,7 +56,7 @@ export function InvalidAmount({ displayState, closeState }) {
               <img src="https://img.icons8.com/cotton/50/000000/error--v4.png"/>
             </div>
             <span className="boldAlert">OOPS!</span>
-             Sorry, you can't set an invalid amount.
+             Sorry, minimum transaction value is 100.
           </div>
         </div>
       </div>
