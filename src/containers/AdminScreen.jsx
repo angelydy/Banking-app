@@ -7,7 +7,6 @@ import TransferControl from '../components/TransferControl';
 import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
-import {v4 as uuidv4} from 'uuid';
 import { UserAlreadyExist, AddUserSuccessful, SelectParentAcc } from '../components/AlertModals';
 import './../css/index.css';
 import Footer from '../components/Footer';
@@ -35,6 +34,7 @@ export default function AdminScreen() {
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
+    const getHistory = JSON.parse(localStorage.getItem("history"));
     const defaultUsers = [
       {
         accNum: "RP 142 4200 2804", 
@@ -65,8 +65,14 @@ export default function AdminScreen() {
       }, 
     ]
     setUserInfo([...defaultUsers, ...userInfo]);
+    setHistory([...history])
     if(getUsers) setUserInfo(getUsers);
+    if(getHistory) setHistory(getHistory)
   }, [])
+
+  useEffect(()=> {
+    localStorage.setItem("history", JSON.stringify(history))
+  }, [history])
 
   useEffect(()=> {
     localStorage.setItem("users", JSON.stringify(userInfo))
@@ -109,7 +115,6 @@ export default function AdminScreen() {
   
   function handleAdd(e) {
     e.preventDefault()
-    console.log(hrs24)
     let addUserInfo
     if(status == 1 && accMatch !== '') {
       handleAccountNumber();
@@ -279,6 +284,7 @@ export default function AdminScreen() {
       displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
       closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
       historyMessage={history}
+      setHistoryList={setHistory}
       />
     </div>
   );

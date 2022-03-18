@@ -11,10 +11,10 @@ export default function History({ displayState, closeState, historyMessage }) {
            X
           </div>
           <div className="modal-message">
-            {historyMessage.map((user) =>{
+            {historyMessage.map((history) =>{
               return (
                 <div key={uuidv4()}>
-                  {user}
+                  {history}
                 </div>
               )
             })}
