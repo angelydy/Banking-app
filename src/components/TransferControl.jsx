@@ -45,6 +45,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     let from
     let to
     let transfer = Number(transferAmount.split(',').join('')) 
+    let transferHistory = transfer * currency
     if(transferAmount < 100) {
       setInvalidAmount(true)
       e.target.reset()
@@ -56,9 +57,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         if(acc.accNum === matchedAccFrom) {
           let newBalance = Number(acc.balance.split(',').join(''))
           from = `${acc.lname} ${acc.fname}`
-          transfer *= currency
           if(approveTransfer == true) {
-            newBalance -= transfer
+            newBalance -= transferHistory
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
             setTransactionSuccessful(true)
           } else {
@@ -68,9 +68,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         if(acc.accNum === matchedAccTo) {
           let newBalance = Number(acc.balance.split(',').join(''))
           to = `${acc.lname} ${acc.fname}`
-          transfer *= currency
           if(approveTransfer == true) {
-            newBalance += transfer
+            newBalance += transferHistory
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
             setCurrentUser([...currentUsers])
           }
@@ -79,7 +78,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     } else {
       setSameAccError(true)
     }
-    let newHistory = `${from} transferred ₱${transfer} to ${to} on ${time}.`
+    let newHistory = `${from} transferred ₱${transferHistory} to ${to} on ${time}.`
     setPassedHistory([...passedHistory, newHistory])
     e.target.reset()
     resetState()
