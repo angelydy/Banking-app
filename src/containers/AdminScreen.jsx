@@ -176,8 +176,9 @@ export default function AdminScreen() {
       <Navbar/>
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
-        <div className='historyBtn'>
-          <i class="fa-solid fa-clock-rotate-left" onClick={()=> setDisplayHistory(true)}></i>
+        <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          View Transaction History
         </div>
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
