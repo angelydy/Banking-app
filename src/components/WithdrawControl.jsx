@@ -5,7 +5,7 @@ import placeCommas from '../utils/placeCommas';
 import './../css/index.css';
 import { AccountOptions } from './AccountOptions';
 
-export default function WithdrawControl({ displayFeature, currentUsers, setCurrentUser }) {
+export default function WithdrawControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory }) {
   const [matchedAcc, setAccMatch] = useState();
   const [accLabel, setAccLabel] = useState('Please select Account Number');
   const [withdrawAmount, setWithdrawAmount] = useState()
@@ -13,6 +13,12 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
   const [invalidAmount, setInvalidAmount] = useState(false)
   const [currency, setCurrency] = useState(1)
+  const date = new Date().toLocaleString().split(',')[0]
+  const hours = new Date().getHours()
+  var mins = new Date().getMinutes()
+  mins = mins > 9 ? mins : '0' + mins
+  const time = `${date} ${hours}:${mins}`
+
 
   function storeWithdrawAmount(e) {
     setWithdrawAmount(e.target.value)
@@ -34,6 +40,8 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         if(newBalance > withdrawal) {
           newBalance -= withdrawal
           acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          let newHistory = `${acc.lname} ${acc.fname} withdrew ₱${withdrawal} on ${time}.`
+          setPassedHistory([...passedHistory, newHistory])
           setTransactionSuccessful(true)
           setCurrentUser([...currentUsers])
         } else {

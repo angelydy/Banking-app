@@ -5,13 +5,18 @@ import { TransactionSuccessful, InvalidAmount } from './AlertModals';
 import './../css/index.css';
 import { AccountOptions } from './AccountOptions';
 
-export default function DepositControl({ displayFeature, currentUsers, setCurrentUser }) {
+export default function DepositControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory }) {
   const [matchedAcc, setAccMatch] = useState();
   const [accLabel, setAccLabel] = useState('Please select Account Number');
   const [depositAmount, setDepositAmount] = useState()
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
   const [invalidAmount, setInvalidAmount] = useState(false)
   const [currency, setCurrency] = useState(1)
+  const date = new Date().toLocaleString().split(',')[0]
+  const hours = new Date().getHours()
+  var mins = new Date().getMinutes()
+  mins = mins > 9 ? mins : '0' + mins
+  const time = `${date} ${hours}:${mins}`
 
   function storeDepositAmount(e) {
     setDepositAmount(e.target.value)
@@ -32,6 +37,8 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
         deposit *= currency
         newBalance += deposit
         acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+        let newHistory = `${acc.lname} ${acc.fname} deposited ₱${deposit} on ${time}.`
+        setPassedHistory([...passedHistory, newHistory])
         setTransactionSuccessful(true)
         setCurrentUser([...currentUsers])
       }

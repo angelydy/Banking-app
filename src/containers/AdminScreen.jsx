@@ -12,6 +12,7 @@ import { UserAlreadyExist, AddUserSuccessful, SelectParentAcc } from '../compone
 import './../css/index.css';
 import Footer from '../components/Footer';
 import { AccountOptions } from '../components/AccountOptions';
+import History from '../components/History';
 
 export default function AdminScreen() {
   const [userInfo, setUserInfo] = useState([]);
@@ -27,6 +28,8 @@ export default function AdminScreen() {
   const [ifUserAlreadyExist, setIfUserAlreadyExist] = useState(false)
   const [addUserSuccess, setAddUserSuccess] = useState(false)
   const [accLabel, setAccLabel] = useState('Please select Parent Account Number');
+  const [history, setHistory] = useState([])
+  const [displayHistory, setDisplayHistory] = useState(false)
   const today = new Date();
   const hrs24 = today.getHours();
 
@@ -106,6 +109,7 @@ export default function AdminScreen() {
   
   function handleAdd(e) {
     e.preventDefault()
+    console.log(hrs24)
     let addUserInfo
     if(status == 1 && accMatch !== '') {
       handleAccountNumber();
@@ -167,6 +171,7 @@ export default function AdminScreen() {
       <Navbar/>
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
+        <button onClick={()=> setDisplayHistory(true)}>Display History</button>
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
           <form id="add-account-form" onSubmit={handleAdd}>
@@ -194,12 +199,6 @@ export default function AdminScreen() {
                 <input type="radio" value="Child" name='acc-category' onClick={()=> setStatus(1)}/> Child
               </div>
             </div>
-            {/* {status == 1 && 
-              <div key={uuidv4()}>
-                <label htmlFor='input-parent'>Please enter parent account number</label>
-                <input required type="text" id="input-parent" onChange={validateAccNum}/>
-              </div>
-            } */}
             {status == 1 && 
               <AccountOptions passedUserInfo={userInfo} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={accMatch}/>
             }
@@ -230,14 +229,32 @@ export default function AdminScreen() {
         <div className='withdraw-deposit-container'>
           <div className='withdraw-deposit'>
             <div>
-              <WithdrawControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+              <WithdrawControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no" 
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              />
             </div>
             <div>
-              <DepositControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+              <DepositControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no"  
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              />
             </div>
           </div>
           <div className='transfer-control'>
-            <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
+            <TransferControl 
+            currentUsers={userInfo} 
+            setCurrentUser={setUserInfo} 
+            displayFeature="enter-acc-no"  
+            passedHistory={history}
+            setPassedHistory={setHistory}
+            />
           </div>
         </div>
         </section>
@@ -255,7 +272,12 @@ export default function AdminScreen() {
       <SelectParentAcc
       displayState={selectParentAcc ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
       closeState={()=> selectParentAcc ? setSelectParentAcc(false) : setSelectParentAcc(true)}
-    />
+      />
+      <History
+      displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+      closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
+      historyMessage={history}
+      />
     </div>
   );
 }
