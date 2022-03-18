@@ -5,7 +5,7 @@ import placeCommas from '../utils/placeCommas';
 import { NotEnoughBalance, TransactionSuccessful, InvalidAmount, SameAccountError } from './AlertModals';
 import { AccountOptionsTransferFrom, AccountOptionsTransferTo } from './AccountOptions';
 
-export default function TransferControl({ displayFeature, currentUsers, setCurrentUser }) {
+export default function TransferControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory }) {
   const [matchedAccFrom, setAccMatchFrom] = useState();
   const [accLabelFrom, setAccLabelFrom] = useState('Please select Sender Account Number');
   const [matchedAccTo, setAccMatchTo] = useState();
@@ -17,6 +17,11 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   const [invalidAmount, setInvalidAmount] = useState(false)
   const [sameAccError, setSameAccError] = useState(false)
   const [currency, setCurrency] = useState(1)
+  const date = new Date().toLocaleString().split(',')[0]
+  const hours = new Date().getHours()
+  var mins = new Date().getMinutes()
+  mins = mins > 9 ? mins : '0' + mins
+  const time = `${date} ${hours}:${mins}`
 
   useEffect(() => {
     currentUsers.findIndex(acc => {
@@ -37,6 +42,9 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
 
   function handleSubmit(e) {
     e.preventDefault()
+    let from
+    let to
+    let transfer = Number(transferAmount.split(',').join('')) 
     if(transferAmount < 100) {
       setInvalidAmount(true)
       e.target.reset()
@@ -47,7 +55,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
       currentUsers.findIndex(acc => {
         if(acc.accNum === matchedAccFrom) {
           let newBalance = Number(acc.balance.split(',').join(''))
-          let transfer = Number(transferAmount.split(',').join('')) 
+          from = `${acc.lname} ${acc.fname}`
           transfer *= currency
           if(approveTransfer == true) {
             newBalance -= transfer
@@ -59,7 +67,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         }
         if(acc.accNum === matchedAccTo) {
           let newBalance = Number(acc.balance.split(',').join(''))
-          let transfer = Number(transferAmount.split(',').join('')) 
+          to = `${acc.lname} ${acc.fname}`
           transfer *= currency
           if(approveTransfer == true) {
             newBalance += transfer
@@ -71,6 +79,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     } else {
       setSameAccError(true)
     }
+    let newHistory = `${from} transferred ₱${transfer} to ${to} on ${time}.`
+    setPassedHistory([...passedHistory, newHistory])
     e.target.reset()
     resetState()
   }
