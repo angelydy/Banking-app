@@ -11,6 +11,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
   const [depositAmount, setDepositAmount] = useState()
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
   const [invalidAmount, setInvalidAmount] = useState(false)
+  const [currency, setCurrency] = useState(1)
 
   function storeDepositAmount(e) {
     setDepositAmount(e.target.value)
@@ -28,6 +29,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       if(acc.accNum === matchedAcc) {
         let newBalance = Number(acc.balance.split(',').join(''))
         let deposit = Number(depositAmount.split(',').join('')) 
+        deposit *= currency
         newBalance += deposit
         acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
         setTransactionSuccessful(true)
@@ -42,6 +44,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
     setAccMatch()
     setDepositAmount()
     setAccLabel('Please select Account Number')
+    setCurrency(1)
   }
 
   return (
@@ -56,7 +59,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       <div className='deposit-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
         <div>
-          <CurrencyOptions /> 
+          <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/>
         </div>
       </div>
       <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>

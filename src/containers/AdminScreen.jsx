@@ -8,24 +8,25 @@ import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
 import {v4 as uuidv4} from 'uuid';
-import { UserAlreadyExist, AddUserSuccessful } from '../components/AlertModals';
+import { UserAlreadyExist, AddUserSuccessful, SelectParentAcc } from '../components/AlertModals';
 import './../css/index.css';
 import Footer from '../components/Footer';
+import { AccountOptions } from '../components/AccountOptions';
 
 export default function AdminScreen() {
   const [userInfo, setUserInfo] = useState([]);
-  const [ accountNumber, setAccountNumber ] = useState(generateAccNum);
-  const [ lastName, setLastname ] = useState('');
-  const [ firstName, setFirstname ] = useState('');
-  const [ middleName, setMiddlename ] = useState('');
-  const [ accType, setAccType ] = useState('Savings');
-  const [ initDeposit, setInitDeposit ] = useState('');
+  const [accountNumber, setAccountNumber] = useState(generateAccNum);
+  const [lastName, setLastname] = useState('');
+  const [firstName, setFirstname] = useState('');
+  const [middleName, setMiddlename] = useState('');
+  const [accType, setAccType] = useState('Savings');
+  const [initDeposit, setInitDeposit] = useState('');
   const [accMatch, setAccMatch] = useState('')
-  const [accNumMatch, setAccNumMatch] = useState(false)
   const [status, setStatus] = useState(0)
+  const [selectParentAcc, setSelectParentAcc] = useState(false)
   const [ifUserAlreadyExist, setIfUserAlreadyExist] = useState(false)
-  const [ifUserNotExist, setIfUserNotExist] = useState(false)
   const [addUserSuccess, setAddUserSuccess] = useState(false)
+  const [accLabel, setAccLabel] = useState('Please select Parent Account Number');
   const today = new Date();
   const hrs24 = today.getHours();
 
@@ -98,16 +99,6 @@ export default function AdminScreen() {
     setAccType(e.target.value);
   }
 
-  function validateAccNum(e) {
-    userInfo.findIndex(acc => {
-      if(acc.accNum === e.target.value) {
-        setAccNumMatch(true)
-        setAccMatch(acc.accNum)
-        return
-      }
-    });
-  }
-
   function handleInitDeposit(e) {
     const amount = e.target.value.replace(/,/gi, "").split(/(?=(?:\d{3})+$)/).join(",");
     setInitDeposit(amount);
@@ -116,7 +107,7 @@ export default function AdminScreen() {
   function handleAdd(e) {
     e.preventDefault()
     let addUserInfo
-    if(accNumMatch && status == 1) {
+    if(status == 1 && accMatch !== '') {
       handleAccountNumber();
       addUserInfo = {
         accNum: accountNumber, 
@@ -153,6 +144,8 @@ export default function AdminScreen() {
       } else {
         setIfUserAlreadyExist(true)
       }
+    } else {
+      setSelectParentAcc(true)
     }
     e.target.reset();
     resetState();
@@ -165,7 +158,8 @@ export default function AdminScreen() {
     setAccType('Savings');
     setInitDeposit();
     setStatus(0)
-    setAccNumMatch(false)
+    setAccMatch()
+    setAccLabel('Please select Parent Account Number')
   }
 
   return (
@@ -200,11 +194,14 @@ export default function AdminScreen() {
                 <input type="radio" value="Child" name='acc-category' onClick={()=> setStatus(1)}/> Child
               </div>
             </div>
-            {status == 1 && 
+            {/* {status == 1 && 
               <div key={uuidv4()}>
                 <label htmlFor='input-parent'>Please enter parent account number</label>
                 <input required type="text" id="input-parent" onChange={validateAccNum}/>
               </div>
+            } */}
+            {status == 1 && 
+              <AccountOptions passedUserInfo={userInfo} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={accMatch}/>
             }
             <div className='add-account-acc-type'>
               <label htmlFor="acc-type">Account Type</label>
@@ -255,6 +252,10 @@ export default function AdminScreen() {
         displayState={addUserSuccess ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> addUserSuccess ? setAddUserSuccess(false) : setAddUserSuccess(true)}
       />
+      <SelectParentAcc
+      displayState={selectParentAcc ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+      closeState={()=> selectParentAcc ? setSelectParentAcc(false) : setSelectParentAcc(true)}
+    />
     </div>
   );
 }
