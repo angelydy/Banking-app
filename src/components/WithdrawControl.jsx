@@ -46,7 +46,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   function resetState() {
     setAccMatch()
     setWithdrawAmount()
-    setAccLabel('Please select Account Number')
+    setAccLabel('Please select an Account Number')
   }
 
   return (
@@ -60,9 +60,11 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className='withdraw-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions /> 
-          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
+          <div>
+            <CurrencyOptions /> 
+          </div>
         </div>
+        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>
           <button type='reset' onClick={resetState}>Reset</button>

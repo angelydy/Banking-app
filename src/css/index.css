@@ -125,6 +125,27 @@ body::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
+#account-options {
+  background-color: white;
+  border-bottom-right-radius: none;
+  border-top-right-radius: none;
+  width: 13rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #201f49;
+  border-style: none;
+  border-radius: 10px;
+}
+#account-options option {
+  background-color: #201f49;
+  color: white;
+}
+#account-options:hover {
+  cursor: pointer;
+}
+
 input:focus {
   outline: none;
 }
@@ -330,11 +351,32 @@ a:hover, .downloadBtn:hover {
   margin: 2rem 3.5rem;
 }
 
+.darkMode {
+  background: #222121;
+  color: white;
+  transition: all 0.4s ease-in-out;
+}
+.darkMode #add-account-form {
+  background: linear-gradient(90deg, #252337 24%, #515760 63%);
+}
+.darkMode #accounts-table-wrapper {
+  background: black;
+}
+.darkMode #withdraw-control-wrapper {
+  background: linear-gradient(90deg, #43485e 24%, #294263 63%);
+}
+.darkMode #deposit-control-wrapper {
+  background: linear-gradient(337deg, #3d414f 24%, #43546b 63%);
+}
+.darkMode #transfer-control-wrapper {
+  background: linear-gradient(337deg, #3d3c6f 24%, #152840 63%);
+}
+
 .fa-solid {
   font-size: 1.5em;
 }
 
-#admin-main-container {
+.admin-main-container {
   position: absolute;
   top: 0;
   width: 100%;
@@ -376,8 +418,6 @@ select {
   margin: 2rem;
   line-height: 3rem;
   scroll-behavior: smooth;
-  position: sticky;
-  top: 0;
 }
 .admin-wrapper #accounts-table-wrapper::-webkit-scrollbar {
   width: 0.5rem;
@@ -481,6 +521,13 @@ select {
 }
 #add-account-form label {
   font-weight: 600;
+}
+
+.withdraw-enter-amount, .deposit-enter-amount, .transfer-enter-amount {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  padding: 0 6rem;
 }
 
 .initial-deposit {
@@ -622,6 +669,14 @@ select {
 
 .enter-acc-no.hide {
   display: none;
+}
+
+.transferOptions {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
 .mode-and-log-out i {
@@ -784,9 +839,9 @@ select {
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  width: 40%;
+  width: 20rem;
   margin: auto;
-  padding: 2rem;
+  padding: 2rem 0.5rem;
   position: relative;
   animation: zoomIn 0.7s;
 }
@@ -806,6 +861,7 @@ select {
   display: flex;
   flex-direction: column;
   text-align: center;
+  line-height: 4rem;
 }
 .alert-modal-wrapper .boldAlert {
   font-weight: 900;

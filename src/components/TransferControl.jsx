@@ -95,11 +95,11 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className='transfer-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions />
-         <div>
-          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
+          <div>
+            <CurrencyOptions /> 
+          </div>
         </div>
-      </div>
+        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
       </div>
         <div className='transfer-triggers'>
           <button>Transfer</button>

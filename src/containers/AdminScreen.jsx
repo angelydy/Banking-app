@@ -169,8 +169,8 @@ export default function AdminScreen() {
   }
 
   return (
-    <div id='admin-main-container'>
-      <Navbar />
+    <div className="admin-main-container">
+      <Navbar/>
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
@@ -243,7 +243,7 @@ export default function AdminScreen() {
             <TransferControl currentUsers={userInfo} setCurrentUser={setUserInfo} displayFeature="enter-acc-no" />
           </div>
         </div>
-      </section>
+        </section>
         </section>
       </section>
       <Footer />

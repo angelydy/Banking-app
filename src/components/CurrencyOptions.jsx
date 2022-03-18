@@ -6,7 +6,10 @@ export const CURRENCY = [
   {rate: 52, symbol: '$'},
   {rate: 57, symbol: '€'},
   {rate: 2, symbol: '₴'},
-  {rate: 8, symbol: '¥'}
+  {rate: 8, symbol: '¥'},
+  {rate: 69, symbol: '£'},
+  {rate: 14, symbol: 'د.إ'},
+  {rate: 14, symbol: '﷼'}
 ]
 
 export default function CurrencyOptions() {

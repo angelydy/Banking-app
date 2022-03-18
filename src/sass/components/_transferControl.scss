@@ -3,3 +3,11 @@
     display: none;
   }
 }
+
+.transferOptions {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 10px 0;
+}

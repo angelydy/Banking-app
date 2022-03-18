@@ -1,8 +1,34 @@
+.darkMode {
+  background: rgb(34, 33, 33);
+  color: white;
+  transition: all .40s ease-in-out;
+
+  #add-account-form {
+    background: linear-gradient(90deg, rgba(37,35,55,1) 24%, rgba(81,87,96,1) 63%);
+  }
+
+  #accounts-table-wrapper {
+    background: black;
+  }
+
+  #withdraw-control-wrapper {
+    background: linear-gradient(90deg, rgba(67,72,94,1) 24%, rgba(41,66,99,1) 63%);
+  }
+
+  #deposit-control-wrapper {
+    background: linear-gradient(337deg, rgba(61,65,79,1) 24%, rgba(67,84,107,1) 63%);
+  }
+
+  #transfer-control-wrapper {
+    background: linear-gradient(337deg, rgba(61,60,111,1) 24%, rgba(21,40,64,1) 63%);
+  }
+}
+
 .fa-solid {
   font-size: 1.5em;
 }
 
-#admin-main-container {
+.admin-main-container {
   position: absolute;
   top: 0;
   width: 100%;
@@ -45,8 +71,6 @@ select {
     margin: 2rem;
     line-height: 3rem;
     scroll-behavior: smooth;
-    position: sticky;
-    top: 0;
 
     &::-webkit-scrollbar {
       width: 0.5rem;
@@ -171,6 +195,13 @@ select {
     }
   }
 
+  .withdraw-enter-amount, .deposit-enter-amount, .transfer-enter-amount {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 0 6rem;
+  }
+
   .initial-deposit {
     text-align: center;
 
@@ -199,6 +230,7 @@ select {
           outline: none;
         }
       }
+      
       input {
         margin: 2rem auto;
         background-color: transparent;

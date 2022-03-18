@@ -55,9 +55,11 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       </div>
       <div className='deposit-enter-amount'>
         <label htmlFor="amount">Enter an Amount</label>
-        <CurrencyOptions />
-        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
+        <div>
+          <CurrencyOptions /> 
+        </div>
       </div>
+      <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
       <div className='deposit-triggers'>
         <button>Deposit</button>
         <button type='reset' onClick={resetState}>Reset</button>
