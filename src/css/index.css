@@ -459,18 +459,18 @@ select {
   font-weight: 900;
   font-size: 2.5rem;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0 0 0;
 }
 #add-account-form .user-name {
   display: flex;
   flex-direction: row;
   width: 50%;
-  margin: 2rem auto;
+  margin: 1rem auto 0;
   text-align: center;
 }
 #add-account-form .user-name input {
   width: 90%;
-  margin: 2rem auto;
+  margin: 1rem auto 0 0;
   background-color: transparent;
   border-style: none;
   border-radius: 10px;
@@ -521,13 +521,6 @@ select {
 }
 #add-account-form label {
   font-weight: 600;
-}
-
-.withdraw-enter-amount, .deposit-enter-amount, .transfer-enter-amount {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  padding: 0 6rem;
 }
 
 .initial-deposit {
@@ -608,7 +601,6 @@ select {
 }
 .admin-wrapper-bottom .withdraw-control-wrapper #currency-options, .admin-wrapper-bottom .deposit-control-wrapper #currency-options, .admin-wrapper-bottom .transfer-control-wrapper #currency-options {
   background-color: #201f49;
-  border-radius: 10px;
   width: 3rem;
   height: 2.5rem;
   font-size: 1rem;
@@ -618,6 +610,9 @@ select {
 }
 .admin-wrapper-bottom .withdraw-control-wrapper #currency-options option, .admin-wrapper-bottom .deposit-control-wrapper #currency-options option, .admin-wrapper-bottom .transfer-control-wrapper #currency-options option {
   background-color: #201f49;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 .admin-wrapper-bottom .withdraw-control-wrapper #currency-options:hover, .admin-wrapper-bottom .deposit-control-wrapper #currency-options:hover, .admin-wrapper-bottom .transfer-control-wrapper #currency-options:hover {
   cursor: pointer;
@@ -626,13 +621,12 @@ select {
   outline: none;
 }
 .admin-wrapper-bottom .withdraw-control-wrapper input, .admin-wrapper-bottom .deposit-control-wrapper input, .admin-wrapper-bottom .transfer-control-wrapper input {
-  background-color: transparent;
+  background-color: white;
   border-style: none;
-  width: 20rem;
-  border-radius: 10px;
-  color: white;
-  border-bottom: 2px solid white;
-  height: 2rem;
+  width: 10rem;
+  color: #201f49;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
   padding: 10px;
   font-size: 1rem;
 }

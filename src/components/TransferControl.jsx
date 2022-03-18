@@ -98,13 +98,11 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         <div className={displayFeature}>
           <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} />
         </div>
-        <div className='transfer-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <div>
-            <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
-          </div>
+        <div className='transfer-enter-amount'>
+          <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
+          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
         </div>
-        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
       </div>
         <div className='transfer-triggers'>
           <button>Transfer</button>

@@ -56,13 +56,11 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       <div className={displayFeature}>
       <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
       </div>
+      <label htmlFor="amount">Enter an Amount</label>
       <div className='deposit-enter-amount'>
-        <label htmlFor="amount">Enter an Amount</label>
-        <div>
-          <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/>
-        </div>
+        <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/>
+        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
       </div>
-      <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
       <div className='deposit-triggers'>
         <button>Deposit</button>
         <button type='reset' onClick={resetState}>Reset</button>
