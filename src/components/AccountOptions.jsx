@@ -10,7 +10,7 @@ export function AccountOptions({ passedUserInfo, onSelectAcc, selectedAcc, onSet
   return (
     <>
       <label htmlFor="account-options">{selectedAccLabel}</label>
-      <select name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
+      <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
           {passedUserInfo.map(user => {
             return (
               <option key={user.accNum} value={user.accNum}>
@@ -33,7 +33,7 @@ export function AccountOptionsTransferFrom({ passedUserInfo, onSelectAcc, select
   return (
     <>
       <label htmlFor="account-options">{selectedAccLabel}</label>
-      <select name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
+      <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
           {passedUserInfo.map(user => {
             return (
               <option key={user.accNum} value={user.accNum}>
@@ -56,7 +56,7 @@ export function AccountOptionsTransferTo({ passedUserInfo, onSelectAcc, selected
   return (
     <>
       <label htmlFor="account-options">{selectedAccLabel}</label>
-      <select name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
+      <select required name="account-options" id="account-options" value={selectedAcc} onChange={handleChange}>
           {passedUserInfo.map(user => {
             return (
               <option key={user.accNum} value={user.accNum}>
