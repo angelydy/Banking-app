@@ -10,24 +10,26 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   const [accLabelFrom, setAccLabelFrom] = useState('Please select Sender Account Number');
   const [matchedAccTo, setAccMatchTo] = useState();
   const [accLabelTo, setAccLabelTo] = useState('Please select Receiver Account Number');
-  const [transferAmount, setTransferAmount] = useState()
+  const [transferAmount, setTransferAmount] = useState('0')
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
   const [approveTransfer, setApproveTransfer] = useState(true)
   const [invalidAmount, setInvalidAmount] = useState(false)
   const [sameAccError, setSameAccError] = useState(false)
+  const [currency, setCurrency] = useState(1)
 
   useEffect(() => {
     currentUsers.findIndex(acc => {
       if(acc.accNum === matchedAccFrom) {
         let newBalance = Number(acc.balance.split(',').join(''))
         let transfer = Number(transferAmount.split(',').join(''))
+        transfer *= currency
         if(newBalance < transfer) {
           setApproveTransfer(false)
         }
       }
     })
-  }, [transferAmount])
+  }, [transferAmount, currency])
   
   function storeTransferAmount(e) {
     setTransferAmount(e.target.value)
@@ -46,6 +48,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         if(acc.accNum === matchedAccFrom) {
           let newBalance = Number(acc.balance.split(',').join(''))
           let transfer = Number(transferAmount.split(',').join('')) 
+          transfer *= currency
           if(approveTransfer == true) {
             newBalance -= transfer
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
@@ -57,6 +60,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         if(acc.accNum === matchedAccTo) {
           let newBalance = Number(acc.balance.split(',').join(''))
           let transfer = Number(transferAmount.split(',').join('')) 
+          transfer *= currency
           if(approveTransfer == true) {
             newBalance += transfer
             acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
@@ -75,9 +79,10 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     setApproveTransfer(true)
     setAccMatchFrom()
     setAccMatchTo()
-    setTransferAmount()
+    setTransferAmount('0')
     setAccLabelFrom('Please select Sender Account Number')
     setAccLabelTo('Please select Receiver Account Number')
+    setCurrency(1)
   }
   
   return (
@@ -95,7 +100,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className='transfer-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions />
+          <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
          <div>
           <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
         </div>

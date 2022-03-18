@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CurrencyOptions from './CurrencyOptions';
 import { NotEnoughBalance, TransactionSuccessful, InvalidAmount } from './AlertModals';
 import placeCommas from '../utils/placeCommas';
@@ -12,6 +12,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
   const [invalidAmount, setInvalidAmount] = useState(false)
+  const [currency, setCurrency] = useState(1)
 
   function storeWithdrawAmount(e) {
     setWithdrawAmount(e.target.value)
@@ -29,6 +30,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
       if(acc.accNum === matchedAcc) {
         let newBalance = Number(acc.balance.split(',').join(''))
         let withdrawal = Number(withdrawAmount.split(',').join('')) 
+        withdrawal *= currency
         if(newBalance > withdrawal) {
           newBalance -= withdrawal
           acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
@@ -47,6 +49,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
     setAccMatch()
     setWithdrawAmount()
     setAccLabel('Please select Account Number')
+    setCurrency(1)
   }
 
   return (
@@ -60,7 +63,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className='withdraw-enter-amount'>
           <label htmlFor="amount">Enter an Amount</label>
-          <CurrencyOptions /> 
+          <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
           <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
         </div>
         <div className='withdraw-triggers'>
