@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { UserAlreadyExist, AddUserSuccessful, SelectParentAcc } from '../components/AlertModals';
+import { AccountOptions } from '../components/AccountOptions';
 import AccountsTable from '../components/AccountsTable';
 import CurrencyOptions from '../components/CurrencyOptions'
 import WithdrawControl from '../components/WithdrawControl';
@@ -7,11 +9,9 @@ import TransferControl from '../components/TransferControl';
 import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
 import placeCommas from '../utils/placeCommas';
-import { UserAlreadyExist, AddUserSuccessful, SelectParentAcc } from '../components/AlertModals';
-import './../css/index.css';
 import Footer from '../components/Footer';
-import { AccountOptions } from '../components/AccountOptions';
 import History from '../components/History';
+import './../css/index.css';
 
 export default function AdminScreen() {
   const [userInfo, setUserInfo] = useState([]);
@@ -177,7 +177,7 @@ export default function AdminScreen() {
       <h1 className='greeting'>{getHours(hrs24)}</h1>
       <section className="admin-wrapper">
         <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
-          <i class="fa-solid fa-clock-rotate-left"></i>
+          <i className="fa-solid fa-clock-rotate-left"></i>
           View Transaction History
         </div>
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />

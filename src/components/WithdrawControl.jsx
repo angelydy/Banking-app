@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import CurrencyOptions from './CurrencyOptions';
 import { NotEnoughBalance, TransactionSuccessful, InvalidAmount } from './AlertModals';
 import placeCommas from '../utils/placeCommas';
@@ -81,7 +81,6 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
       <NotEnoughBalance
         displayState={notEnoughBalance ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> notEnoughBalance ? setNotEnoughBalance(false) : setNotEnoughBalance(true)}
-        resetState={resetState}
       />
        <TransactionSuccessful
         displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
