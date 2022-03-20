@@ -24,7 +24,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(depositAmount < 100) {
+    if(depositAmount < 100 || depositAmount.match(/[a-zA-Z]/)) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
@@ -86,7 +86,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
         displayState={invalidAmount ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> invalidAmount ? setInvalidAmount(false) : setInvalidAmount(true)}
         boldAlert={'OOPS!'}
-        message={"Sorry, the minimum transaction value is not met."}
+        message={"Sorry, the transaction value is invalid."}
         image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
       />
     </section>

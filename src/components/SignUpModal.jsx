@@ -100,7 +100,7 @@ export default function SignUpModal({ displayState, closeState }) {
                 <label htmlFor="email" className="email-label">Email</label>
               </div>
               <input onChange={handleAccChange} type="text" id="account-number" placeholder="Enter your account number here" required></input>
-              <input onChange={handleEmailChange} type="email" id="email" placeholder="Enter email here" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input>
+              <input onChange={handleEmailChange} type="email" id="email" placeholder="Enter email here" required></input>
             </div>  
             <div className="username-password">
               <div className="username-password-label">
