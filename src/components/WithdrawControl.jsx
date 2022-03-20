@@ -61,7 +61,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
 
   return (
     <section className='withdraw-control-wrapper' id='withdraw-control-wrapper'>
-      <form onSubmit={handleSubmit}>
+      <form autoComplete='off' onSubmit={handleSubmit}>
         <div className='withdraw-deposit-title'>
           Withdraw
         </div>

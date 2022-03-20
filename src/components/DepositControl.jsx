@@ -59,7 +59,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       <div className='withdraw-deposit-title'>
         Deposit
       </div>
-    <form onSubmit={handleSubmit}>
+    <form autoComplete='off' onSubmit={handleSubmit}>
       <div className={displayFeature}>
       {accessingUser === 'admin' &&
         <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
