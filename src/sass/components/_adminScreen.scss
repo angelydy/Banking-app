@@ -7,20 +7,30 @@
     background: linear-gradient(90deg, rgba(37,35,55,1) 24%, rgba(81,87,96,1) 63%);
   }
 
+  .user-info-wrapper {
+    background: rgb(47,46,108);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4.5px );
+    -webkit-backdrop-filter: blur( 4.5px );
+    border-radius: 10px;
+  }
+
+  #currency-options {
+    background: rgb(32, 31, 73);
+    color: white;
+  }
+
   #accounts-table-wrapper {
     background: black;
   }
 
-  #withdraw-control-wrapper {
-    background: linear-gradient(90deg, rgba(67,72,94,1) 24%, rgba(41,66,99,1) 63%);
-  }
-
-  #deposit-control-wrapper {
-    background: linear-gradient(337deg, rgba(61,65,79,1) 24%, rgba(67,84,107,1) 63%);
-  }
-
-  #transfer-control-wrapper {
-    background: linear-gradient(337deg, rgba(61,60,111,1) 24%, rgba(21,40,64,1) 63%);
+  #withdraw-control-wrapper, #deposit-control-wrapper, #transfer-control-wrapper {
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+    backdrop-filter: blur( 2.5px );
+    -webkit-backdrop-filter: blur( 2.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
 }
 

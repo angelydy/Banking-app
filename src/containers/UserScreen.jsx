@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import TransferControl from '../components/TransferControl';
 import WithdrawControl from '../components/WithdrawControl';
 import './../css/index.css';
+import UserInfo from '../components/UserInfo';
 
 export default function UserScreen() {
   const [userInfo, setUserInfo] = useState([]);
@@ -31,34 +32,59 @@ export default function UserScreen() {
 
   return (
     <section className='user-wrapper'>
+      <div>
       <Navbar />
-      {/* <UserInfo /> */}
+      </div>
       {/* <UserExpenses /> */}
-      <WithdrawControl 
-        currentUsers={userInfo} 
-        setCurrentUser={setUserInfo} 
-        displayFeature="enter-acc-no" 
-        passedHistory={history}
-        setPassedHistory={setHistory}
-        accessingUser={loggedUser}
-      />
-      <DepositControl 
-        currentUsers={userInfo} 
-        setCurrentUser={setUserInfo} 
-        displayFeature="enter-acc-no" 
-        passedHistory={history}
-        setPassedHistory={setHistory}
-        accessingUser={loggedUser}
-      />
-      <TransferControl 
-        currentUsers={userInfo} 
-        setCurrentUser={setUserInfo} 
-        displayFeature="enter-acc-no" 
-        passedHistory={history}
-        setPassedHistory={setHistory}
-        accessingUser={loggedUser}
-      />
+      <div className='user-screen-grid'>
+        <div className='grid-one'>
+          <div className='dashboard-title'> DASHBOARD</div>
+          <UserInfo currentUsers={userInfo} />
+          <div className='curr-balance'>
+            <p className='balance-title'>Your Balance</p>
+            <p className='balance-val'>P0.00</p>
+            <div className='curr-status'>
+              <p>Currency</p>
+              <p>Status</p>
+            </div>
+            <div className='curr-status-val'>
+              <p>PHP / Peso</p>
+              <p>Active</p>
+            </div>
+          </div>
+          <TransferControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no" 
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              accessingUser={loggedUser}
+            />
+        </div>
+        <div className='grid-two'>
+          <div className='withdraw-deposit'>
+          <DepositControl 
+            currentUsers={userInfo} 
+            setCurrentUser={setUserInfo} 
+            displayFeature="enter-acc-no" 
+            passedHistory={history}
+            setPassedHistory={setHistory}
+            accessingUser={loggedUser}
+          />
+          <WithdrawControl 
+            currentUsers={userInfo} 
+            setCurrentUser={setUserInfo} 
+            displayFeature="enter-acc-no" 
+            passedHistory={history}
+            setPassedHistory={setHistory}
+            accessingUser={loggedUser}
+          />
+          </div>
+        </div>
+      </div>
+      <div>
       <Footer />
+      </div>
     </section>
   );
 }

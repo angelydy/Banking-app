@@ -359,17 +359,27 @@ a:hover, .downloadBtn:hover {
 .darkMode #add-account-form {
   background: linear-gradient(90deg, #252337 24%, #515760 63%);
 }
+.darkMode .user-info-wrapper {
+  background: #2f2e6c;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+}
+.darkMode #currency-options {
+  background: #201f49;
+  color: white;
+}
 .darkMode #accounts-table-wrapper {
   background: black;
 }
-.darkMode #withdraw-control-wrapper {
-  background: linear-gradient(90deg, #43485e 24%, #294263 63%);
-}
-.darkMode #deposit-control-wrapper {
-  background: linear-gradient(337deg, #3d414f 24%, #43546b 63%);
-}
-.darkMode #transfer-control-wrapper {
-  background: linear-gradient(337deg, #3d3c6f 24%, #152840 63%);
+.darkMode #withdraw-control-wrapper, .darkMode #deposit-control-wrapper, .darkMode #transfer-control-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .chooseAccNum {
@@ -898,4 +908,149 @@ select {
 .alert-modal-wrapper .boldAlert {
   font-weight: 900;
   font-size: 2.5em;
+}
+
+.user-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.user-wrapper .dashboard-title {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 2rem;
+}
+.user-wrapper .user-screen-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: center;
+}
+.user-wrapper .user-screen-grid .withdraw-deposit-title, .user-wrapper .user-screen-grid .transfer-deposit-title, .user-wrapper .user-screen-grid .deposit-deposit-title {
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem 0 0 0;
+}
+.user-wrapper .user-screen-grid button {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 10px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 6rem;
+  text-align: center;
+  border-style: none;
+  margin: 1rem 1rem;
+  padding: 0.5rem;
+}
+.user-wrapper .user-screen-grid button:hover {
+  transition: 0.3s ease-in-out 0s;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: black;
+}
+.user-wrapper .user-screen-grid input {
+  background: transparent;
+  border: 1px solid white;
+  width: 10rem;
+  color: white;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+.user-wrapper .user-screen-grid #currency-options {
+  background-color: white;
+  width: 3rem;
+  height: 2.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  border-style: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.user-wrapper .user-screen-grid #currency-options option {
+  background-color: #201f49;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  color: white;
+}
+.user-wrapper .user-screen-grid #currency-options:hover {
+  cursor: pointer;
+}
+.user-wrapper .user-screen-grid #currency-options:focus {
+  outline: none;
+}
+.user-wrapper .user-screen-grid .grid-one .transfer-control-wrapper {
+  width: 20rem;
+  margin: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  line-height: 3rem;
+}
+.user-wrapper .user-screen-grid .grid-one #transfer-to {
+  width: 13rem;
+}
+.user-wrapper .user-screen-grid .grid-one #transfer-to::placeholder {
+  color: rgba(255, 255, 255, 0.664);
+}
+.user-wrapper .user-screen-grid .grid-one .balance-title {
+  text-align: left;
+}
+.user-wrapper .user-screen-grid .grid-one .balance-val {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: left;
+  border-bottom: 1px solid white;
+}
+.user-wrapper .user-screen-grid .grid-one .curr-balance {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 1rem;
+  width: 18rem;
+  margin: 2rem;
+}
+.user-wrapper .user-screen-grid .grid-one .curr-balance .curr-status {
+  color: rgba(255, 255, 255, 0.541);
+}
+.user-wrapper .user-screen-grid .grid-one .curr-balance .curr-status, .user-wrapper .user-screen-grid .grid-one .curr-balance .curr-status-val {
+  display: flex;
+  justify-content: space-around;
+  line-height: 1rem;
+}
+.user-wrapper .user-screen-grid .grid-two .withdraw-deposit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-info-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  padding: 1rem;
+  width: 18rem;
+  margin: 2rem;
+}
+.user-info-wrapper h1 {
+  font-size: 1.5rem;
+}
+.user-info-wrapper .accNum-accCategory {
+  display: flex;
+  justify-content: space-evenly;
 }
