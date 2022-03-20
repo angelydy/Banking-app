@@ -21,7 +21,7 @@ export default function LogInModal({ displayState, closeState }) {
       setUserExists(true)
       setAccessingUser('admin')
     }
-    users.find(user => {
+    users.findIndex(user => {
       if(user.password == e.target.value && user.username == usernameInput) {
         setPath('/user')
         setAccessingUser(user.accNum)

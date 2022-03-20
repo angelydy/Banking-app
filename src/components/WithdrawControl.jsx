@@ -25,7 +25,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(withdrawAmount < 100) {
+    if(withdrawAmount < 100 || withdrawAmount.match(/[a-zA-Z]/)) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
@@ -98,7 +98,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         displayState={invalidAmount ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> invalidAmount ? setInvalidAmount(false) : setInvalidAmount(true)}
         boldAlert={'OOPS!'}
-        message={"Sorry, the minimum transaction value is not met."}
+        message={"Sorry, the transaction value is invalid."}
         image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
       />
     </section>

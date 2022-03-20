@@ -12,8 +12,10 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   const [accLabelTo, setAccLabelTo] = useState('Please select Receiver Account Number');
   const [transferAmount, setTransferAmount] = useState('0')
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
+  const [receiverNotExist, setReceiverNotExist] = useState(false)
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
   const [approveTransfer, setApproveTransfer] = useState(true)
+  const [correctTransferTo, setCorrectTransferTo] = useState(false)
   const [invalidAmount, setInvalidAmount] = useState(false)
   const [sameAccError, setSameAccError] = useState(false)
   const [currency, setCurrency] = useState(1)
@@ -24,7 +26,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   const time = `${date} ${hours}:${mins}`
 
   useEffect(() => {
-    currentUsers.findIndex(acc => {
+    currentUsers.find(acc => {
       if(acc.accNum === matchedAccFrom) {
         let newBalance = Number(acc.balance.split(',').join(''))
         let transfer = Number(transferAmount.split(',').join(''))
@@ -40,20 +42,36 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     setTransferAmount(e.target.value)
   }
 
+  function handleInputTransferTo(e) {
+    currentUsers.find(user => {
+      if(user.accNum === e.target.value) {
+        setCorrectTransferTo(true)
+        setAccMatchTo(e.target.value)
+      }
+    })
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
+    console.log(correctTransferTo)
     let from
     let to
     let transfer = Number(transferAmount.split(',').join('')) 
     let transferHistory = transfer * currency
-    if(transferAmount < 100) {
+    if(transferAmount < 100 || transferAmount.match(/[a-zA-Z]/)) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
       return
     }
+    if(correctTransferTo === false) {
+      setReceiverNotExist(true)
+      e.target.reset()
+      resetState()
+      return
+    }
     if(matchedAccFrom !== matchedAccTo) {
-      currentUsers.findIndex(acc => {
+      currentUsers.find(acc => {
         if(acc.accNum === matchedAccFrom) {
           let newBalance = Number(acc.balance.split(',').join(''))
           from = `${acc.lname} ${acc.fname}`
@@ -92,6 +110,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     setAccLabelFrom('Please select Sender Account Number')
     setAccLabelTo('Please select Receiver Account Number')
     setCurrency(1)
+    setCorrectTransferTo(false)
   }
   
   return (
@@ -107,7 +126,13 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
           }
         </div>
         <div className={displayFeature}>
-          <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} />
+          {accessingUser === 'admin' ?
+            <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} /> :
+            <>
+              <label htmlFor='transfer-to'>Choose Receiver Account</label>
+              <input type="text" id='transfer-to' onChange={handleInputTransferTo}></input>
+            </>
+          }
         </div>
           <label htmlFor="amount">Enter an Amount</label>
         <div className='transfer-enter-amount'>
@@ -138,7 +163,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         displayState={invalidAmount ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> invalidAmount ? setInvalidAmount(false) : setInvalidAmount(true)}
         boldAlert={'OOPS!'}
-        message={"Sorry, the minimum transaction value is not met."}
+        message={"Sorry, the transaction value is invalid."}
         image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
       />
        <AlertModals
@@ -146,6 +171,13 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         closeState={()=> sameAccError ? setSameAccError(false) : setSameAccError(true)}
         boldAlert={'OOPS!'}
         message={"Sorry, you can't select the same account."}
+        image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
+      />
+      <AlertModals
+        displayState={receiverNotExist ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> receiverNotExist ? setReceiverNotExist(false) : setReceiverNotExist(true)}
+        boldAlert={'OOPS!'}
+        message={"Sorry, the receiver account number does not exist."}
         image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
       />
     </section>
