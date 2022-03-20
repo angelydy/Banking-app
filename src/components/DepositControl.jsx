@@ -5,8 +5,8 @@ import AlertModals from './AlertModals';
 import './../css/index.css';
 import { AccountOptions } from './AccountOptions';
 
-export default function DepositControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory }) {
-  const [matchedAcc, setAccMatch] = useState();
+export default function DepositControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory, accessingUser }) {
+  const [matchedAcc, setAccMatch] = useState(accessingUser);
   const [accLabel, setAccLabel] = useState('Please select Account Number');
   const [depositAmount, setDepositAmount] = useState()
   const [transactionSuccessful, setTransactionSuccessful] = useState(false)
@@ -48,7 +48,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
   }
 
   function resetState() {
-    setAccMatch()
+    setAccMatch(accessingUser)
     setDepositAmount()
     setAccLabel('Please select Account Number')
     setCurrency(1)
@@ -61,7 +61,9 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       </div>
     <form onSubmit={handleSubmit}>
       <div className={displayFeature}>
-      <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
+      {accessingUser === 'admin' &&
+        <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
+      }
       </div>
       <label htmlFor="amount">Enter an Amount</label>
       <div className='deposit-enter-amount'>

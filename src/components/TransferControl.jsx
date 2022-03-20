@@ -5,8 +5,8 @@ import placeCommas from '../utils/placeCommas';
 import AlertModals from './AlertModals';
 import { AccountOptionsTransferFrom, AccountOptionsTransferTo } from './AccountOptions';
 
-export default function TransferControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory }) {
-  const [matchedAccFrom, setAccMatchFrom] = useState();
+export default function TransferControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory, accessingUser }) {
+  const [matchedAccFrom, setAccMatchFrom] = useState(accessingUser);
   const [accLabelFrom, setAccLabelFrom] = useState('Please select Sender Account Number');
   const [matchedAccTo, setAccMatchTo] = useState();
   const [accLabelTo, setAccLabelTo] = useState('Please select Receiver Account Number');
@@ -86,7 +86,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
 
   function resetState() {
     setApproveTransfer(true)
-    setAccMatchFrom()
+    setAccMatchFrom(accessingUser)
     setAccMatchTo()
     setTransferAmount('0')
     setAccLabelFrom('Please select Sender Account Number')
@@ -102,7 +102,9 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
       <form onSubmit={handleSubmit}>
         <div className='transfer-control-container'>
         <div className={displayFeature}>
-          <AccountOptionsTransferFrom passedUserInfo={currentUsers} onSetAccLabel={setAccLabelFrom} selectedAccLabel={accLabelFrom} onSelectAcc={setAccMatchFrom} selectedAcc={matchedAccFrom} />
+          {accessingUser === 'admin' &&
+            <AccountOptionsTransferFrom passedUserInfo={currentUsers} onSetAccLabel={setAccLabelFrom} selectedAccLabel={accLabelFrom} onSelectAcc={setAccMatchFrom} selectedAcc={matchedAccFrom} />
+          }
         </div>
         <div className={displayFeature}>
           <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} />

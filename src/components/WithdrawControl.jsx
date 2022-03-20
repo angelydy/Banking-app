@@ -5,8 +5,8 @@ import placeCommas from '../utils/placeCommas';
 import './../css/index.css';
 import { AccountOptions } from './AccountOptions';
 
-export default function WithdrawControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory }) {
-  const [matchedAcc, setAccMatch] = useState();
+export default function WithdrawControl({ displayFeature, currentUsers, setCurrentUser, passedHistory, setPassedHistory, accessingUser }) {
+  const [matchedAcc, setAccMatch] = useState(accessingUser);
   const [accLabel, setAccLabel] = useState('Please select Account Number');
   const [withdrawAmount, setWithdrawAmount] = useState()
   const [notEnoughBalance, setNotEnoughBalance] = useState(false)
@@ -53,7 +53,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   }
 
   function resetState() {
-    setAccMatch()
+    setAccMatch(accessingUser)
     setWithdrawAmount()
     setAccLabel('Please select Account Number')
     setCurrency(1)
@@ -66,7 +66,9 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
           Withdraw
         </div>
         <div className={displayFeature}>
-        <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
+        {accessingUser === 'admin' &&
+          <AccountOptions passedUserInfo={currentUsers} onSetAccLabel={setAccLabel} selectedAccLabel={accLabel} onSelectAcc={setAccMatch} selectedAcc={matchedAcc}/>
+        }
         </div>
         <label htmlFor="amount">Enter an Amount</label>
         <div className='withdraw-enter-amount'>
