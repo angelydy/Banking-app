@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './../css/index.css';
-import { UnamePassIncorrect } from './AlertModals';
+import AlertModals from './AlertModals';
 
 export default function LogInModal({ displayState, closeState }) {
   const [usernameInput, setUsernameInput] = useState('');
@@ -71,9 +71,12 @@ export default function LogInModal({ displayState, closeState }) {
           </div>
         </div>
       </div>
-      <UnamePassIncorrect 
+      <AlertModals 
         displayState={unamePassIncorrect ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> unamePassIncorrect ? setUnamePassIncorrect(false) : setUnamePassIncorrect(true)}
+        boldAlert={'OOPS!'}
+        message={"Sorry, the username/password is invalid/incorrect."}
+        image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
       />
     </div>
   );
