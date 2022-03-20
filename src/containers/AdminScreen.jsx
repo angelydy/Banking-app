@@ -235,30 +235,32 @@ export default function AdminScreen() {
           <div className='withdraw-deposit'>
             <div>
               <WithdrawControl 
-              currentUsers={userInfo} 
-              setCurrentUser={setUserInfo} 
-              displayFeature="enter-acc-no" 
-              passedHistory={history}
-              setPassedHistory={setHistory}
+                currentUsers={userInfo} 
+                setCurrentUser={setUserInfo} 
+                displayFeature="enter-acc-no" 
+                passedHistory={history}
+                setPassedHistory={setHistory}
+                accessingUser={'admin'}
               />
             </div>
             <div>
               <DepositControl 
-              currentUsers={userInfo} 
-              setCurrentUser={setUserInfo} 
-              displayFeature="enter-acc-no"  
-              passedHistory={history}
-              setPassedHistory={setHistory}
+                currentUsers={userInfo} 
+                setCurrentUser={setUserInfo} 
+                displayFeature="enter-acc-no"  
+                passedHistory={history}
+                setPassedHistory={setHistory}
+                accessingUser={'admin'}
               />
             </div>
           </div>
           <div className='transfer-control'>
             <TransferControl 
-            currentUsers={userInfo} 
-            setCurrentUser={setUserInfo} 
-            displayFeature="enter-acc-no"  
-            passedHistory={history}
-            setPassedHistory={setHistory}
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no"  
+              passedHistory={history}
+              setPassedHistory={setHistory}
             />
           </div>
         </div>

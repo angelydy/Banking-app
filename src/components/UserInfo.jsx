@@ -13,7 +13,7 @@ export default function UserInfo({ currentUsers }) {
           )
         })}
       </div>
-      <div>AEGHSDFKJLAHNSDK;JGHA;KJN</div>
+      <div>AEGHSDFKJLAHNSDK;JGHA;KJN</div> 
     </>
   )
 }
