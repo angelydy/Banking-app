@@ -123,12 +123,6 @@ export default function AdminScreen() {
       resetState()
       return
     }
-    if(lastName.match(/[0-9]*/) || firstName.match(/[0-9]*/) || middleName.match(/[0-9]*/)) {
-      setInvalidName(true)
-      e.target.reset()
-      resetState()
-      return
-    }
     if(status == 1 && accMatch !== '') {
       handleAccountNumber();
       addUserInfo = {
@@ -193,7 +187,7 @@ export default function AdminScreen() {
         </div>
         <AccountsTable passedUserInfo={userInfo} setPassedUserInfo={setUserInfo} />
         <section className='add-account-control-wrapper'>
-          <form id="add-account-form" onSubmit={handleAdd}>
+          <form autoComplete='off' id="add-account-form" onSubmit={handleAdd}>
             <div className='add-user-title'>Add New User</div>
             <div className='user-name'>
               <div>

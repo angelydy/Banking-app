@@ -93,7 +93,7 @@ export default function SignUpModal({ displayState, closeState }) {
         </div>
         <div className="right-wrapper">
           <button id="close-sign-up" onClick={closeState}>X</button>
-          <form id="form1" onSubmit={handleSubmit}>
+          <form autoComplete='off' id="form1" onSubmit={handleSubmit}>
             <div className="email-and-accountNumber">
               <div className="email-and-accountNumber-label">
                 <label htmlFor="account-number" className="account-number-label">Account No.</label>

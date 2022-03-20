@@ -43,8 +43,10 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   }
 
   function handleInputTransferTo(e) {
+    console.log('hmm')
     currentUsers.find(user => {
       if(user.accNum === e.target.value) {
+        console.log('yes')
         setCorrectTransferTo(true)
         setAccMatchTo(e.target.value)
       }
@@ -118,7 +120,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
       <div className='withdraw-deposit-title'>
         Transfer
       </div>
-      <form onSubmit={handleSubmit}>
+      <form autoComplete='off' onSubmit={handleSubmit}>
         <div className='transfer-control-container'>
         <div className={displayFeature}>
           {accessingUser === 'admin' &&
@@ -130,7 +132,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
             <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} /> :
             <>
               <label htmlFor='transfer-to'>Choose Receiver Account</label>
-              <input type="text" id='transfer-to' onChange={handleInputTransferTo}></input>
+              <input required name='transfer-to' type="text" id='transfer-to' onKeyUp={handleInputTransferTo}></input>
             </>
           }
         </div>
