@@ -12,6 +12,12 @@ export default function UserScreen() {
   const [userInfo, setUserInfo] = useState([]);
   const [history, setHistory] = useState([])
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+  const [name, setName] = useState('')
+  const [userName, setUserName] = useState('')
+  const [accCateg, setAccCateg] = useState('')
+  const [accType, setAccType] = useState('')
+  const [balance, setBalance] = useState('')
+  const [haveChildren, setHaveChildren] = useState(true)
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
@@ -21,6 +27,22 @@ export default function UserScreen() {
     if(getUsers) setUserInfo(getUsers);
     if(getHistory) setHistory(getHistory)
   }, [])
+
+  function renderInfo() {
+    userInfo.find(user => {
+      if(user.accNum == loggedUser) {
+        setUserName(user.username)
+        setName(`${user.lname} ${user.fname} ${user.mname}`)
+        setAccCateg(user.acccateg)
+        setAccType(user.acctype)
+        setBalance(user.balance)
+
+        if(user.acctype !== 'Parent') {
+          setHaveChildren(false)
+        }
+      }
+    })
+  }
 
   useEffect(()=> {
     localStorage.setItem("history", JSON.stringify(history))
@@ -39,19 +61,15 @@ export default function UserScreen() {
       <div className='user-screen-grid'>
         <div className='grid-one'>
           <div className='dashboard-title'> DASHBOARD</div>
-          <UserInfo currentUsers={userInfo} />
-          <div className='curr-balance'>
-            <p className='balance-title'>Your Balance</p>
-            <p className='balance-val'>P0.00</p>
-            <div className='curr-status'>
-              <p>Currency</p>
-              <p>Status</p>
-            </div>
-            <div className='curr-status-val'>
-              <p>PHP / Peso</p>
-              <p>Active</p>
-            </div>
-          </div>
+          <UserInfo 
+            accessingUser={loggedUser} 
+            passedName={name} 
+            passedUserName={userName} 
+            passedAccCateg={accCateg} 
+            passedAccType={accType} 
+            passedBalance={balance} 
+            ifHaveChildren={haveChildren}
+          />
           <TransferControl 
               currentUsers={userInfo} 
               setCurrentUser={setUserInfo} 
@@ -84,6 +102,9 @@ export default function UserScreen() {
       </div>
       <div>
       <Footer />
+      </div>
+      <div>
+        <button onClick={renderInfo}>Start</button>
       </div>
     </section>
   );
