@@ -16,6 +16,7 @@
   align-items: center;
   cursor: pointer;
   margin: 0 1rem 0 0;
+  user-select: none;
 
   &::before {
     content: '';
@@ -88,7 +89,6 @@
 
   i {
     color: black;
-    z-index: 2;
   }
 }
 

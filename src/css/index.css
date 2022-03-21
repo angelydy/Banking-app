@@ -360,7 +360,7 @@ a:hover, .downloadBtn:hover {
   background: linear-gradient(90deg, #252337 24%, #515760 63%);
 }
 .darkMode .user-info-wrapper {
-  background: #2f2e6c;
+  background: #25243a;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(4.5px);
@@ -710,6 +710,7 @@ select {
   align-items: center;
   cursor: pointer;
   margin: 0 1rem 0 0;
+  user-select: none;
 }
 .darkModeLabel::before {
   content: "";
@@ -770,7 +771,6 @@ select {
 }
 .icon-container i {
   color: black;
-  z-index: 2;
 }
 
 .shadow {
@@ -987,9 +987,67 @@ select {
   font-size: 2.5em;
 }
 
+@keyframes fromTop {
+  0% {
+    transform: translateY(-800px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .user-wrapper {
   display: flex;
   flex-direction: column;
+}
+.user-wrapper .welcome-modal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #201f49;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+.user-wrapper .welcome-modal .welcome-container {
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  width: 35rem;
+  height: 22rem;
+  margin: auto;
+  text-align: center;
+  box-shadow: 5px 5px 5px 5px rgba(255, 255, 255, 0.1), 20px 20px 15px rgba(0, 0, 0, 0.1), 30px 30px 20px rgba(0, 0, 0, 0.1), 40px 40px 20px rgba(0, 0, 0, 0.1), inset 1px 1px 2px white;
+  animation: fromTop 1s ease-in-out;
+  color: black;
+}
+.user-wrapper .welcome-modal .welcome-container .welcome-modal-icon {
+  font-size: 5rem;
+}
+.user-wrapper .welcome-modal .welcome-container h1 {
+  font-size: 2rem;
+}
+.user-wrapper .welcome-modal .welcome-container .short-desc {
+  color: gray;
+}
+.user-wrapper .welcome-modal .welcome-container button {
+  width: 10rem;
+  border-radius: 30px;
+  border-style: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 1rem auto;
+  background: #201f49;
+  color: white;
+}
+.user-wrapper .welcome-modal .welcome-container button:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out 0s;
 }
 .user-wrapper .dashboard-title {
   text-align: left;
@@ -1002,82 +1060,14 @@ select {
   grid-template-columns: 1fr 2fr;
   text-align: center;
 }
-.user-wrapper .user-screen-grid .withdraw-deposit-title, .user-wrapper .user-screen-grid .transfer-deposit-title, .user-wrapper .user-screen-grid .deposit-deposit-title {
-  font-weight: 900;
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 1rem 0 0 0;
-}
-.user-wrapper .user-screen-grid button {
-  text-decoration: none;
-  background-color: white;
-  border-radius: 10px;
-  color: #2f2e6c;
-  font-size: 1rem;
-  font-weight: 600;
-  width: 6rem;
-  text-align: center;
-  border-style: none;
-  margin: 1rem 1rem;
-  padding: 0.5rem;
-}
-.user-wrapper .user-screen-grid button:hover {
-  transition: 0.3s ease-in-out 0s;
-  cursor: pointer;
-  transform: scale(1.1);
-  color: black;
-}
-.user-wrapper .user-screen-grid input {
-  background: transparent;
-  border: 1px solid white;
-  width: 10rem;
-  color: white;
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 0.6rem;
-  font-size: 1rem;
-}
-.user-wrapper .user-screen-grid #currency-options {
-  background-color: white;
-  width: 3rem;
-  height: 2.4rem;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-  color: black;
-  border-style: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-.user-wrapper .user-screen-grid #currency-options option {
-  background-color: #201f49;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  color: white;
-}
-.user-wrapper .user-screen-grid #currency-options:hover {
-  cursor: pointer;
-}
-.user-wrapper .user-screen-grid #currency-options:focus {
-  outline: none;
-}
-.user-wrapper .user-screen-grid .grid-one .transfer-control-wrapper {
-  width: 20rem;
-  margin: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
-  backdrop-filter: blur(2.5px);
-  -webkit-backdrop-filter: blur(2.5px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  line-height: 3rem;
-}
-.user-wrapper .user-screen-grid .grid-one #transfer-to {
-  width: 13rem;
-}
-.user-wrapper .user-screen-grid .grid-one #transfer-to::placeholder {
-  color: rgba(255, 255, 255, 0.664);
+.user-wrapper .user-screen-grid .grid-one {
+  /*#transfer-to {
+    width: 13rem;
+
+    &::placeholder {
+       color: rgba(255, 255, 255, 0.664);
+    }
+  }*/
 }
 .user-wrapper .user-screen-grid .grid-one .balance-title {
   text-align: left;
@@ -1107,11 +1097,6 @@ select {
   justify-content: space-around;
   line-height: 1rem;
 }
-.user-wrapper .user-screen-grid .grid-two .withdraw-deposit {
-  display: flex;
-  justify-content: space-around;
-}
-
 .user-info-wrapper {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
@@ -1130,4 +1115,71 @@ select {
 .user-info-wrapper .accNum-accCategory {
   display: flex;
   justify-content: space-evenly;
+}
+
+.transaction-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  text-align: center;
+  line-height: 2.5rem;
+  width: 100%;
+  align-items: center;
+  padding-bottom: 3rem;
+}
+.transaction-controls button {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 10px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 6rem;
+  text-align: center;
+  border-style: none;
+  margin: 1rem 1rem;
+  padding: 0.5rem;
+}
+.transaction-controls button:hover {
+  transition: 0.3s ease-in-out 0s;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: black;
+}
+.transaction-controls input {
+  background: transparent;
+  border: 1px solid white;
+  width: 10rem;
+  color: white;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+.transaction-controls #currency-options {
+  background-color: white;
+  width: 3rem;
+  height: 2.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  border-style: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.transaction-controls #currency-options option {
+  background-color: #201f49;
+  color: white;
+}
+.transaction-controls #currency-options:hover {
+  cursor: pointer;
+}
+.transaction-controls #currency-options:focus {
+  outline: none;
+}
+.transaction-controls .withdraw-deposit-title, .transaction-controls .transfer-deposit-title, .transaction-controls .deposit-deposit-title {
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem 0 0 0;
 }
