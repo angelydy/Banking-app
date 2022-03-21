@@ -131,8 +131,9 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
           {accessingUser === 'admin' ?
             <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} /> :
             <>
-              <label htmlFor='transfer-to'>Choose Receiver Account</label>
-              <input required name='transfer-to' type="text" id='transfer-to' onKeyUp={handleInputTransferTo}></input>
+              <label htmlFor='transfer-to'>Enter Receiver Account No.</label>
+              <br></br>
+              <input required name='transfer-to' type="text" id='transfer-to' placeholder='card no' onKeyUp={handleInputTransferTo}></input>
             </>
           }
         </div>
