@@ -133,7 +133,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
             <>
               <label htmlFor='transfer-to'>Enter Receiver Account No.</label>
               <br></br>
-              <input required name='transfer-to' type="text" id='transfer-to' placeholder='card no' onKeyUp={handleInputTransferTo}></input>
+              <input required name='transfer-to' type="text" id='transfer-to' placeholder='account no.' onKeyUp={handleInputTransferTo}></input>
             </>
           }
         </div>

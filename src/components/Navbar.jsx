@@ -14,8 +14,10 @@ export default function Navbar() {
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("darkMode");
+      document.getElementById("modeCheckbox").checked = true;
     } else {
       document.body.classList.remove("darkMode");
+      document.getElementById("modeCheckbox").checked = false;
     }
     const json = JSON.stringify(darkMode);
     localStorage.setItem("site-dark-mode", json);
@@ -25,11 +27,18 @@ export default function Navbar() {
     <nav>
       <img src={logo} className="logo" />
       <div className="mode-and-log-out">
-        <i className="fa-solid fa-circle-half-stroke" onClick={() => setDarkMode(!darkMode)}></i>
+        <label htmlFor="" className="darkModeLabel">
+          <input type="checkbox" id="modeCheckbox"/>
+          <div className="switchIcon" onClick={() => setDarkMode(!darkMode)}>
+            <div className="icon-container">
+              <i class="fa-solid fa-circle-half-stroke"></i>
+            </div>
+          </div>
+        </label>
         <Link
           to='/'
         >
-          <i className="fa-solid fa-arrow-right-from-bracket"></i>
+          <i className="fa-solid fa-arrow-right-from-bracket" id="log-out"></i>
         </Link>
       </div>
     </nav>
