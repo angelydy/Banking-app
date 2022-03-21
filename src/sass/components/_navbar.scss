@@ -1,10 +1,100 @@
-.mode-and-log-out i{
-  margin: 0 2rem;
-  color: white;
+.mode-and-log-out {
+  display: flex;
+  margin: 0 1rem 0 0;
 
-  &:hover {
-    transition: .3s ease-in-out 0s;
-    cursor: pointer;
-    transform: scale(1.1);
+  #log-out {
+    color: white;
+    margin: 0.8rem 0 0 0;
   }
+}
+
+.darkModeLabel {
+  width: 6rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 1rem 0 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.527);
+    border-radius: 50px;
+  }
+
+  input {
+    position: absolute;
+    appearance: none;
+
+    &:checked ~ .switchIcon {
+      left: 60px;
+
+      .icon-container {
+        transform: rotate(180deg);
+        transition: .5s ease-in-out ;
+      }
+    }
+  }
+
+  .switchIcon {
+    position: absolute;
+    left: 0;
+    width: 40px;
+    height: 80%;
+    //background: black;
+    transition: 0.4s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 100%;
+      filter: blur(1px);
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -1px;
+      width: 10px;
+      height: 100%;
+      filter: blur(1px);
+    }
+  }
+}
+
+.icon-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(white, white);
+  box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1),
+  15px 15px 15px rgba(0,0,0,0.1),
+  20px 20px 15px rgba(0,0,0,0.1),
+  30px 30px 15px rgba(0,0,0,0.1),
+  inset 1px 1px 2px  white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+
+  i {
+    color: black;
+    z-index: 2;
+  }
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
