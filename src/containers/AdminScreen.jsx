@@ -44,26 +44,62 @@ export default function AdminScreen() {
         mname: "Dela Cruz",
         acccateg: "Parent",
         acctype: "Checking",
-        balance: '55,000'
+        balance: '55,000',
+        email: 'jane@nb.com',
+        username: 'jane',
+        password: 'janejane'
+      }, 
+      {
+        accNum: "RP 142 1905 0428", 
+        lname: "Penitente,",
+        fname: "Romulo", 
+        mname: "Luna",
+        acccateg: "Parent",
+        acctype: "Checking",
+        balance: '52,623',
+        email: 'romulo@nb.com',
+        username: 'romulo',
+        password: 'penitente'
       }, 
       {
         accNum: "RP 142 1026 0124", 
         lname: "Sorima,",
         fname: "Victoria", 
         mname: "Desa",
-        acccateg: "Parent",
+        acccateg: "Child",
         acctype: "Savings",
-        balance: '15,000'
+        balance: '15,000',
+        email: 'vickysaur@nb.com',
+        username: 'vickysaur',
+        password: 'darkangel',
+        parentAcc: "RP 142 1905 0428"
       }, 
       {
-        accNum: "RP 142 1905 0428", 
-        lname: "Penitente,",
-        fname: "Romulo", 
-        mname: "Torres",
-        acccateg: "Parent",
+        accNum: "RP 142 1905 1216", 
+        lname: "Gallano,",
+        fname: "Shalyn", 
+        mname: "Pagunsan",
+        acccateg: "Child",
         acctype: "Savings",
-        balance: '52,623'
-      }, 
+        balance: '100,000',
+        email: 's_gallano@nb.com',
+        username: 'sha',
+        password: 's@gallano',
+        parentAcc: "RP 142 1905 0428"
+      },
+      {
+        accNum: "RP 142 6969 0420", 
+        lname: "Sy,",
+        fname: "Fey Daniel", 
+        mname: "",
+        acccateg: "Child",
+        acctype: "Savings",
+        balance: '3,151',
+        email: 'sy,feydaniel@nb.com',
+        username: 'feysyy',
+        password: 'danieldaniel',
+        parentAcc: "RP 142 1905 0428"
+      }
     ]
     setUserInfo([...defaultUsers, ...userInfo]);
     setHistory([...history])
@@ -230,7 +266,7 @@ export default function AdminScreen() {
               </div>
               <div className='currency-and-amount'>
                 <CurrencyOptions />
-                <input required type="text" name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
+                <input required type="text"  name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
               </div>
             </div>
             <div className="add-account-triggers">

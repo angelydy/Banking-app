@@ -17,7 +17,11 @@ export default function UserScreen() {
   const [accCateg, setAccCateg] = useState('')
   const [accType, setAccType] = useState('')
   const [balance, setBalance] = useState('')
-  const [haveChildren, setHaveChildren] = useState(true)
+  const [isParent, setIsParent] = useState(true)
+  const [childAccNum, setChildAccNum] = useState([])
+  const [childName, setChildName] = useState([])
+  const [childBalance, setChildBalance] = useState([])
+  const [hasChildren, setHasChildren] = useState(false)
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
@@ -37,9 +41,15 @@ export default function UserScreen() {
         setAccType(user.acctype)
         setBalance(user.balance)
 
-        if(user.acctype !== 'Parent') {
-          setHaveChildren(false)
+        if(user.acccateg !== 'Parent') {
+          setIsParent(false)
         }
+      }
+      if(user.parentAcc == loggedUser) {
+        setChildAccNum(prevChild => [...prevChild, user.accNum])
+        setChildName(prevChild =>  [...prevChild,`${user.lname} ${user.fname} ${user.mname}`])
+        setChildBalance(prevChild => [...prevChild, user.balance])
+        setHasChildren(true)
       }
     })
   }
@@ -68,7 +78,11 @@ export default function UserScreen() {
             passedAccCateg={accCateg} 
             passedAccType={accType} 
             passedBalance={balance} 
-            ifHaveChildren={haveChildren}
+            ifParent={isParent}
+            passedChildAccNum={childAccNum}
+            passedChildName={childName}
+            passedChildBalance={childBalance}
+            ifHasChildren={hasChildren}
           />
           <TransferControl 
               currentUsers={userInfo} 
