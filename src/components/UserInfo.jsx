@@ -1,6 +1,7 @@
 import React from 'react'
+import ChildBalance from './ChildBalance';
 
-export default function UserInfo({ accessingUser, passedName, passedUserName, passedAccCateg, passedAccType, passedBalance, ifHaveChildren }) {
+export default function UserInfo({ accessingUser, passedName, passedUserName, passedAccCateg, passedAccType, passedBalance, ifParent, passedChildAccNum, passedChildName, passedChildBalance, ifHasChildren }) {
   const today = new Date();
   const hrs24 = today.getHours();
 
@@ -10,6 +11,7 @@ export default function UserInfo({ accessingUser, passedName, passedUserName, pa
     } else if (h <= 18) {
       return `Good Afternoon, ${passedUserName} 👋🏼`
     } else {
+      console.log(passedChildAccNum)
       return `Good Evening, ${passedUserName} 👋🏼`
     }
   }
@@ -25,21 +27,26 @@ export default function UserInfo({ accessingUser, passedName, passedUserName, pa
           <p>{passedAccType}</p>
         </div>
       </div>
-      {ifHaveChildren === true &&
-        <div className='user-info-wrapper'>Children</div>
-      }
       <div className='curr-balance'>
-            <p className='balance-title'>Your Balance</p>
-            <p className='balance-val'>{passedBalance}</p>
-            <div className='curr-status'>
-              <p>Currency</p>
-              <p>Status</p>
-            </div>
-            <div className='curr-status-val'>
-              <p>PHP / Peso</p>
-              <p>Active</p>
-            </div>
-          </div>
+        <p className='balance-title'>Your Balance</p>
+        <p className='balance-val'>{passedBalance}</p>
+        <div className='curr-status'>
+          <p>Currency</p>
+          <p>Status</p>
+        </div>
+        <div className='curr-status-val'>
+          <p>PHP / Peso</p>
+          <p>Active</p>
+        </div>
+      </div>
+      {ifParent === true &&
+        <ChildBalance 
+          passedChildAccNum={passedChildAccNum} 
+          passedChildName={passedChildName} 
+          passedChildBalance={passedChildBalance}
+          ifHasChildren={ifHasChildren}
+        />
+      }
     </>
   )
 }
