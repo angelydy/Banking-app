@@ -83,18 +83,9 @@
     text-align: center;
 
     .grid-one {
+    }
 
-      .balance-title {
-        text-align: left;
-      }
-
-      .balance-val {
-        font-size: 1.5rem;
-        font-weight: 900;
-        text-align: left;
-        border-bottom: 1px solid white;
-      }
-
+    .grid-two {
       .curr-balance {
         background: rgba( 255, 255, 255, 0.1 );
         box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
@@ -103,8 +94,26 @@
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         padding: 1rem;
-        width: 18rem;
+        width: 20rem;
         margin: 2rem;
+
+        .balance-title {
+          text-align: left;
+          font-weight: 600;
+        }
+
+        .budget-title {
+          text-align: left;
+          font-weight: 900;
+          font-size: 2rem;
+        }
+  
+        .balance-val {
+          font-size: 1.5rem;
+          font-weight: 900;
+          text-align: left;
+          border-bottom: 1px solid white;
+        }
 
         .curr-status {
           color: rgba(255, 255, 255, 0.541);
@@ -116,10 +125,6 @@
           line-height: 1rem;
         }
       }
-    }
-
-    .grid-two {
-
     }
   }
 }
@@ -146,7 +151,7 @@
   }
 }
 
-.transaction-controls {
+.withdraw-deposit, .transfer-control {
   display: flex;
   justify-content: space-around;
   text-align: center;

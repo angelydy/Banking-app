@@ -94,37 +94,42 @@ export default function UserScreen() {
           />
         </div>
         <div className='grid-two'>
+          <div className='curr-balance'>
+            <div className='budget-title'>BUDGET</div>
+            <p className='balance-title'>Your Balance</p>
+            <p className='balance-val'>{balance}</p>
+        </div>
+          <div className='withdraw-deposit'>
+          <DepositControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no" 
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              accessingUser={loggedUser}
+            />
+          <WithdrawControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no" 
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              accessingUser={loggedUser}
+          />
+          </div>
+          <div className='transfer-control'>
+          <TransferControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no" 
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              accessingUser={loggedUser}
+            />
+          </div>
         </div>
       </div>
-      <div className='transaction-controls'>
-      <TransferControl 
-            currentUsers={userInfo} 
-            setCurrentUser={setUserInfo} 
-            displayFeature="enter-acc-no" 
-            passedHistory={history}
-            setPassedHistory={setHistory}
-            accessingUser={loggedUser}
-          />
-        <DepositControl 
-            currentUsers={userInfo} 
-            setCurrentUser={setUserInfo} 
-            displayFeature="enter-acc-no" 
-            passedHistory={history}
-            setPassedHistory={setHistory}
-            accessingUser={loggedUser}
-          />
-        <WithdrawControl 
-            currentUsers={userInfo} 
-            setCurrentUser={setUserInfo} 
-            displayFeature="enter-acc-no" 
-            passedHistory={history}
-            setPassedHistory={setHistory}
-            accessingUser={loggedUser}
-          />
-      </div>
-      <div>
       <Footer />
-      </div>
     </section>
   );
 }

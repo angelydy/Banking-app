@@ -27,18 +27,6 @@ export default function UserInfo({ accessingUser, passedName, passedUserName, pa
           <p>{passedAccType}</p>
         </div>
       </div>
-      <div className='curr-balance'>
-        <p className='balance-title'>Your Balance</p>
-        <p className='balance-val'>{passedBalance}</p>
-        <div className='curr-status'>
-          <p>Currency</p>
-          <p>Status</p>
-        </div>
-        <div className='curr-status-val'>
-          <p>PHP <span><img src="https://img.icons8.com/color/20/000000/philippines-circular.png"/></span></p>
-          <p>Active</p>
-        </div>
-      </div>
       {ifParent === true &&
         <ChildBalance 
           passedChildAccNum={passedChildAccNum} 
