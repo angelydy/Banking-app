@@ -84,14 +84,6 @@
 
     .grid-one {
 
-      /*#transfer-to {
-        width: 13rem;
-
-        &::placeholder {
-           color: rgba(255, 255, 255, 0.664);
-        }
-      }*/
-
       .balance-title {
         text-align: left;
       }
@@ -155,13 +147,20 @@
 }
 
 .transaction-controls {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  display: flex;
+  justify-content: space-around;
   text-align: center;
   line-height: 2.5rem;
   width: 100%;
-  align-items: center;
   padding-bottom: 3rem;
+
+  #transfer-to {
+    width: 13rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.664);
+    }
+  }
 
 
   button {

@@ -188,8 +188,9 @@ a, .downloadBtn {
   grid-template-columns: repeat(2, 1fr);
   width: 60rem;
   height: 20rem;
-  padding-top: 5rem;
-  
+  padding: 5vh;
+  margin: 0 auto;
+
   .left-wrapper {
     background: url('/src/assets/01.png');
     border-top-left-radius: 10px;
@@ -290,5 +291,9 @@ a, .downloadBtn {
     .disclaimer {
       margin: 2rem 3.5rem;
     }
+  }
+
+  .password-info {
+    color: white;
   }
 }

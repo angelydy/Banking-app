@@ -35,7 +35,7 @@ export default function UserInfo({ accessingUser, passedName, passedUserName, pa
           <p>Status</p>
         </div>
         <div className='curr-status-val'>
-          <p>PHP / Peso</p>
+          <p>PHP <span><img src="https://img.icons8.com/color/20/000000/philippines-circular.png"/></span></p>
           <p>Active</p>
         </div>
       </div>
