@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import CurrencyOptions from './CurrencyOptions';
-import placeCommas from '../utils/placeCommas';
 import AlertModals from './AlertModals';
 import './../css/index.css';
 import { AccountOptions } from './AccountOptions';
@@ -24,7 +23,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(depositAmount < 100 || depositAmount.match(/[a-zA-Z]/)) {
+    if(depositAmount < 100) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
@@ -32,11 +31,11 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
     }
     currentUsers.findIndex(acc => {
       if(acc.accNum === matchedAcc) {
-        let newBalance = Number(acc.balance.split(',').join(''))
-        let deposit = Number(depositAmount.split(',').join('')) 
+        let newBalance = Number(acc.balance)
+        let deposit = Number(depositAmount) 
         deposit *= currency
         newBalance += deposit
-        acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+        acc.balance = newBalance
         let newHistory = `${acc.lname} ${acc.fname} deposited ₱${deposit} on ${time}.`
         setPassedHistory([...passedHistory, newHistory])
         setTransactionSuccessful(true)
@@ -68,7 +67,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
       <label htmlFor="amount">Enter an Amount</label>
       <div className='deposit-enter-amount'>
         <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/>
-        <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeDepositAmount}/>
+        <input required type="number" name='amount' onChange={storeDepositAmount}/>
       </div>
       <div className='deposit-triggers'>
         <button>Deposit</button>

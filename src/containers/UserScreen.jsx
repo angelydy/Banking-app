@@ -12,6 +12,7 @@ export default function UserScreen() {
   const [userInfo, setUserInfo] = useState([]);
   const [history, setHistory] = useState([])
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
+  const loggedUserInfo = JSON.parse(localStorage.getItem("loggedUserInfo"))
   const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
   const [accCateg, setAccCateg] = useState('')
@@ -77,7 +78,6 @@ export default function UserScreen() {
       <div>
       <Navbar />
       </div>
-      {/* <UserExpenses /> */}
       <div className='user-screen-grid'>
         <div className='grid-one'>
           <div className='dashboard-title'> DASHBOARD</div>
@@ -94,14 +94,17 @@ export default function UserScreen() {
             passedChildBalance={childBalance}
             ifHasChildren={hasChildren}
           />
+          <UserExpenses 
+            accessingUser={loggedUser}
+          />
         </div>
         <div className='grid-two'>
-          <div className='curr-balance'>
+          {/* <div className='curr-balance'>
             <div className='budget-title'>BUDGET</div>
             <p className='balance-title'>Your Balance</p>
             <p className='balance-val'>{balance}</p>
-        </div>
-          <div className='withdraw-deposit'>
+          </div> */}
+        <div className='withdraw-deposit'>
           <DepositControl 
               currentUsers={userInfo} 
               setCurrentUser={setUserInfo} 

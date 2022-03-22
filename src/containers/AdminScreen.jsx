@@ -8,7 +8,6 @@ import DepositControl from '../components/DepositControl';
 import TransferControl from '../components/TransferControl';
 import generateAccNum from '../utils/generateAccNum';
 import Navbar from '../components/Navbar';
-import placeCommas from '../utils/placeCommas';
 import Footer from '../components/Footer';
 import History from '../components/History';
 import './../css/index.css';
@@ -44,7 +43,7 @@ export default function AdminScreen() {
         mname: "Dela Cruz",
         acccateg: "Parent",
         acctype: "Checking",
-        balance: '55,000',
+        balance: 55000,
         email: 'jane@nb.com',
         username: 'jane',
         password: 'janejane',
@@ -57,7 +56,7 @@ export default function AdminScreen() {
         mname: "Luna",
         acccateg: "Parent",
         acctype: "Checking",
-        balance: '52,623',
+        balance: 52623,
         email: 'romulo@nb.com',
         username: 'romulo',
         password: 'penitente',
@@ -70,7 +69,7 @@ export default function AdminScreen() {
         mname: "Desa",
         acccateg: "Child",
         acctype: "Savings",
-        balance: '15,000',
+        balance: 15000,
         email: 'vickysaur@nb.com',
         username: 'vickysaur',
         password: 'darkangel',
@@ -84,7 +83,7 @@ export default function AdminScreen() {
         mname: "Pagunsan",
         acccateg: "Child",
         acctype: "Savings",
-        balance: '100,000',
+        balance: 100000,
         email: 's_gallano@nb.com',
         username: 'sha',
         password: 's@gallano',
@@ -98,7 +97,7 @@ export default function AdminScreen() {
         mname: "",
         acccateg: "Child",
         acctype: "Savings",
-        balance: '3,151',
+        balance: 3151,
         email: 'sy,feydaniel@nb.com',
         username: 'feysyy',
         password: 'danieldaniel',
@@ -151,14 +150,13 @@ export default function AdminScreen() {
   }
 
   function handleInitDeposit(e) {
-    const amount = e.target.value.replace(/,/gi, "").split(/(?=(?:\d{3})+$)/).join(",");
-    setInitDeposit(amount);
+    setInitDeposit(e.target.value);
   }
   
   function handleAdd(e) {
     e.preventDefault()
     let addUserInfo
-    if(initDeposit.match(/[a-zA-Z]/) || initDeposit < 2000) {
+    if(initDeposit < 2000) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
@@ -273,7 +271,7 @@ export default function AdminScreen() {
               </div>
               <div className='currency-and-amount'>
                 <CurrencyOptions />
-                <input required type="text"  name='initial-deposit' onChange={handleInitDeposit} onKeyUp={placeCommas}/>
+                <input required type="number" name='initial-deposit' onChange={handleInitDeposit}/>
               </div>
             </div>
             <div className="add-account-triggers">

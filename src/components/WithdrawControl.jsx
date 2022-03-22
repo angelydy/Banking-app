@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import CurrencyOptions from './CurrencyOptions';
 import AlertModals from './AlertModals';
-import placeCommas from '../utils/placeCommas';
 import './../css/index.css';
 import { AccountOptions } from './AccountOptions';
 
@@ -25,7 +24,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
 
   function handleSubmit(e) {
     e.preventDefault()
-    if(withdrawAmount < 100 || withdrawAmount.match(/[a-zA-Z]/)) {
+    if(withdrawAmount < 100) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
@@ -33,12 +32,12 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
     }
     currentUsers.findIndex(acc => {
       if(acc.accNum === matchedAcc) {
-        let newBalance = Number(acc.balance.split(',').join(''))
-        let withdrawal = Number(withdrawAmount.split(',').join('')) 
+        let newBalance = Number(acc.balance)
+        let withdrawal = Number(withdrawAmount) 
         withdrawal *= currency
         if(newBalance > withdrawal) {
           newBalance -= withdrawal
-          acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          acc.balance = newBalance
           let newHistory = `${acc.lname} ${acc.fname} withdrew ₱${withdrawal} on ${time}.`
           setPassedHistory([...passedHistory, newHistory])
           setTransactionSuccessful(true)
@@ -73,7 +72,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         <label htmlFor="amount">Enter an Amount</label>
         <div className='withdraw-enter-amount'>
           <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
-          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeWithdrawAmount}/>
+          <input required type="text" name='amount' onChange={storeWithdrawAmount}/>
         </div>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>

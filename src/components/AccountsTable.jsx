@@ -3,8 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
-export default function AccountsTable(props) {
-  const { passedUserInfo, setPassedUserInfo } = props
+export default function AccountsTable({ passedUserInfo, setPassedUserInfo }) {
 
   function deleteUser(acc) {
     const newUsers = passedUserInfo.filter((users)=> users.accNum !== acc)
