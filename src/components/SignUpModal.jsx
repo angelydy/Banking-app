@@ -111,7 +111,7 @@ export default function SignUpModal({ displayState, closeState }) {
               <input onChange={handlePasswordChange} type="password" id="password" placeholder="Password (8 or more characters)" required minLength={8}></input>
             </div> 
             <input onChange={handleConfirmPassword} type="password" id="confirm-password" placeholder="Confirm Password" required minLength={8}></input>
-            <span>{passMatch ? "Passwords match! ✔️" : "Passwords does not match. ❌"}</span>
+            <span className='password-info'>{passMatch ? "Passwords match! ✔️" : "Passwords does not match. ❌"}</span>
             <input type="submit" id="submitBtn"></input>
           </form>
           <p className="disclaimer">By submitting this form, you agree to the Terms of Use and Privacy of this website.</p>

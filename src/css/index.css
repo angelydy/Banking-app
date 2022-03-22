@@ -35,8 +35,10 @@
   flex-direction: column;
   width: 30rem;
   height: 30rem;
-  padding: 3rem;
+  padding: 1.5rem;
   margin: auto;
+  text-align: center;
+  align-items: center;
 }
 .login-wrapper #close-sign-up {
   position: absolute;
@@ -260,7 +262,8 @@ a:hover, .downloadBtn:hover {
   grid-template-columns: repeat(2, 1fr);
   width: 60rem;
   height: 20rem;
-  padding-top: 5rem;
+  padding: 5vh;
+  margin: 0 auto;
 }
 .form-wrapper .left-wrapper {
   background: url("/src/assets/01.png");
@@ -349,6 +352,9 @@ a:hover, .downloadBtn:hover {
 }
 .form-wrapper .right-wrapper .disclaimer {
   margin: 2rem 3.5rem;
+}
+.form-wrapper .password-info {
+  color: white;
 }
 
 .darkMode {
@@ -922,6 +928,10 @@ select {
 }
 .alert-modal-wrapper.show {
   display: flex;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 .alert-modal-wrapper .history-modal-container {
   background: rgba(255, 255, 255, 0.3);
@@ -1060,15 +1070,6 @@ select {
   grid-template-columns: 1fr 2fr;
   text-align: center;
 }
-.user-wrapper .user-screen-grid .grid-one {
-  /*#transfer-to {
-    width: 13rem;
-
-    &::placeholder {
-       color: rgba(255, 255, 255, 0.664);
-    }
-  }*/
-}
 .user-wrapper .user-screen-grid .grid-one .balance-title {
   text-align: left;
 }
@@ -1118,13 +1119,18 @@ select {
 }
 
 .transaction-controls {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  display: flex;
+  justify-content: space-around;
   text-align: center;
   line-height: 2.5rem;
   width: 100%;
-  align-items: center;
   padding-bottom: 3rem;
+}
+.transaction-controls #transfer-to {
+  width: 13rem;
+}
+.transaction-controls #transfer-to::placeholder {
+  color: rgba(255, 255, 255, 0.664);
 }
 .transaction-controls button {
   text-decoration: none;

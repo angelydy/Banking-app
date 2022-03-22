@@ -64,14 +64,14 @@ export default function UserScreen() {
 
   return (
     <section className='user-wrapper'>
-      <div className='welcome-modal'>
+      {/*<div className='welcome-modal'>
         <div className='welcome-container'>
           <div className='welcome-modal-icon'>🎉</div>
           <h1>Welcome on board!</h1>
           <div className='short-desc'>Start saving today</div>
           <button onClick={renderInfo}>Let's Go</button>
         </div>
-      </div>
+  </div>*/}
       <div>
       <Navbar />
       </div>
@@ -97,8 +97,7 @@ export default function UserScreen() {
         </div>
       </div>
       <div className='transaction-controls'>
-        <div>
-          <TransferControl 
+      <TransferControl 
             currentUsers={userInfo} 
             setCurrentUser={setUserInfo} 
             displayFeature="enter-acc-no" 
@@ -106,9 +105,7 @@ export default function UserScreen() {
             setPassedHistory={setHistory}
             accessingUser={loggedUser}
           />
-        </div>
-        <div className=''>
-          <DepositControl 
+        <DepositControl 
             currentUsers={userInfo} 
             setCurrentUser={setUserInfo} 
             displayFeature="enter-acc-no" 
@@ -116,9 +113,7 @@ export default function UserScreen() {
             setPassedHistory={setHistory}
             accessingUser={loggedUser}
           />
-        </div>
-        <div>
-          <WithdrawControl 
+        <WithdrawControl 
             currentUsers={userInfo} 
             setCurrentUser={setUserInfo} 
             displayFeature="enter-acc-no" 
@@ -126,7 +121,6 @@ export default function UserScreen() {
             setPassedHistory={setHistory}
             accessingUser={loggedUser}
           />
-        </div>
       </div>
       <div>
       <Footer />
