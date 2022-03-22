@@ -1073,16 +1073,7 @@ select {
   grid-template-columns: 1fr 2fr;
   text-align: center;
 }
-.user-wrapper .user-screen-grid .grid-one .balance-title {
-  text-align: left;
-}
-.user-wrapper .user-screen-grid .grid-one .balance-val {
-  font-size: 1.5rem;
-  font-weight: 900;
-  text-align: left;
-  border-bottom: 1px solid white;
-}
-.user-wrapper .user-screen-grid .grid-one .curr-balance {
+.user-wrapper .user-screen-grid .grid-two .curr-balance {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
   backdrop-filter: blur(2.5px);
@@ -1090,13 +1081,28 @@ select {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 1rem;
-  width: 18rem;
+  width: 20rem;
   margin: 2rem;
 }
-.user-wrapper .user-screen-grid .grid-one .curr-balance .curr-status {
+.user-wrapper .user-screen-grid .grid-two .curr-balance .balance-title {
+  text-align: left;
+  font-weight: 600;
+}
+.user-wrapper .user-screen-grid .grid-two .curr-balance .budget-title {
+  text-align: left;
+  font-weight: 900;
+  font-size: 2rem;
+}
+.user-wrapper .user-screen-grid .grid-two .curr-balance .balance-val {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: left;
+  border-bottom: 1px solid white;
+}
+.user-wrapper .user-screen-grid .grid-two .curr-balance .curr-status {
   color: rgba(255, 255, 255, 0.541);
 }
-.user-wrapper .user-screen-grid .grid-one .curr-balance .curr-status, .user-wrapper .user-screen-grid .grid-one .curr-balance .curr-status-val {
+.user-wrapper .user-screen-grid .grid-two .curr-balance .curr-status, .user-wrapper .user-screen-grid .grid-two .curr-balance .curr-status-val {
   display: flex;
   justify-content: space-around;
   line-height: 1rem;
@@ -1122,7 +1128,7 @@ select {
   justify-content: space-evenly;
 }
 
-.transaction-controls {
+.withdraw-deposit, .transfer-control {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -1130,13 +1136,13 @@ select {
   width: 100%;
   padding-bottom: 3rem;
 }
-.transaction-controls #transfer-to {
+.withdraw-deposit #transfer-to, .transfer-control #transfer-to {
   width: 13rem;
 }
-.transaction-controls #transfer-to::placeholder {
+.withdraw-deposit #transfer-to::placeholder, .transfer-control #transfer-to::placeholder {
   color: rgba(255, 255, 255, 0.664);
 }
-.transaction-controls button {
+.withdraw-deposit button, .transfer-control button {
   text-decoration: none;
   background-color: white;
   border-radius: 10px;
@@ -1149,13 +1155,13 @@ select {
   margin: 1rem 1rem;
   padding: 0.5rem;
 }
-.transaction-controls button:hover {
+.withdraw-deposit button:hover, .transfer-control button:hover {
   transition: 0.3s ease-in-out 0s;
   cursor: pointer;
   transform: scale(1.1);
   color: black;
 }
-.transaction-controls input {
+.withdraw-deposit input, .transfer-control input {
   background: transparent;
   border: 1px solid white;
   width: 10rem;
@@ -1165,7 +1171,7 @@ select {
   padding: 0.6rem;
   font-size: 1rem;
 }
-.transaction-controls #currency-options {
+.withdraw-deposit #currency-options, .transfer-control #currency-options {
   background-color: white;
   width: 3rem;
   height: 2.4rem;
@@ -1177,17 +1183,17 @@ select {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-.transaction-controls #currency-options option {
+.withdraw-deposit #currency-options option, .transfer-control #currency-options option {
   background-color: #201f49;
   color: white;
 }
-.transaction-controls #currency-options:hover {
+.withdraw-deposit #currency-options:hover, .transfer-control #currency-options:hover {
   cursor: pointer;
 }
-.transaction-controls #currency-options:focus {
+.withdraw-deposit #currency-options:focus, .transfer-control #currency-options:focus {
   outline: none;
 }
-.transaction-controls .withdraw-deposit-title, .transaction-controls .transfer-deposit-title, .transaction-controls .deposit-deposit-title {
+.withdraw-deposit .withdraw-deposit-title, .withdraw-deposit .transfer-deposit-title, .withdraw-deposit .deposit-deposit-title, .transfer-control .withdraw-deposit-title, .transfer-control .transfer-deposit-title, .transfer-control .deposit-deposit-title {
   font-weight: 900;
   font-size: 1.5rem;
   text-align: center;
