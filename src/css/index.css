@@ -1021,6 +1021,9 @@ select {
   display: flex;
   justify-content: center;
 }
+.user-wrapper .welcome-modal.hide {
+  display: none;
+}
 .user-wrapper .welcome-modal .welcome-container {
   border-radius: 10px;
   background: white;

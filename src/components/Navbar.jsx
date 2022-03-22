@@ -31,7 +31,7 @@ export default function Navbar() {
           <input type="checkbox" id="modeCheckbox"/>
           <div className="switchIcon" onClick={() => setDarkMode(!darkMode)}>
             <div className="icon-container">
-              <i class="fa-solid fa-circle-half-stroke"></i>
+              <i className="fa-solid fa-circle-half-stroke"></i>
             </div>
           </div>
         </label>

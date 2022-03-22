@@ -47,7 +47,8 @@ export default function AdminScreen() {
         balance: '55,000',
         email: 'jane@nb.com',
         username: 'jane',
-        password: 'janejane'
+        password: 'janejane',
+        expenses: []
       }, 
       {
         accNum: "RP 142 1905 0428", 
@@ -59,7 +60,8 @@ export default function AdminScreen() {
         balance: '52,623',
         email: 'romulo@nb.com',
         username: 'romulo',
-        password: 'penitente'
+        password: 'penitente',
+        expenses: []
       }, 
       {
         accNum: "RP 142 1026 0124", 
@@ -72,7 +74,8 @@ export default function AdminScreen() {
         email: 'vickysaur@nb.com',
         username: 'vickysaur',
         password: 'darkangel',
-        parentAcc: "RP 142 1905 0428"
+        parentAcc: "RP 142 1905 0428",
+        expenses: []
       }, 
       {
         accNum: "RP 142 1905 1216", 
@@ -85,7 +88,8 @@ export default function AdminScreen() {
         email: 's_gallano@nb.com',
         username: 'sha',
         password: 's@gallano',
-        parentAcc: "RP 142 1905 0428"
+        parentAcc: "RP 142 1905 0428",
+        expenses: []
       },
       {
         accNum: "RP 142 6969 0420", 
@@ -98,7 +102,8 @@ export default function AdminScreen() {
         email: 'sy,feydaniel@nb.com',
         username: 'feysyy',
         password: 'danieldaniel',
-        parentAcc: "RP 142 1905 0428"
+        parentAcc: "RP 142 1905 0428",
+        expenses: []
       }
     ]
     setUserInfo([...defaultUsers, ...userInfo]);
@@ -169,7 +174,8 @@ export default function AdminScreen() {
         acccateg: "Child",
         acctype: accType,
         balance: initDeposit,
-        parentAcc: accMatch
+        parentAcc: accMatch,
+        expenses: []
       };
       const checkUserExist = userInfo.findIndex(user => user.lname == lastName && user.fname == firstName)
       if(!userInfo[checkUserExist]) {
@@ -188,6 +194,7 @@ export default function AdminScreen() {
         acccateg: "Parent",
         acctype: accType,
         balance: initDeposit,
+        expenses: []
       };
       const checkUserExist = userInfo.findIndex(user => user.lname == lastName && user.fname == firstName)
       if(!userInfo[checkUserExist]) {

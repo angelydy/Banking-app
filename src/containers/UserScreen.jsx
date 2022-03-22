@@ -22,6 +22,7 @@ export default function UserScreen() {
   const [childName, setChildName] = useState([])
   const [childBalance, setChildBalance] = useState([])
   const [hasChildren, setHasChildren] = useState(false)
+  const [displayModal, setDisplayModal] = useState('welcome-modal')
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
@@ -52,6 +53,7 @@ export default function UserScreen() {
         setHasChildren(true)
       }
     })
+    setDisplayModal('welcome-modal hide')
   }
 
   useEffect(()=> {
@@ -64,14 +66,14 @@ export default function UserScreen() {
 
   return (
     <section className='user-wrapper'>
-      {/*<div className='welcome-modal'>
+      <div className={displayModal}>
         <div className='welcome-container'>
           <div className='welcome-modal-icon'>🎉</div>
           <h1>Welcome on board!</h1>
           <div className='short-desc'>Start saving today</div>
           <button onClick={renderInfo}>Let's Go</button>
         </div>
-  </div>*/}
+  </div>
       <div>
       <Navbar />
       </div>
