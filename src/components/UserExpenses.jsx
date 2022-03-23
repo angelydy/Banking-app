@@ -87,44 +87,62 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
 
   return (
     <>
-      <div className='user-info-wrapper'>
+      <div className='budget-app-wrapper'>
         <div className='curr-balance'>
           <div className='budget-title'>BUDGET</div>
           <p className='balance-title'>Your Balance</p>
           <p className='balance-val'>{passedBalance}</p>
           <form onSubmit={handleSubmit} autoComplete="off">
+            <div>
             <label htmlFor="expense-item">Add Expense Item</label>
+            <br />
             <input required onChange={handleExpenseInput} type="text" name="expense-item" id="expense-item" pattern='[A-Za-z]'/>
+            </div>
+            <div>
             <label htmlFor="expense-item-cost">Item Cost</label>
+            <br />
             <input required onChange={handleExpenseCostInput} type="number" name="expense-item-cost" id="expense-item-cost"/>
+            </div>
+            <div className='expense-btns'>
             <button>Add</button>
             <button type='reset'>Reset</button>
+            </div>
           </form>
         </div>
-        <div>Expense Item Name</div>
-        {currentExpenses.map(list => {
-          return (
-            <div key={uuidv4()}>
-              {list.item}
+        <div className='expenses-table'>
+          <div className='expenses-table-data'>
+            <div className='expenses-table-items'>
+              <div className='expense-table-title'>Expense Item Name</div>
+              {currentExpenses.map(list => {
+                return (
+                <div key={uuidv4()}>
+                  {list.item}
+                </div>
+                )
+              })}
             </div>
-          )
-        })}
-        <div>Expense Item Cost</div>
-        {currentExpenses.map(list => {
-          return (
-            <div key={uuidv4()}>
-              {list.cost}
+            <div className='expenses-table-cost'>
+              <div className='expense-table-title'>Expense Cost</div>
+              {currentExpenses.map(list => {
+                return (
+                <div key={uuidv4()}>
+                  {list.cost}
+                </div>
+              )
+              })}
             </div>
-          )
-        })}
-        <div>Delete</div>
-        {currentExpenses.map((list) => {
-          return (
-            <div key={uuidv4()}>
-              <FontAwesomeIcon icon={faTrashCan} onClick={()=> deleteExpense(list.item)}/>
+            <div className='expenses-table-delete'>
+              <div className='expense-table-title'>Delete</div>
+              {currentExpenses.map((list) => {
+                return (
+                <div key={uuidv4()} className="expense-delBtn">
+                  <FontAwesomeIcon icon={faTrashCan} onClick={()=> deleteExpense(list.item)}/>
+                </div>
+              ) 
+              })}
             </div>
-          )
-        })}
+          </div>
+        </div>
       </div>
       <AlertModals 
         displayState={itemAmountInvalid ? "alert-modal-wrapper show" : "alert-modal-wrapper"}

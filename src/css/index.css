@@ -357,6 +357,16 @@ a:hover, .downloadBtn:hover {
   color: white;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .darkMode {
   background: #222121;
   color: white;
@@ -594,7 +604,6 @@ select {
 .admin-wrapper-bottom .withdraw-deposit, .admin-wrapper-bottom .transfer-control {
   display: flex;
   justify-content: space-evenly;
-  margin: 2em 5em;
 }
 .admin-wrapper-bottom .withdraw-deposit-title {
   display: flex;
@@ -1081,8 +1090,6 @@ select {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 1rem;
-  width: 20rem;
-  margin: 2rem;
 }
 .user-wrapper .user-screen-grid .grid-two .curr-balance .balance-title {
   text-align: left;
@@ -1108,6 +1115,104 @@ select {
   line-height: 1rem;
 }
 
+.budget-app-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 1rem;
+  margin: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.budget-app-wrapper form {
+  line-height: 2rem;
+}
+.budget-app-wrapper .expense-btns {
+  display: flex;
+  justify-content: space-around;
+}
+.budget-app-wrapper input {
+  background: white;
+  width: 10rem;
+  padding: 0.3rem;
+  font-size: 1rem;
+  border-style: none;
+  border-radius: 10px;
+}
+.budget-app-wrapper button {
+  text-decoration: none;
+  background-color: white;
+  border-radius: 10px;
+  color: #2f2e6c;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 5rem;
+  text-align: center;
+  border-style: none;
+  margin: 1rem 1rem;
+  padding: 0.5rem;
+}
+.budget-app-wrapper button:hover {
+  transition: 0.3s ease-in-out 0s;
+  cursor: pointer;
+  transform: scale(1.1);
+  color: black;
+}
+.budget-app-wrapper .expenses-table-data {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  height: 25rem;
+  overflow: auto;
+  line-height: 2.5rem;
+}
+.budget-app-wrapper .expenses-table-data::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.budget-app-wrapper .expenses-table-data::-webkit-scrollbar-track {
+  background: transparent;
+}
+.budget-app-wrapper .expenses-table-data::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+.budget-app-wrapper .expenses-table-data::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.budget-app-wrapper .expenses-table-data .expense-delBtn {
+  cursor: pointer;
+}
+.budget-app-wrapper .expenses-table-data .expense-table-title, .budget-app-wrapper .expenses-table-data .table-title {
+  font-weight: 600;
+}
+
+.user-child-info-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+.user-child-info {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  font-size: 0.9rem;
+  line-height: 2.5rem;
+}
+.user-child-info .table-title {
+  font-weight: 600;
+  text-align: center;
+}
+
 .user-info-wrapper {
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
@@ -1117,8 +1222,8 @@ select {
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: white;
   padding: 1rem;
-  width: 18rem;
   margin: 2rem;
+  position: relative;
 }
 .user-info-wrapper h1 {
   font-size: 1.5rem;
