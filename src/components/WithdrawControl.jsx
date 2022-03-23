@@ -19,7 +19,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   const time = `${date} ${hours}:${mins}`
 
   function storeWithdrawAmount(e) {
-    setWithdrawAmount(e.target.value)
+    setWithdrawAmount(Number(e.target.value))
   }
 
   function handleSubmit(e) {
@@ -30,10 +30,10 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
       resetState()
       return
     }
-    currentUsers.findIndex(acc => {
+    currentUsers.find(acc => {
       if(acc.accNum === matchedAcc) {
-        let newBalance = Number(acc.balance)
-        let withdrawal = Number(withdrawAmount) 
+        let newBalance = acc.balance
+        let withdrawal = withdrawAmount
         withdrawal *= currency
         if(newBalance > withdrawal) {
           newBalance -= withdrawal
@@ -72,7 +72,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         <label htmlFor="amount">Enter an Amount</label>
         <div className='withdraw-enter-amount'>
           <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
-          <input required type="text" name='amount' onChange={storeWithdrawAmount}/>
+          <input required type="number" name='amount' onChange={storeWithdrawAmount}/>
         </div>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>
@@ -86,7 +86,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         message={"Sorry, you don't have enough balance to make this transaction."}
         image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
       />
-       <AlertModals
+      <AlertModals
         displayState={transactionSuccessful ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
         closeState={()=> transactionSuccessful ? setTransactionSuccessful(false) : setTransactionSuccessful(true)}
         boldAlert={'GREAT!'}

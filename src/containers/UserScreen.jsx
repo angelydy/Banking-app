@@ -12,7 +12,6 @@ export default function UserScreen() {
   const [userInfo, setUserInfo] = useState([]);
   const [history, setHistory] = useState([])
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
-  const loggedUserInfo = JSON.parse(localStorage.getItem("loggedUserInfo"))
   const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
   const [accCateg, setAccCateg] = useState('')
@@ -21,9 +20,10 @@ export default function UserScreen() {
   const [isParent, setIsParent] = useState(true)
   const [childAccNum, setChildAccNum] = useState([])
   const [childName, setChildName] = useState([])
-  const [childBalance, setChildBalance] = useState([])
   const [hasChildren, setHasChildren] = useState(false)
   const [displayModal, setDisplayModal] = useState('welcome-modal')
+  const [childArray, setChildArray] = useState([])
+  let children = []
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
@@ -50,12 +50,12 @@ export default function UserScreen() {
       if(user.parentAcc == loggedUser) {
         setChildAccNum(prevChild => [...prevChild, user.accNum])
         setChildName(prevChild =>  [...prevChild,`${user.lname} ${user.fname} ${user.mname}`])
-        setChildBalance(prevChild => [...prevChild, user.balance])
         setHasChildren(true)
       }
     })
     setDisplayModal('welcome-modal hide')
   }
+
 
   useEffect(()=> {
     localStorage.setItem("history", JSON.stringify(history))
@@ -63,6 +63,15 @@ export default function UserScreen() {
 
   useEffect(()=> {
     localStorage.setItem("users", JSON.stringify(userInfo))
+    userInfo.find(user => {
+      if(user.accNum == loggedUser) {
+        setBalance(user.balance)
+      }
+      if(user.parentAcc == loggedUser) {
+        children.push(user.balance)
+        setChildArray(children)
+      }
+    })
   }, [userInfo])
 
   return (
@@ -90,23 +99,17 @@ export default function UserScreen() {
             ifParent={isParent}
             passedChildAccNum={childAccNum}
             passedChildName={childName}
-            passedChildBalance={childBalance}
             ifHasChildren={hasChildren}
+            passedChildArray={childArray}
           />
         </div>
         <div className='grid-two'>
         <UserExpenses 
             accessingUser={loggedUser}
+            passedBalance={balance}
+            setPassedBalance={setBalance}
           />
         <div className='withdraw-deposit'>
-          <DepositControl 
-              currentUsers={userInfo} 
-              setCurrentUser={setUserInfo} 
-              displayFeature="enter-acc-no" 
-              passedHistory={history}
-              setPassedHistory={setHistory}
-              accessingUser={loggedUser}
-            />
           <WithdrawControl 
               currentUsers={userInfo} 
               setCurrentUser={setUserInfo} 
@@ -115,6 +118,14 @@ export default function UserScreen() {
               setPassedHistory={setHistory}
               accessingUser={loggedUser}
           />
+          <DepositControl 
+              currentUsers={userInfo} 
+              setCurrentUser={setUserInfo} 
+              displayFeature="enter-acc-no" 
+              passedHistory={history}
+              setPassedHistory={setHistory}
+              accessingUser={loggedUser}
+            />
           </div>
           <div className='transfer-control'>
           <TransferControl 

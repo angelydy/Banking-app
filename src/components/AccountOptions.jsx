@@ -54,11 +54,12 @@ export function AccountOptionsTransferFrom({ passedUserInfo, onSelectAcc, select
   )
 }
 
-export function AccountOptionsTransferTo({ passedUserInfo, onSelectAcc, selectedAcc, onSetAccLabel, selectedAccLabel }) {
+export function AccountOptionsTransferTo({ passedUserInfo, onSelectAcc, selectedAcc, onSetAccLabel, selectedAccLabel, setCorrectTransferTo }) {
   
   const handleChange = (e) => {
     onSelectAcc(e.target.value)
     onSetAccLabel('Selected Receiver Account')
+    setCorrectTransferTo(true)
   }
 
   return (
