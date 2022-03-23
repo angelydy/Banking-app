@@ -6,7 +6,7 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import capitalizeLetters from '../utils/capitalizeLetters';
 import AlertModals from './AlertModals';
 
-export default function UserExpenses({ accessingUser, passedBalance, setPassedBalance }) {
+export default function UserExpenses({ accessingUser, passedBalance, setPassedBalance, passedHistory, setPassedHistory }) {
   const [userExpense, setUserExpense] = useState()
   const [expenseCost, setExpenseCost] = useState(0)
   const [currentExpenses, setCurrentExpenses] = useState([])
@@ -15,6 +15,11 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
   const [expenseExistsAlert, setExpenseExistsAlert] = useState(false)
   const [successfulAdd, setSuccesfulAdd] = useState(false)
   let users = JSON.parse(localStorage.getItem("users"))
+  const date = new Date().toLocaleString().split(',')[0]
+  const hours = new Date().getHours()
+  var mins = new Date().getMinutes()
+  mins = mins > 9 ? mins : '0' + mins
+  const time = `${date} ${hours}:${mins}`
 
   useEffect(() => {
     let specificUserInfo = users.find(user => user.accNum == accessingUser)
@@ -42,6 +47,8 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
       if(list.item == selectedItem) {
         accessingUserInfo.balance += list.cost
         setPassedBalance(accessingUserInfo.balance)
+        let newHistory = `${accessingUserInfo.lname} ${accessingUserInfo.fname} removed ${list.item} worth ₱${list.cost} on ${time}.`
+        setPassedHistory([...passedHistory, {accNum: accessingUser, history: newHistory}])
       }
     })
     expenseList = expenseList.filter(each => each.item !== selectedItem)
@@ -71,6 +78,8 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
         setCurrentExpenses(user.expenses)
         user.balance -= expenseCost
         setPassedBalance(user.balance)
+        let newHistory = `${user.lname} ${user.fname} added ${userExpense} worth ₱${expenseCost} on ${time}.`
+        setPassedHistory([...passedHistory, {accNum: accessingUser, history: newHistory}])
         localStorage.setItem("users", JSON.stringify(users))
         setSuccesfulAdd(true)
       }
@@ -96,7 +105,7 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
             <div>
             <label htmlFor="expense-item">Add Expense Item</label>
             <br />
-            <input required onChange={handleExpenseInput} type="text" name="expense-item" id="expense-item" pattern='[A-Za-z]'/>
+            <input required onChange={handleExpenseInput} type="text" name="expense-item" id="expense-item"/>
             </div>
             <div>
             <label htmlFor="expense-item-cost">Item Cost</label>

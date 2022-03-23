@@ -39,7 +39,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
           newBalance -= withdrawal
           acc.balance = newBalance
           let newHistory = `${acc.lname} ${acc.fname} withdrew ₱${withdrawal} on ${time}.`
-          setPassedHistory([...passedHistory, newHistory])
+          setPassedHistory([...passedHistory, {accNum: matchedAcc, history: newHistory}])
           setTransactionSuccessful(true)
           setCurrentUser([...currentUsers])
         } else {

@@ -95,7 +95,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
       setSameAccError(true)
     }
     let newHistory = `${from} transferred ₱${transferHistory} to ${to} on ${time}.`
-    setPassedHistory([...passedHistory, newHistory])
+    let receiverHistory = `${to} received ₱${transferHistory} from ${from} on ${time}.`
+    setPassedHistory([...passedHistory, {accNum: matchedAccFrom, history: newHistory}, {accNum: matchedAccTo, history: receiverHistory}])
     e.target.reset()
     resetState()
   }

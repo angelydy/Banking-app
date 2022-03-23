@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import TransferControl from '../components/TransferControl';
 import WithdrawControl from '../components/WithdrawControl';
+import History from '../components/History';
 import './../css/index.css';
 import UserInfo from '../components/UserInfo';
 
@@ -22,8 +23,11 @@ export default function UserScreen() {
   const [childName, setChildName] = useState([])
   const [hasChildren, setHasChildren] = useState(false)
   const [displayModal, setDisplayModal] = useState('welcome-modal')
+  const [displayHistory, setDisplayHistory] = useState(false)
   const [childArray, setChildArray] = useState([])
+  const [historyArray, setHistoryArray] = useState([])
   let children = []
+  let userHistory = []
 
   useEffect(()=> {
     const getUsers = JSON.parse(localStorage.getItem("users"));
@@ -59,6 +63,12 @@ export default function UserScreen() {
 
   useEffect(()=> {
     localStorage.setItem("history", JSON.stringify(history))
+    history.find(history => {
+      if(history.accNum === loggedUser) {
+        userHistory.push(history.history)
+        setHistoryArray(userHistory)
+      }
+    })
   }, [history])
 
   useEffect(()=> {
@@ -76,6 +86,10 @@ export default function UserScreen() {
 
   return (
     <section className='user-wrapper'>
+      <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
+        <i className="fa-solid fa-clock-rotate-left"></i>
+        View Transaction History
+      </div>
       <div className={displayModal}>
         <div className='welcome-container'>
           <div className='welcome-modal-icon'>🎉</div>
@@ -108,6 +122,8 @@ export default function UserScreen() {
             accessingUser={loggedUser}
             passedBalance={balance}
             setPassedBalance={setBalance}
+            passedHistory={history}
+            setPassedHistory={setHistory}
           />
         <div className='withdraw-deposit'>
           <WithdrawControl 
@@ -140,6 +156,12 @@ export default function UserScreen() {
         </div>
       </div>
       <Footer />
+      <History
+      displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+      closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
+      historyMessage={historyArray}
+      accessingUser={loggedUser}
+      />
     </section>
   );
 }
