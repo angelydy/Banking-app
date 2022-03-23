@@ -18,7 +18,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
   const time = `${date} ${hours}:${mins}`
 
   function storeDepositAmount(e) {
-    setDepositAmount(e.target.value)
+    setDepositAmount(Number(e.target.value))
   }
 
   function handleSubmit(e) {
@@ -31,8 +31,8 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
     }
     currentUsers.findIndex(acc => {
       if(acc.accNum === matchedAcc) {
-        let newBalance = Number(acc.balance)
-        let deposit = Number(depositAmount) 
+        let newBalance = acc.balance
+        let deposit = depositAmount
         deposit *= currency
         newBalance += deposit
         acc.balance = newBalance

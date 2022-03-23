@@ -19,7 +19,7 @@ export default function AdminScreen() {
   const [firstName, setFirstname] = useState('');
   const [middleName, setMiddlename] = useState('');
   const [accType, setAccType] = useState('Savings');
-  const [initDeposit, setInitDeposit] = useState('');
+  const [initDeposit, setInitDeposit] = useState();
   const [accMatch, setAccMatch] = useState('')
   const [status, setStatus] = useState(0)
   const [ifUserAlreadyExist, setIfUserAlreadyExist] = useState(false)
@@ -150,7 +150,7 @@ export default function AdminScreen() {
   }
 
   function handleInitDeposit(e) {
-    setInitDeposit(e.target.value);
+    setInitDeposit(Number(e.target.value));
   }
   
   function handleAdd(e) {

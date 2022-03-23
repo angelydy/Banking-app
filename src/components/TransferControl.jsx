@@ -27,8 +27,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   useEffect(() => {
     currentUsers.find(acc => {
       if(acc.accNum === matchedAccFrom) {
-        let newBalance = Number(acc.balance)
-        let transfer = Number(transferAmount)
+        let newBalance = acc.balance
+        let transfer = transferAmount
         transfer *= currency
         if(newBalance < transfer) {
           setApproveTransfer(false)
@@ -38,7 +38,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   }, [transferAmount, currency])
   
   function storeTransferAmount(e) {
-    setTransferAmount(e.target.value)
+    setTransferAmount(Number(e.target.value))
   }
 
   function handleInputTransferTo(e) {
@@ -54,7 +54,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     e.preventDefault()
     let from
     let to
-    let transfer = Number(transferAmount) 
+    let transfer = transferAmount 
     let transferHistory = transfer * currency
     if(transferAmount < 100) {
       setInvalidAmount(true)
@@ -71,11 +71,10 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     if(matchedAccFrom !== matchedAccTo) {
       currentUsers.find(acc => {
         if(acc.accNum === matchedAccFrom) {
-          let newBalance = Number(acc.balance)
+          let newBalance = acc.balance
           from = `${acc.lname} ${acc.fname}`
           if(approveTransfer == true) {
             newBalance -= transferHistory
-            // acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
             acc.balance = newBalance
             setTransactionSuccessful(true)
           } else {
@@ -83,7 +82,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
           }
         }
         if(acc.accNum === matchedAccTo) {
-          let newBalance = Number(acc.balance)
+          let newBalance = acc.balance
           to = `${acc.lname} ${acc.fname}`
           if(approveTransfer == true) {
             newBalance += transferHistory
@@ -126,7 +125,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
         </div>
         <div className={displayFeature}>
           {accessingUser === 'admin' ?
-            <AccountOptionsTransferTo passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} /> :
+            <AccountOptionsTransferTo setCorrectTransferTo={setCorrectTransferTo} passedUserInfo={currentUsers} onSetAccLabel={setAccLabelTo} selectedAccLabel={accLabelTo} onSelectAcc={setAccMatchTo} selectedAcc={matchedAccTo} /> :
             <>
               <label htmlFor='transfer-to'>Enter Receiver Account No.</label>
               <br></br>
