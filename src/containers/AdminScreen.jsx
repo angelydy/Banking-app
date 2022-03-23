@@ -11,6 +11,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import History from '../components/History';
 import './../css/index.css';
+import capitalizeLetters from '../utils/capitalizeLetters';
 
 export default function AdminScreen() {
   const [userInfo, setUserInfo] = useState([]);
@@ -134,15 +135,15 @@ export default function AdminScreen() {
   }
 
   function handleLastName(e) {
-    setLastname(`${e.target.value.trim()},`)
+    setLastname(capitalizeLetters(`${e.target.value.trim()},`))
   }
 
   function handleFirstName(e) {
-    setFirstname(e.target.value.trim());
+    setFirstname(capitalizeLetters(e.target.value.trim()));
   }
 
   function handleMiddleName(e) {
-    setMiddlename(e.target.value.trim());
+    setMiddlename(capitalizeLetters(e.target.value.trim()));
   }
 
   function handleAccType(e) {
@@ -233,15 +234,15 @@ export default function AdminScreen() {
             <div className='user-name'>
               <div>
                 <label htmlFor="lastname">Last Name</label>
-                <input required id='test' type="text" name='lastname' onChange={handleLastName}/>
+                <input required id='test' type="text" name='lastname' onChange={handleLastName} pattern='[A-Za-z]'/>
               </div>
               <div>
                 <label htmlFor="firstname">First Name</label>
-                <input required type="text" name='firstname' onChange={handleFirstName}/>
+                <input required type="text" name='firstname' onChange={handleFirstName} pattern='[A-Za-z]'/>
               </div>
               <div>
                 <label htmlFor="middlename">Middle Name</label>
-                <input type="text" name='middlename' onChange={handleMiddleName}/>
+                <input type="text" name='middlename' onChange={handleMiddleName} pattern='[A-Za-z]'/>
               </div>
             </div>
             <div className='add-account-acc-category'>
