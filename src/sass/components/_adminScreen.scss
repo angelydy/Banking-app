@@ -1,3 +1,13 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .darkMode {
   background: rgb(34, 33, 33);
   color: white;
@@ -268,7 +278,6 @@ select {
     .withdraw-deposit, .transfer-control{
       display: flex;
       justify-content: space-evenly;
-      margin: 2em 5em;
     }
 
     .withdraw-deposit-title {

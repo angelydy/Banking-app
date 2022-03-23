@@ -80,7 +80,6 @@ export default function UserScreen() {
       </div>
       <div className='user-screen-grid'>
         <div className='grid-one'>
-          <div className='dashboard-title'> DASHBOARD</div>
           <UserInfo 
             accessingUser={loggedUser} 
             passedName={name} 
@@ -94,16 +93,11 @@ export default function UserScreen() {
             passedChildBalance={childBalance}
             ifHasChildren={hasChildren}
           />
-          <UserExpenses 
-            accessingUser={loggedUser}
-          />
         </div>
         <div className='grid-two'>
-          {/* <div className='curr-balance'>
-            <div className='budget-title'>BUDGET</div>
-            <p className='balance-title'>Your Balance</p>
-            <p className='balance-val'>{balance}</p>
-          </div> */}
+        <UserExpenses 
+            accessingUser={loggedUser}
+          />
         <div className='withdraw-deposit'>
           <DepositControl 
               currentUsers={userInfo} 
