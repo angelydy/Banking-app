@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './../css/index.css';
 import CurrencyOptions from './CurrencyOptions';
-import placeCommas from '../utils/placeCommas';
 import AlertModals from './AlertModals';
 import { AccountOptionsTransferFrom, AccountOptionsTransferTo } from './AccountOptions';
 
@@ -28,8 +27,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   useEffect(() => {
     currentUsers.find(acc => {
       if(acc.accNum === matchedAccFrom) {
-        let newBalance = Number(acc.balance.split(',').join(''))
-        let transfer = Number(transferAmount.split(',').join(''))
+        let newBalance = Number(acc.balance)
+        let transfer = Number(transferAmount)
         transfer *= currency
         if(newBalance < transfer) {
           setApproveTransfer(false)
@@ -43,10 +42,8 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
   }
 
   function handleInputTransferTo(e) {
-    console.log('hmm')
     currentUsers.find(user => {
       if(user.accNum === e.target.value) {
-        console.log('yes')
         setCorrectTransferTo(true)
         setAccMatchTo(e.target.value)
       }
@@ -55,12 +52,11 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(correctTransferTo)
     let from
     let to
-    let transfer = Number(transferAmount.split(',').join('')) 
+    let transfer = Number(transferAmount) 
     let transferHistory = transfer * currency
-    if(transferAmount < 100 || transferAmount.match(/[a-zA-Z]/)) {
+    if(transferAmount < 100) {
       setInvalidAmount(true)
       e.target.reset()
       resetState()
@@ -75,22 +71,23 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
     if(matchedAccFrom !== matchedAccTo) {
       currentUsers.find(acc => {
         if(acc.accNum === matchedAccFrom) {
-          let newBalance = Number(acc.balance.split(',').join(''))
+          let newBalance = Number(acc.balance)
           from = `${acc.lname} ${acc.fname}`
           if(approveTransfer == true) {
             newBalance -= transferHistory
-            acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+            // acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+            acc.balance = newBalance
             setTransactionSuccessful(true)
           } else {
             setNotEnoughBalance(true)
           }
         }
         if(acc.accNum === matchedAccTo) {
-          let newBalance = Number(acc.balance.split(',').join(''))
+          let newBalance = Number(acc.balance)
           to = `${acc.lname} ${acc.fname}`
           if(approveTransfer == true) {
             newBalance += transferHistory
-            acc.balance = newBalance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+            acc.balance = newBalance
             setCurrentUser([...currentUsers])
           }
         }
@@ -140,7 +137,7 @@ export default function TransferControl({ displayFeature, currentUsers, setCurre
           <label htmlFor="amount">Enter an Amount</label>
         <div className='transfer-enter-amount'>
           <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
-          <input required type="text" name='amount' onKeyUp={placeCommas} onChange={storeTransferAmount}/>
+          <input required type="number" name='amount' onChange={storeTransferAmount}/>
         </div>
       </div>
         <div className='transfer-triggers'>
