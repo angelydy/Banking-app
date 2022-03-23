@@ -234,15 +234,15 @@ export default function AdminScreen() {
             <div className='user-name'>
               <div>
                 <label htmlFor="lastname">Last Name</label>
-                <input required id='test' type="text" name='lastname' onChange={handleLastName} pattern='[A-Za-z]'/>
+                <input required id='test' type="text" name='lastname' onChange={handleLastName}/>
               </div>
               <div>
                 <label htmlFor="firstname">First Name</label>
-                <input required type="text" name='firstname' onChange={handleFirstName} pattern='[A-Za-z]'/>
+                <input required type="text" name='firstname' onChange={handleFirstName}/>
               </div>
               <div>
                 <label htmlFor="middlename">Middle Name</label>
-                <input type="text" name='middlename' onChange={handleMiddleName} pattern='[A-Za-z]'/>
+                <input type="text" name='middlename' onChange={handleMiddleName}/>
               </div>
             </div>
             <div className='add-account-acc-category'>
@@ -352,6 +352,7 @@ export default function AdminScreen() {
       closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
       historyMessage={history}
       setHistoryList={setHistory}
+      accessingUser={'admin'}
       />
     </div>
   );

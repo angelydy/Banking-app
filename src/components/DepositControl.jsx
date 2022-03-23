@@ -37,7 +37,7 @@ export default function DepositControl({ displayFeature, currentUsers, setCurren
         newBalance += deposit
         acc.balance = newBalance
         let newHistory = `${acc.lname} ${acc.fname} deposited ₱${deposit} on ${time}.`
-        setPassedHistory([...passedHistory, newHistory])
+        setPassedHistory([...passedHistory, {accNum: matchedAcc, history: newHistory}])
         setTransactionSuccessful(true)
         setCurrentUser([...currentUsers])
       }
