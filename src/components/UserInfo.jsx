@@ -1,7 +1,7 @@
 import React from 'react'
 import ChildBalance from './ChildBalance';
 
-export default function UserInfo({ accessingUser, passedName, passedUserName, passedAccCateg, passedAccType, passedBalance, ifParent, passedChildAccNum, passedChildName, passedChildBalance, ifHasChildren }) {
+export default function UserInfo({ accessingUser, passedName, passedUserName, passedAccCateg, passedAccType, ifParent, passedChildAccNum, passedChildName, ifHasChildren, passedChildArray }) {
   const today = new Date();
   const hrs24 = today.getHours();
 
@@ -30,8 +30,8 @@ export default function UserInfo({ accessingUser, passedName, passedUserName, pa
         <ChildBalance 
           passedChildAccNum={passedChildAccNum} 
           passedChildName={passedChildName} 
-          passedChildBalance={passedChildBalance}
           ifHasChildren={ifHasChildren}
+          passedChildArray={passedChildArray}
         />
       }
     </>

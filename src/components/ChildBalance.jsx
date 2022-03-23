@@ -1,9 +1,8 @@
 import React from 'react'
 import {v4 as uuidv4} from 'uuid'
 
-export default function ChildBalance({ passedChildAccNum, passedChildName, passedChildBalance, ifHasChildren }) {
-
-
+export default function ChildBalance({ passedChildAccNum, passedChildName, ifHasChildren, passedChildArray }) {
+  
   return (
     <>
       {ifHasChildren === false ?
@@ -32,7 +31,7 @@ export default function ChildBalance({ passedChildAccNum, passedChildName, passe
          </div>
          <div className='account-table-account-balance'>
            <div className='table-title'>Child Balance</div>
-           {passedChildBalance.map((balance) =>{
+           {passedChildArray.map((balance) =>{
                return (
                  <div key={uuidv4()}>
                    {balance}

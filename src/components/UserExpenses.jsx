@@ -3,22 +3,31 @@ import React, { useState, useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import capitalizeLetters from '../utils/capitalizeLetters';
+import AlertModals from './AlertModals';
 
-export default function UserExpenses({ accessingUser }) {
+export default function UserExpenses({ accessingUser, passedBalance, setPassedBalance }) {
   const [userExpense, setUserExpense] = useState()
   const [expenseCost, setExpenseCost] = useState(0)
   const [currentExpenses, setCurrentExpenses] = useState([])
-  const [balance, setBalance] = useState()
+  const [expenseExists, setExpenseExists] = useState(false)
+  const [itemAmountInvalid, setItemAmountInvalid] = useState(false)
+  const [expenseExistsAlert, setExpenseExistsAlert] = useState(false)
+  const [successfulAdd, setSuccesfulAdd] = useState(false)
   let users = JSON.parse(localStorage.getItem("users"))
 
   useEffect(() => {
     let specificUserInfo = users.find(user => user.accNum == accessingUser)
     setCurrentExpenses(specificUserInfo.expenses)
-    setBalance(specificUserInfo.balance)
   }, [])
   
   function handleExpenseInput(e) {
-    setUserExpense(e.target.value.toLowerCase())
+    currentExpenses.find(each => {
+      if(each.item == capitalizeLetters(e.target.value.trim())) {
+        setExpenseExists(true)
+      }
+    })
+    setUserExpense(capitalizeLetters(e.target.value.trim()))
   }
 
   function handleExpenseCostInput(e) {
@@ -32,7 +41,7 @@ export default function UserExpenses({ accessingUser }) {
     expenseList.find(list => {
       if(list.item == selectedItem) {
         accessingUserInfo.balance += list.cost
-        setBalance(accessingUserInfo.balance)
+        setPassedBalance(accessingUserInfo.balance)
       }
     })
     expenseList = expenseList.filter(each => each.item !== selectedItem)
@@ -43,18 +52,37 @@ export default function UserExpenses({ accessingUser }) {
 
   function handleSubmit(e) {
     e.preventDefault()
+    if(!userExpense || expenseCost <= 0) {
+      setItemAmountInvalid(true)
+      e.target.reset()
+      resetState()
+      return
+    }
+    if(expenseExists == true) {
+      setExpenseExistsAlert(true)
+      e.target.reset()
+      resetState()
+      return
+    }
     users.find(user => {
       if(user.accNum == accessingUser) {
         let newUserExpense = {item: userExpense, cost: expenseCost}
         user.expenses.push(newUserExpense)
         setCurrentExpenses(user.expenses)
         user.balance -= expenseCost
-        setBalance(user.balance)
+        setPassedBalance(user.balance)
         localStorage.setItem("users", JSON.stringify(users))
-        alert('congrats')
+        setSuccesfulAdd(true)
       }
     })
     e.target.reset()
+    resetState()
+  }
+
+  function resetState() {
+    setUserExpense()
+    setExpenseCost(0)
+    setExpenseExists(false)
   }
 
   return (
@@ -63,12 +91,12 @@ export default function UserExpenses({ accessingUser }) {
         <div className='curr-balance'>
           <div className='budget-title'>BUDGET</div>
           <p className='balance-title'>Your Balance</p>
-          <p className='balance-val'>{balance}</p>
+          <p className='balance-val'>{passedBalance}</p>
           <form onSubmit={handleSubmit} autoComplete="off">
             <label htmlFor="expense-item">Add Expense Item</label>
-            <input onChange={handleExpenseInput} type="text" name="expense-item" id="expense-item"/>
+            <input required onChange={handleExpenseInput} type="text" name="expense-item" id="expense-item" pattern='[A-Za-z]'/>
             <label htmlFor="expense-item-cost">Item Cost</label>
-            <input onChange={handleExpenseCostInput} type="text" name="expense-item-cost" id="expense-item-cost"/>
+            <input required onChange={handleExpenseCostInput} type="number" name="expense-item-cost" id="expense-item-cost"/>
             <button>Add</button>
             <button type='reset'>Reset</button>
           </form>
@@ -98,6 +126,27 @@ export default function UserExpenses({ accessingUser }) {
           )
         })}
       </div>
+      <AlertModals 
+        displayState={itemAmountInvalid ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> itemAmountInvalid ? setItemAmountInvalid(false) : setItemAmountInvalid(true)}
+        boldAlert={'OOPS!'}
+        message={"Sorry, the item/amount is invalid."}
+        image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
+      />
+      <AlertModals 
+        displayState={expenseExistsAlert ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> expenseExistsAlert ? setExpenseExistsAlert(false) : setExpenseExistsAlert(true)}
+        boldAlert={'OOPS!'}
+        message={"Sorry, the item is already listed."}
+        image={"https://img.icons8.com/cotton/50/000000/error--v4.png"}
+      />
+      <AlertModals
+        displayState={successfulAdd ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+        closeState={()=> successfulAdd ? setSuccesfulAdd(false) : setSuccesfulAdd(true)}
+        boldAlert={'GREAT!'}
+        message={"The expense item is added successfully."}
+        image={"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAADmklEQVRoge2ZTWgWRxjH/5Ok0RgkaUIRLVhoTTBGSUHjB6X21DbQWw8VWvSgnlRayUV6U3oWeqqIoF4EEb96a7WFNGLIRWhLiii2IJooIcZETOtH4q+HfZYsL8mb3dnZNxHyvzxk33n+83t2drKzM9KiFlWIXFHGwBpJWyS1SmqUNCVpRFK/pF7n3GRRfecWUA3sBgYorzvA9pB9BxsRYKWkC5K22aUhSdclDUq6Z9fekdSlaJT+k3RK0hnnXF8ojlwCGoFbdrdvA58BM94koAo4WjJCZ4FlleaeCe60Ad0AGlK0rwLWAQeBYcu9WAnWclCrgUngJdDhkf8uMGrFdBXBmBZkn0FcyOFxOH7EQrJlhbhkEHtyeLSZx98h2bJC9BvE1hwe1cAz4JXvpK/y7TyhZotjvgbOuSlJzxW9Dmp9PEIUEr+hyelTY/GVT3KIQoYtrvA1AJokLZM04Zx74uMRopAHFlfl8Gix+I+vQYhC/rSY+R2S0IcWr/sahCjkhsXNOTw+snjN1yBEIbFHJ1BTtuUMAmo1PSLjAXj8BPTYe+TQbAvFOfId8K15/FIEY1qQmwbhPUeADvP4y9cjxKM1YHFjDo9Oi96F5Bawy+7mXaDbI7/bcgF2FsGYFqQaOG/rpHEg9Sjbd8l4vHoGqotkTQv1uwG1Z8jZYDk38/YfYo7E+s3iVxlyvizJnX8BG+3ujgJvpWjfBDyynA8qwZhawGUD6wGay7RbDvxsba9WkjGVgLeBh3N9aAFrrc0Y8F6IvkPOETnnBhXtY6Xtd8Q5F+TzNmghpjRfePFH2JJQnRZRyFKLT8u0mbC4MAsBVkhaaX+WW8mOKxqVBmB1SIbcspfbHzaJf0rR/lz8MgQ2VYJxLqB24BjwwsBuE21oz5XXzPSu/SRwEni/EsxJiBrgc+BXW2MBTBHtATdm8FkOnLDcWNeAL4A3iixgKXCA6dUqwARwHFifw7cN+AF4mvC9D3wD1IUswBEd4AwmOhoAvgbeDNhPA7A/MdcAhoC9eHx9lprXAz8mjPupwK458DHQl+j3MlDva7YE6DWjEWBHYN40DDsTj1wv0WZFZpPvzeAe0FoAZ1qODcYAcDRrcgvR4c0UsKUgxiw8W43lBdGJcerE7+wOXCmQL5OAq8Z0pPS3ckuUTyxeKgbLS/E546elP8z6Lw14rOigfyHqsXOuKXlhtiPkOkn/VgTJX3XOuWfzDbGoRb0u+h/xDJ/HHlzXCgAAAABJRU5ErkJggg=="}
+      />
     </>
   )
 }
