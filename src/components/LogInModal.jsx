@@ -8,7 +8,6 @@ export default function LogInModal({ displayState, closeState }) {
   const [path, setPath] = useState('');
   const [userExists, setUserExists] = useState(false)
   const [accessingUser, setAccessingUser] = useState('')
-  const [accessingUserInfo, setAccessingUserInfo] = useState('')
   const [unamePassIncorrect, setUnamePassIncorrect] = useState(false)
   const users = JSON.parse(localStorage.getItem("users")) 
 
@@ -26,7 +25,6 @@ export default function LogInModal({ displayState, closeState }) {
       if(user.password == e.target.value && user.username == usernameInput) {
         setPath('/user')
         setAccessingUser(user.accNum)
-        setAccessingUserInfo(user)
         setUserExists(true)
       }
     })    
@@ -35,7 +33,6 @@ export default function LogInModal({ displayState, closeState }) {
   function handleClick() {
     if(userExists == true) {
       localStorage.setItem("loggedUser", JSON.stringify(accessingUser))
-      localStorage.setItem("loggedUserInfo", JSON.stringify(accessingUserInfo))
     } else {
       setUnamePassIncorrect(true)
     }

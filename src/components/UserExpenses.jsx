@@ -8,29 +8,37 @@ export default function UserExpenses({ accessingUser }) {
   const [userExpense, setUserExpense] = useState()
   const [expenseCost, setExpenseCost] = useState(0)
   const [currentExpenses, setCurrentExpenses] = useState([])
+  const [balance, setBalance] = useState()
   let users = JSON.parse(localStorage.getItem("users"))
-  let accessingUserInfo = JSON.parse(localStorage.getItem("loggedUserInfo"))
 
   useEffect(() => {
-    setCurrentExpenses(accessingUserInfo.expenses)
+    let specificUserInfo = users.find(user => user.accNum == accessingUser)
+    setCurrentExpenses(specificUserInfo.expenses)
+    setBalance(specificUserInfo.balance)
   }, [])
   
-  function deleteExpense(selectedItem) {
-    const updatedExpenses = accessingUserInfo.expenses.filter(each => each.item !== selectedItem)
-    accessingUserInfo.expenses.find(list => {
-      if(list.item == selectedItem) {
-        accessingUserInfo.balance += list.cost
-      }
-    })
-    setCurrentExpenses([...updatedExpenses])
-  }
-
   function handleExpenseInput(e) {
-    setUserExpense(e.target.value)
+    setUserExpense(e.target.value.toLowerCase())
   }
 
   function handleExpenseCostInput(e) {
-    setExpenseCost(e.target.value)
+    setExpenseCost(Number(e.target.value))
+  }
+
+  function deleteExpense(selectedItem) {
+    let users = JSON.parse(localStorage.getItem("users"))
+    let accessingUserInfo = users.find(user => user.accNum == accessingUser)
+    let expenseList = accessingUserInfo.expenses
+    expenseList.find(list => {
+      if(list.item == selectedItem) {
+        accessingUserInfo.balance += list.cost
+        setBalance(accessingUserInfo.balance)
+      }
+    })
+    expenseList = expenseList.filter(each => each.item !== selectedItem)
+    accessingUserInfo.expenses = expenseList
+    localStorage.setItem("users", JSON.stringify(users))
+    setCurrentExpenses(expenseList)
   }
 
   function handleSubmit(e) {
@@ -41,8 +49,8 @@ export default function UserExpenses({ accessingUser }) {
         user.expenses.push(newUserExpense)
         setCurrentExpenses(user.expenses)
         user.balance -= expenseCost
+        setBalance(user.balance)
         localStorage.setItem("users", JSON.stringify(users))
-        localStorage.setItem("loggedUserInfo", JSON.stringify(user))
         alert('congrats')
       }
     })
@@ -55,7 +63,7 @@ export default function UserExpenses({ accessingUser }) {
         <div className='curr-balance'>
           <div className='budget-title'>BUDGET</div>
           <p className='balance-title'>Your Balance</p>
-          <p className='balance-val'>{accessingUserInfo.balance}</p>
+          <p className='balance-val'>{balance}</p>
           <form onSubmit={handleSubmit} autoComplete="off">
             <label htmlFor="expense-item">Add Expense Item</label>
             <input onChange={handleExpenseInput} type="text" name="expense-item" id="expense-item"/>

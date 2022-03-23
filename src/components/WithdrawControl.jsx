@@ -19,7 +19,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
   const time = `${date} ${hours}:${mins}`
 
   function storeWithdrawAmount(e) {
-    setWithdrawAmount(e.target.value)
+    setWithdrawAmount(Number(e.target.value))
   }
 
   function handleSubmit(e) {
@@ -32,8 +32,8 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
     }
     currentUsers.findIndex(acc => {
       if(acc.accNum === matchedAcc) {
-        let newBalance = Number(acc.balance)
-        let withdrawal = Number(withdrawAmount) 
+        let newBalance = acc.balance
+        let withdrawal = withdrawAmount
         withdrawal *= currency
         if(newBalance > withdrawal) {
           newBalance -= withdrawal
@@ -72,7 +72,7 @@ export default function WithdrawControl({ displayFeature, currentUsers, setCurre
         <label htmlFor="amount">Enter an Amount</label>
         <div className='withdraw-enter-amount'>
           <CurrencyOptions convertCurr={currency} onConvertCurr={setCurrency}/> 
-          <input required type="text" name='amount' onChange={storeWithdrawAmount}/>
+          <input required type="number" name='amount' onChange={storeWithdrawAmount}/>
         </div>
         <div className='withdraw-triggers'>
           <button>Withdraw</button>

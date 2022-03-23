@@ -12,7 +12,6 @@ export default function UserScreen() {
   const [userInfo, setUserInfo] = useState([]);
   const [history, setHistory] = useState([])
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"))
-  const loggedUserInfo = JSON.parse(localStorage.getItem("loggedUserInfo"))
   const [name, setName] = useState('')
   const [userName, setUserName] = useState('')
   const [accCateg, setAccCateg] = useState('')
