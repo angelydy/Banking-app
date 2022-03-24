@@ -84,7 +84,7 @@
 
   .user-screen-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1.5fr 2fr;
     text-align: center;
 
     .grid-two {
@@ -216,9 +216,12 @@
   }
 }
 
+.table-title {
+  font-weight: 600;
+}
+
 .user-child-info-title {
   font-weight: 700;
-  font-size: 1.5rem;
   background: rgba( 255, 255, 255, 0.1 );
   box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
   backdrop-filter: blur( 2.5px );
@@ -233,12 +236,12 @@
 .user-child-info {
   display:grid;
   grid-template-columns: repeat(3, auto);
+  grid-gap: 0.5rem;
   font-size: 0.9rem;
-  line-height: 2.5rem;
+  line-height: 4rem;
 
-  .table-title {
-    font-weight: 600;
-    text-align: center;
+  .account-table-account-no  {
+    text-align: left;
   }
 }
 
@@ -271,7 +274,7 @@
   line-height: 2.5rem;
   width: 100%;
   padding-bottom: 3rem;
-
+  padding-top: 2rem;
   #transfer-to {
     width: 13rem;
 

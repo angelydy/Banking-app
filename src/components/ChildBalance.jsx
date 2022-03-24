@@ -12,7 +12,7 @@ export default function ChildBalance({ passedChildAccNum, passedChildName, ifHas
            <div className='user-child-info-title'>Connected Child Accounts</div>
            <div className='user-child-info'>
              <div className='account-table-account-no'>
-               <div className='table-title'>Child Account No.</div>
+             <div className='table-title'>Child Acc No.</div>
                {passedChildAccNum.map((acc) =>{
                  return (
                  <div key={uuidv4()}>
@@ -22,7 +22,7 @@ export default function ChildBalance({ passedChildAccNum, passedChildName, ifHas
                  })} 
               </div>
               <div className='account-table-account-name'>
-                <div className='table-title'>Child Name</div>
+              <div className='table-title'>Child Name</div>
                 {passedChildName.map((name) =>{
                   return (
                   <div key={uuidv4()}>
@@ -32,7 +32,7 @@ export default function ChildBalance({ passedChildAccNum, passedChildName, ifHas
                  })} 
               </div>
               <div className='account-table-account-balance'>
-                <div className='table-title'>Child Balance</div>
+              <div className='table-title'>Child Balance</div>
                 {passedChildArray.map((balance) =>{
                   return (
                   <div key={uuidv4()}>

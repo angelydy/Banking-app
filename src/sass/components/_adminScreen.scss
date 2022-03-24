@@ -74,16 +74,16 @@ select {
   width: 3rem;
 }
 
+.historyBtn {
+  margin: 0 3rem;
+  cursor: pointer;
+}
+
 .admin-wrapper {
   color: white;
   scroll-behavior: smooth;
 
   .deleteBtn:hover {
-    cursor: pointer;
-  }
-
-  .historyBtn {
-    margin: 0 3rem;
     cursor: pointer;
   }
 
