@@ -86,10 +86,6 @@ export default function UserScreen() {
 
   return (
     <section className='user-wrapper'>
-      <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
-        <i className="fa-solid fa-clock-rotate-left"></i>
-        View Transaction History
-      </div>
       <div className={displayModal}>
         <div className='welcome-container'>
           <div className='welcome-modal-icon'>🎉</div>
@@ -97,7 +93,7 @@ export default function UserScreen() {
           <div className='short-desc'>Start saving today</div>
           <button onClick={renderInfo}>Let's Go</button>
         </div>
-  </div>
+      </div>
       <div>
       <Navbar />
       </div>
@@ -115,6 +111,16 @@ export default function UserScreen() {
             passedChildName={childName}
             ifHasChildren={hasChildren}
             passedChildArray={childArray}
+          />
+          <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
+            <i className="fa-solid fa-clock-rotate-left"></i>
+            View Transaction History
+          </div>
+          <History
+            displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+            closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
+            historyMessage={historyArray}
+            accessingUser={loggedUser}
           />
         </div>
         <div className='grid-two'>
@@ -156,12 +162,6 @@ export default function UserScreen() {
         </div>
       </div>
       <Footer />
-      <History
-      displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
-      closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
-      historyMessage={historyArray}
-      accessingUser={loggedUser}
-      />
     </section>
   );
 }
