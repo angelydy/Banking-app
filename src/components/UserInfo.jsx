@@ -21,19 +21,21 @@ export default function UserInfo({ accessingUser, passedName, passedUserName, pa
         <h1>{getHours(hrs24)}</h1> 
         <h4>{passedName}</h4>
         <div className='accNum-accCategory'>
-          <p>{accessingUser}</p>
-          <p>{passedAccCateg}</p>
-          <p>{passedAccType}</p>
+          <p>Account Number<br></br>{accessingUser}</p>
+          <p>Account Category<br></br>{passedAccCateg}</p>
+          <p>Account Type<br></br>{passedAccType}</p>
         </div>
       </div>
-      {ifParent === true &&
-        <ChildBalance 
+      <div className='child-container'>
+        {ifParent === true &&
+          <ChildBalance 
           passedChildAccNum={passedChildAccNum} 
           passedChildName={passedChildName} 
           ifHasChildren={ifHasChildren}
           passedChildArray={passedChildArray}
         />
-      }
+        }
+      </div>
     </>
   )
 }

@@ -39,24 +39,6 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
     setExpenseCost(Number(e.target.value))
   }
 
-  function deleteExpense(selectedItem) {
-    let users = JSON.parse(localStorage.getItem("users"))
-    let accessingUserInfo = users.find(user => user.accNum == accessingUser)
-    let expenseList = accessingUserInfo.expenses
-    expenseList.find(list => {
-      if(list.item == selectedItem) {
-        accessingUserInfo.balance += list.cost
-        setPassedBalance(accessingUserInfo.balance)
-        let newHistory = `${accessingUserInfo.lname} ${accessingUserInfo.fname} removed ${list.item} worth ₱${list.cost} on ${time}.`
-        setPassedHistory([...passedHistory, {accNum: accessingUser, history: newHistory}])
-      }
-    })
-    expenseList = expenseList.filter(each => each.item !== selectedItem)
-    accessingUserInfo.expenses = expenseList
-    localStorage.setItem("users", JSON.stringify(users))
-    setCurrentExpenses(expenseList)
-  }
-
   function handleSubmit(e) {
     e.preventDefault()
     if(!userExpense || expenseCost <= 0) {
@@ -87,6 +69,25 @@ export default function UserExpenses({ accessingUser, passedBalance, setPassedBa
     e.target.reset()
     resetState()
   }
+
+  function deleteExpense(selectedItem) {
+    let users = JSON.parse(localStorage.getItem("users"))
+    let accessingUserInfo = users.find(user => user.accNum == accessingUser)
+    let expenseList = accessingUserInfo.expenses
+    expenseList.find(list => {
+      if(list.item == selectedItem) {
+        accessingUserInfo.balance += list.cost
+        setPassedBalance(accessingUserInfo.balance)
+        let newHistory = `${accessingUserInfo.lname} ${accessingUserInfo.fname} removed ${list.item} worth ₱${list.cost} on ${time}.`
+        setPassedHistory([...passedHistory, {accNum: accessingUser, history: newHistory}])
+      }
+    })
+    expenseList = expenseList.filter(each => each.item !== selectedItem)
+    accessingUserInfo.expenses = expenseList
+    localStorage.setItem("users", JSON.stringify(users))
+    setCurrentExpenses(expenseList)
+  }
+
 
   function resetState() {
     setUserExpense()

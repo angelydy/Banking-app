@@ -38,29 +38,6 @@ export default function UserScreen() {
     if(getHistory) setHistory(getHistory)
   }, [])
 
-  function renderInfo() {
-    userInfo.find(user => {
-      if(user.accNum == loggedUser) {
-        setUserName(user.username)
-        setName(`${user.lname} ${user.fname} ${user.mname}`)
-        setAccCateg(user.acccateg)
-        setAccType(user.acctype)
-        setBalance(user.balance)
-
-        if(user.acccateg !== 'Parent') {
-          setIsParent(false)
-        }
-      }
-      if(user.parentAcc == loggedUser) {
-        setChildAccNum(prevChild => [...prevChild, user.accNum])
-        setChildName(prevChild =>  [...prevChild,`${user.lname} ${user.fname} ${user.mname}`])
-        setHasChildren(true)
-      }
-    })
-    setDisplayModal('welcome-modal hide')
-  }
-
-
   useEffect(()=> {
     localStorage.setItem("history", JSON.stringify(history))
     history.find(history => {
@@ -84,6 +61,28 @@ export default function UserScreen() {
     })
   }, [userInfo])
 
+  function renderInfo() {
+    userInfo.find(user => {
+      if(user.accNum == loggedUser) {
+        setUserName(user.username)
+        setName(`${user.lname} ${user.fname} ${user.mname}`)
+        setAccCateg(user.acccateg)
+        setAccType(user.acctype)
+        setBalance(user.balance)
+
+        if(user.acccateg !== 'Parent') {
+          setIsParent(false)
+        }
+      }
+      if(user.parentAcc == loggedUser) {
+        setChildAccNum(prevChild => [...prevChild, user.accNum])
+        setChildName(prevChild =>  [...prevChild,`${user.lname} ${user.fname} ${user.mname}`])
+        setHasChildren(true)
+      }
+    })
+    setDisplayModal('welcome-modal hide')
+  }
+
   return (
     <section className='user-wrapper'>
       <div className={displayModal}>
@@ -99,6 +98,16 @@ export default function UserScreen() {
       </div>
       <div className='user-screen-grid'>
         <div className='grid-one'>
+          <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
+            <i className="fa-solid fa-clock-rotate-left"></i>
+            View Transaction History
+          </div>
+          <History
+            displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
+            closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
+            historyMessage={historyArray}
+            accessingUser={loggedUser}
+          />
           <UserInfo 
             accessingUser={loggedUser} 
             passedName={name} 
@@ -111,16 +120,6 @@ export default function UserScreen() {
             passedChildName={childName}
             ifHasChildren={hasChildren}
             passedChildArray={childArray}
-          />
-          <div className='historyBtn' onClick={()=> setDisplayHistory(true)}>
-            <i className="fa-solid fa-clock-rotate-left"></i>
-            View Transaction History
-          </div>
-          <History
-            displayState={displayHistory ? "alert-modal-wrapper show" : "alert-modal-wrapper"}
-            closeState={()=> displayHistory ? setDisplayHistory(false) : setDisplayHistory(true)}
-            historyMessage={historyArray}
-            accessingUser={loggedUser}
           />
         </div>
         <div className='grid-two'>

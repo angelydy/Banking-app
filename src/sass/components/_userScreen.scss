@@ -82,9 +82,18 @@
     margin: 2rem;
   }
 
+  .child-container {
+    background-image: url('/src/assets/two-couple.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 100%;
+    background-position: center;
+  }
+
   .user-screen-grid {
     display: grid;
-    grid-template-columns: 1.5fr 2fr;
+    grid-template-columns: repeat(2, auto);
     text-align: center;
 
     .grid-two {
@@ -96,23 +105,26 @@
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         padding: 1rem;
+        text-align: center;
 
         .balance-title {
-          text-align: left;
+          text-align: center;
           font-weight: 600;
         }
 
         .budget-title {
-          text-align: left;
+          text-align: center;
           font-weight: 900;
           font-size: 2rem;
         }
   
         .balance-val {
-          font-size: 1.5rem;
+          font-size: 2rem;
           font-weight: 900;
-          text-align: left;
+          text-align: center;
           border-bottom: 1px solid white;
+          color: white;
+          text-shadow: 0px 7px 20px hsl(242, 57%, 30%), 0px -7px 20px hsl(242, 64%, 9%);
         }
 
         .curr-status {
@@ -224,7 +236,7 @@
   font-weight: 700;
   background: rgba( 255, 255, 255, 0.1 );
   box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
-  backdrop-filter: blur( 2.5px );
+  backdrop-filter: blur( 5.5px );
   -webkit-backdrop-filter: blur( 2.5px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -248,7 +260,7 @@
 .user-info-wrapper{
   background: rgba( 255, 255, 255, 0.1 );
   box-shadow: 0 8px 32px 0 rgba(66, 68, 94, 0.37);
-  backdrop-filter: blur( 2.5px );
+  backdrop-filter: blur( 5.5px );
   -webkit-backdrop-filter: blur( 2.5px );
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
