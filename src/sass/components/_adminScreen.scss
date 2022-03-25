@@ -8,6 +8,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+input {
+  text-align: center;
+}
+
 .darkMode {
   background: rgb(34, 33, 33);
   color: white;
